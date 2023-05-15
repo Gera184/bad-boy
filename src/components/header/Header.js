@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-import BellIcon from "../../assets/icons/bell-icon.png";
-import Search from "../../assets/icons/search.png";
 import Logo from "../../assets/icons/logo.png";
-import logoOpen from "../../assets/icons/logo-open.png";
 
 import {
   ContentHeaderWrapper,
   Container,
-  HeaderLogo,
   DeatilsWrapper,
-  Deatils,
   MobileHeader,
   MobileMenuToggleBtn,
-  MobileSearchWrapper,
-  MobileSearchInput,
-  MobileSearchControls,
-  MobileSearchResult,
-  BellWrapper,
 } from "./Header.styles";
 
 const Header = ({ toggleMobileNav, isMobile }) => {

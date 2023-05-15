@@ -2,8 +2,7 @@ import React from "react";
 import { config } from "./config";
 import logout from "../../assets/icons/logout.png";
 import * as S from "./Sidebar.styles";
-import logoOpen from "../../assets/icons/logo-open.png";
-import logoClose from "../../assets/icons/logo-close.png";
+import logo2 from "../../assets/icons/logo2.png";
 import { useNavigate } from "react-router-dom";
 
 const SideBar = ({
@@ -33,9 +32,19 @@ const SideBar = ({
 
       <S.SidebarHeader>
         {isOpen ? (
-          <img src={logoOpen} alt="error" onClick={toggleSideBar} />
+          <img
+            style={{ height: "80px" }}
+            src={logo2}
+            alt="error"
+            onClick={toggleSideBar}
+          />
         ) : (
-          <img src={logoClose} alt="error" onClick={toggleSideBar} />
+          <img
+            style={{ height: "55px" }}
+            src={logo2}
+            alt="error"
+            onClick={toggleSideBar}
+          />
         )}
       </S.SidebarHeader>
       <S.SidebarMain>
@@ -58,7 +67,7 @@ const SideBar = ({
           <S.SidebarButton onClick={logoutHandler}>
             <S.SidebarButtonLink style={linkStyle}>
               <img src={logout} alt="error" />
-              {isOpen && <span>Logout</span>}
+              {isOpen && <span>התנתקות</span>}
             </S.SidebarButtonLink>
           </S.SidebarButton>
         </S.SidebarBottom>

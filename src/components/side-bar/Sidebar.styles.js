@@ -10,6 +10,7 @@ export const SidebarHeader = styled.div`
 `;
 
 export const SidebarMain = styled.div`
+  direction: rtl;
   display: flex;
   flex-direction: column;
   align-items: center;

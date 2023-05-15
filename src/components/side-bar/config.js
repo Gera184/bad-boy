@@ -3,12 +3,12 @@ import home from "../../assets/icons/home.png";
 
 export const config = [
   {
-    title: "Home",
+    title: "בית",
     path: "",
     icon: home,
   },
   {
-    title: "Login",
+    title: "התחברות",
     path: "login",
     icon: login,
   },
