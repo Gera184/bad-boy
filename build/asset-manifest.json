@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/bad-boy/static/css/main.a70bb2f3.css",
-    "main.js": "/bad-boy/static/js/main.7481db9d.js",
+    "main.js": "/bad-boy/static/js/main.892f6ca4.js",
     "static/js/787.fea4d412.chunk.js": "/bad-boy/static/js/787.fea4d412.chunk.js",
     "static/media/logo.png": "/bad-boy/static/media/logo.df6ff4d6694e230c5922.png",
-    "index.html": "/bad-boy/index.html",
     "static/media/phone.svg": "/bad-boy/static/media/phone.3038fb62ad608614692623201d683045.svg",
+    "index.html": "/bad-boy/index.html",
     "static/media/mail.svg": "/bad-boy/static/media/mail.7c5e25e0104cf13a950badc92a9969cc.svg",
     "static/media/location.svg": "/bad-boy/static/media/location.56330ec98a5e539b0ed63abe7abc50a6.svg",
     "main.a70bb2f3.css.map": "/bad-boy/static/css/main.a70bb2f3.css.map",
-    "main.7481db9d.js.map": "/bad-boy/static/js/main.7481db9d.js.map",
+    "main.892f6ca4.js.map": "/bad-boy/static/js/main.892f6ca4.js.map",
     "787.fea4d412.chunk.js.map": "/bad-boy/static/js/787.fea4d412.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a70bb2f3.css",
-    "static/js/main.7481db9d.js"
+    "static/js/main.892f6ca4.js"
   ]
 }
