@@ -36,7 +36,7 @@ export const App = () => {
   };
 
   return (
-    <HashRouter>
+    <Router basename="/bad-boy">
       <Wrapper>
         <SidebarWrapper isMobile={isMobile} width={isOpen ? "25%" : "80px"}>
           <SideBar
@@ -64,6 +64,6 @@ export const App = () => {
           <Footer />
         </ContentWrapper>
       </Wrapper>
-    </HashRouter>
+    </Router>
   );
 };
