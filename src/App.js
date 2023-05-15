@@ -36,7 +36,7 @@ export const App = () => {
   };
 
   return (
-    <Router basename="/bad-boy">
+    <Router>
       <Wrapper>
         <SidebarWrapper isMobile={isMobile} width={isOpen ? "25%" : "80px"}>
           <SideBar
