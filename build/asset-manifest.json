@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/dani-efes/static/css/main.a70bb2f3.css",
+    "main.js": "/dani-efes/static/js/main.bcb051fb.js",
+    "static/js/787.fea4d412.chunk.js": "/dani-efes/static/js/787.fea4d412.chunk.js",
+    "static/media/logo.png": "/dani-efes/static/media/logo.df6ff4d6694e230c5922.png",
+    "static/media/phone.svg": "/dani-efes/static/media/phone.3038fb62ad608614692623201d683045.svg",
+    "index.html": "/dani-efes/index.html",
+    "static/media/mail.svg": "/dani-efes/static/media/mail.7c5e25e0104cf13a950badc92a9969cc.svg",
+    "static/media/location.svg": "/dani-efes/static/media/location.56330ec98a5e539b0ed63abe7abc50a6.svg",
+    "main.a70bb2f3.css.map": "/dani-efes/static/css/main.a70bb2f3.css.map",
+    "main.bcb051fb.js.map": "/dani-efes/static/js/main.bcb051fb.js.map",
+    "787.fea4d412.chunk.js.map": "/dani-efes/static/js/787.fea4d412.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a70bb2f3.css",
+    "static/js/main.bcb051fb.js"
+  ]
+}
