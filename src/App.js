@@ -8,6 +8,7 @@ import {
   Route,
   Routes,
   Navigate,
+  HashRouter,
 } from "react-router-dom";
 import {
   Wrapper,
@@ -35,7 +36,7 @@ export const App = () => {
   };
 
   return (
-    <Router>
+    <HashRouter>
       <Wrapper>
         <SidebarWrapper isMobile={isMobile} width={isOpen ? "25%" : "80px"}>
           <SideBar
@@ -63,6 +64,6 @@ export const App = () => {
           <Footer />
         </ContentWrapper>
       </Wrapper>
-    </Router>
+    </HashRouter>
   );
 };
