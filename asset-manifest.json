@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/bad-boy/static/css/main.a70bb2f3.css",
-    "main.js": "/bad-boy/static/js/main.02a59f6f.js",
+    "main.js": "/bad-boy/static/js/main.3dfa2272.js",
     "static/js/787.fea4d412.chunk.js": "/bad-boy/static/js/787.fea4d412.chunk.js",
-    "static/media/logo.png": "/bad-boy/static/media/logo.6231f5257ab023568274.png",
-    "static/media/logo2.png": "/bad-boy/static/media/logo2.672c5755aa2200f365c0.png",
+    "static/media/logo2.png": "/bad-boy/static/media/logo2.01a693c3647787bd897a.png",
+    "static/media/logo.png": "/bad-boy/static/media/logo.8160d8aaa1b89e04da90.png",
     "static/media/phone.svg": "/bad-boy/static/media/phone.3038fb62ad608614692623201d683045.svg",
     "index.html": "/bad-boy/index.html",
     "static/media/mail.svg": "/bad-boy/static/media/mail.7c5e25e0104cf13a950badc92a9969cc.svg",
     "static/media/location.svg": "/bad-boy/static/media/location.56330ec98a5e539b0ed63abe7abc50a6.svg",
     "main.a70bb2f3.css.map": "/bad-boy/static/css/main.a70bb2f3.css.map",
-    "main.02a59f6f.js.map": "/bad-boy/static/js/main.02a59f6f.js.map",
+    "main.3dfa2272.js.map": "/bad-boy/static/js/main.3dfa2272.js.map",
     "787.fea4d412.chunk.js.map": "/bad-boy/static/js/787.fea4d412.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a70bb2f3.css",
-    "static/js/main.02a59f6f.js"
+    "static/js/main.3dfa2272.js"
   ]
 }
