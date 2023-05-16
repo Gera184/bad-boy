@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
   position: relative;
   overflow-x: hidden;
 `;
+export const TaxImageContainer = styled.div``;
 
 export const DetailsWrapper = styled.div`
   flex: 0.5;
@@ -65,7 +66,7 @@ export const CardContainer = styled.div`
   padding: 16px;
   font-family: "Assistant", sans-serif;
   border-radius: 1rem;
-  background-color: #15233d;
+  background-color: white;
   transition-property: opacity, transform;
   transition-duration: 0.9s;
   transition-timing-function: ease-in-out;
@@ -79,13 +80,13 @@ export const CardContainer = styled.div`
 `;
 
 export const CardTitle = styled.h2`
-  font-size: 18px;
-  color: whitesmoke;
+  font-size: 23px;
+  color: #15233d;
   margin-bottom: 8px;
 `;
 export const CardContent = styled.p`
-  font-size: 14px;
-  color: white;
+  font-size: 15px;
+  color: black;
 `;
 
 export const Content = styled.div`
@@ -108,7 +109,7 @@ export const ContentSub = styled.div`
 `;
 export const ContentFooter = styled.div`
   direction: rtl;
-  margin-top: 10rem;
+  margin-top: 1rem;
   margin-bottom: 1.5rem;
 
   @media (max-width: 800px) {
@@ -186,7 +187,10 @@ export const MessageWrapper = styled.div`
     position: static;
     transform: unset;
     width: unset;
-    padding: 1.5rem 3rem;
+    /* padding: 1.5rem 3rem; */
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 1rem;
     box-shadow: none;
     z-index: unset;
   }

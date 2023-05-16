@@ -11,7 +11,9 @@ export const ContentHeaderWrapper = styled.div`
   background-color: #e9f0f9;
   @media (max-width: 700px) {
     background-color: #15233d;
-    height: 70px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -69,10 +71,10 @@ export const MobileHeader = styled.div`
   font-size: 45px;
   display: flex;
   flex-grow: 1;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0px 20px;
-  background-color: #15233d;
+  background-color: white;
   .logo-img {
     padding: 5px;
     height: 8%;

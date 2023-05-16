@@ -3,6 +3,7 @@ import { ReactComponent as Phone } from "../../assets/icons/contact/phone.svg";
 import { ReactComponent as Mail } from "../../assets/icons/contact/mail.svg";
 import { ReactComponent as Location } from "../../assets/icons/contact/location.svg";
 import texts from "../../texts/texts.json";
+import taxImage from "../../assets/icons/tax-image.jpg";
 
 import {
   AboutWrapper,
@@ -24,6 +25,7 @@ import {
   CardTitle,
   CardContent,
   CardWrapper,
+  TaxImageContainer,
 } from "./Home.styles";
 
 import { Form } from "../../components/form/Form";
@@ -45,7 +47,7 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <DetailsWrapper>
+      {/* <DetailsWrapper>
         <MapBackground />
         <Content>
           <ContentSub>
@@ -76,13 +78,16 @@ const Home = () => {
             </ContactList>
           </ContentSub>
         </Content>
-      </DetailsWrapper>
+      </DetailsWrapper> */}
       <MessageWrapper>
         <ContactFormHeading>שכירים,</ContactFormHeading>
         <ContactFormHeading>תנו לנו להחזיר לכם כסף</ContactFormHeading>
         <ContactFormHeading>ממס הכנסה​!</ContactFormHeading>
         <Form />
       </MessageWrapper>
+      <TaxImageContainer>
+        <img style={{ width: " 100%", height: "100%" }} src={taxImage} alt="" />
+      </TaxImageContainer>
       <AboutWrapper>
         <ContentFooter>
           <Heading text="center">איך התהליך עובד?</Heading>

@@ -15,9 +15,9 @@ const Header = ({ toggleMobileNav, isMobile }) => {
   return (
     <ContentHeaderWrapper>
       <MobileHeader>
-        <MobileMenuToggleBtn onClick={toggleMobileNav}>
+        {/* <MobileMenuToggleBtn onClick={toggleMobileNav}>
           &#8801;
-        </MobileMenuToggleBtn>
+        </MobileMenuToggleBtn> */}
         <img style={{ height: "75px" }} src={Logo} alt="error" />
       </MobileHeader>
       <Container container="left">

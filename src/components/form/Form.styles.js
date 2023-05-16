@@ -25,7 +25,7 @@ export const FormField = styled.div`
   }
 
   button {
-    background-color: goldenrod;
+    background-color: #aac854;
     color: #fff;
   }
 `;
