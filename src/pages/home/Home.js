@@ -24,7 +24,6 @@ import {
   CardTitle,
   CardContent,
   CardWrapper,
-  ImgWrapper,
 } from "./Home.styles";
 
 import { Form } from "../../components/form/Form";
@@ -35,7 +34,7 @@ const Home = () => {
   const [showCards, setShowCards] = useState(false);
 
   useEffect(() => {
-    const delay = 500; // Adjust the delay between each card in milliseconds
+    const delay = 0; // Adjust the delay between each card in milliseconds
 
     const timer = setTimeout(() => {
       setShowCards(true);
@@ -91,7 +90,7 @@ const Home = () => {
             return (
               <CardWrapper key={card.title}>
                 <CardContainer
-                  style={{ transitionDelay: `${index * 1.5}s` }}
+                  style={{ transitionDelay: `${index * 0.5}s` }}
                   className={showCards ? "show" : ""}
                 >
                   <img

@@ -4,19 +4,11 @@ import Header from "./components/header/Header";
 import "./App.css";
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Routes,
   Navigate,
-  HashRouter,
 } from "react-router-dom";
-import {
-  Wrapper,
-  ContentWrapper,
-  SidebarWrapper,
-  ContentHeader,
-  Content,
-} from "./App.styles";
+import { Wrapper, ContentWrapper, SidebarWrapper, Content } from "./App.styles";
 import { Footer } from "./pages/footer/Footer";
 import { AppRoutes } from "./routes";
 

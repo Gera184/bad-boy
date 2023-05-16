@@ -18,7 +18,7 @@ const Header = ({ toggleMobileNav, isMobile }) => {
         <MobileMenuToggleBtn onClick={toggleMobileNav}>
           &#8801;
         </MobileMenuToggleBtn>
-        {/* <img className="logo-img" src={logoOpen} alt="error" /> */}
+        <img style={{ height: "75px" }} src={Logo} alt="error" />
       </MobileHeader>
       <Container container="left">
         {/* <HeaderLogo /> */}

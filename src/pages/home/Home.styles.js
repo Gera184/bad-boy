@@ -179,7 +179,7 @@ export const MessageWrapper = styled.div`
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  animation: ${popUpAnimation} 2s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+  animation: ${popUpAnimation} 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)
     forwards;
 
   @media (max-width: 800px) {
