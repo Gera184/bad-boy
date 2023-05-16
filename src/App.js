@@ -24,7 +24,11 @@ export const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const toggleSideBar = () => setIsOpen(!isOpen);
+  const toggleSideBar = () => {
+    if (!isMobile) {
+      setIsOpen(!isOpen);
+    }
+  };
   const toggleMobileNav = () => {
     setIsMobile(!isMobile);
     setIsOpen(true);
