@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   FormField,
@@ -12,14 +12,11 @@ import { useAsyncFn } from "../../hooks/useAsync";
 import { sendMessage } from "../../services/contact.service";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Error } from "../home/Home.styles";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../features/user/userSlice";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const sendMessageFn = useAsyncFn(sendMessage);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {

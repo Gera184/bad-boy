@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../../assets/icons/logo.png";
 
 import {
@@ -6,11 +6,10 @@ import {
   Container,
   DeatilsWrapper,
   MobileHeader,
-  MobileMenuToggleBtn,
 } from "./Header.styles";
 
 const Header = ({ toggleMobileNav, isMobile }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   return (
     <ContentHeaderWrapper>

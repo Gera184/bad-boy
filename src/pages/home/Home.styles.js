@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const popUpAnimation = keyframes`
   from {
@@ -89,16 +89,6 @@ export const CardContent = styled.p`
   color: black;
 `;
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-  gap: 7.5rem;
-  padding: 0 5rem;
-  position: relative;
-  margin-top: 2rem;
-`;
 export const ContentSub = styled.div`
   width: 40%;
   direction: rtl;
@@ -136,28 +126,6 @@ export const DetailText = styled.p`
     width: unset;
     line-height: 1.3;
   }
-`;
-
-export const ContactList = styled.div`
-  margin: 2rem 0;
-  display: grid;
-  gap: 1rem;
-`;
-
-export const Contact = styled.div`
-  display: flex;
-  gap: 2rem;
-`;
-export const ContactIcon = styled.div`
-  svg {
-    width: 1rem;
-    height: 1rem;
-    fill: goldenrod;
-  }
-`;
-
-export const ContactDetails = styled.div`
-  font-size: small;
 `;
 
 export const AboutWrapper = styled.div`

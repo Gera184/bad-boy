@@ -13,7 +13,6 @@ import {
   query,
   serverTimestamp,
   setDoc,
-  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import {
@@ -22,10 +21,8 @@ import {
 } from "../../pages/customer/Document/Document.styles";
 import { hideNewDocModel } from "../../features/documents/documentSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addCustomer,
-  updateSelectedCustomer,
-} from "../../features/customers/customerSlice";
+import { addCustomer } from "../../features/customers/customerSlice";
+import { notification } from "../notifay/Notify";
 
 const options = [
   { value: "new", label: "New" },
@@ -56,8 +53,8 @@ export const Form = ({ isAdmin = false }) => {
       ...(isAdmin ? { note: "", status: "" } : {}), // Add note and status fields for admin
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
-      email: Yup.string().email("Invalid Email").required("Email is required"),
+      name: Yup.string(),
+      email: Yup.string().email("Invalid Email"),
       phone: Yup.string().required("Phone is required"),
       ...(isAdmin
         ? {
@@ -123,7 +120,7 @@ export const Form = ({ isAdmin = false }) => {
         .then(() => {
           console.log("Data successfully written to Firestore");
 
-          alert("נחזור אלייך בהקדם האפשרי");
+          notification("added");
 
           setCaseNumber((prevCaseNumber) =>
             prevCaseNumber
@@ -140,6 +137,7 @@ export const Form = ({ isAdmin = false }) => {
           console.error("Error writing data to Firestore: ", error);
         });
     });
+
     formik.resetForm();
     setCaseNumber("");
     setSelectedValue("");

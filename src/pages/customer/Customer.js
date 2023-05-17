@@ -20,7 +20,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCustomers, refilter } from "../../features/customers/customerSlice";
 import Loader from "./../../components/loader/loader";
 import { NoContentMsg } from "./Document List/DocumentsList.styles";
-import logo2 from "../../assets/icons/logo2.png";
 
 const Customer = () => {
   const dispatch = useDispatch();
@@ -93,7 +92,7 @@ const Customer = () => {
                 return (
                   <Client key={index} to={`./${customer.id}`}>
                     <ImgWrapper>
-                      <img src={logo2} alt="client" />
+                      <img src={avatar} alt="client" />
                     </ImgWrapper>
                     <div>
                       <Name>{customer.name}</Name>

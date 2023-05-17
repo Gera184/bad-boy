@@ -1,25 +1,13 @@
 import React from "react";
-import { ReactComponent as Phone } from "../../assets/icons/contact/phone.svg";
-import { ReactComponent as Mail } from "../../assets/icons/contact/mail.svg";
-import { ReactComponent as Location } from "../../assets/icons/contact/location.svg";
 import texts from "../../texts/texts.json";
 import taxImage from "../../assets/icons/tax-image.jpg";
 
 import {
   AboutWrapper,
   Heading,
-  DetailsWrapper,
   MessageWrapper,
   Wrapper,
-  DetailText,
-  ContactList,
-  Contact,
-  ContactIcon,
-  ContactDetails,
-  Content,
   ContactFormHeading,
-  MapBackground,
-  ContentSub,
   ContentFooter,
   CardContainer,
   CardTitle,
