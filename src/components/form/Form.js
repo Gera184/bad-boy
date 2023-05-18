@@ -104,7 +104,6 @@ export const Form = ({ isAdmin = false }) => {
   function onSendMessage() {
     sendMessageFn.execute(formik.values).then(() => {
       const documentRef = doc(db, collectionName, documentId);
-      debugger;
       const data = {
         id: uuidv4(),
         name: formik.values.name,
@@ -120,7 +119,11 @@ export const Form = ({ isAdmin = false }) => {
         .then(() => {
           console.log("Data successfully written to Firestore");
 
-          notification("added");
+          if (isAdmin) {
+            notification("admin_added");
+          } else {
+            notification("added");
+          }
 
           setCaseNumber((prevCaseNumber) =>
             prevCaseNumber

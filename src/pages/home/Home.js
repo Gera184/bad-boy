@@ -78,7 +78,7 @@ const Home = () => {
       </TaxImageContainer>
       <AboutWrapper>
         <ContentFooter>
-          <Heading text="center">איך התהליך עובד?</Heading>
+          <Heading text="center">שלבי התהליך</Heading>
           {texts.lang.he.cards.map((card, index) => {
             return (
               <CardWrapper key={card.title}>

@@ -11,6 +11,7 @@ import {
 } from "./Document.styles";
 import deleteIcon from "../../../assets/icons/delete.png";
 import viewDocIcon from "../../../assets/icons/view-doc.png";
+import { formatDateHandler } from "../../../utils/formatDate";
 
 function Document({
   name,
@@ -34,18 +35,6 @@ function Document({
     { value: "russian", label: "Russian" },
     { value: "arabic", label: "Arabic" },
   ];
-  const date = new Date(createdAt);
-  const dateTimeString = date.toLocaleString("en-US", {
-    timeZone: "Asia/Jerusalem",
-    hour12: false,
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-  });
 
   const SelectComponent = ({ options, value, onChange }) => (
     <SelectWrapper
@@ -69,7 +58,7 @@ function Document({
       <Type>{email}</Type>
       <Details>{phone} </Details>
       <Details>{caseNumber} </Details>
-      <Details>{dateTimeString} </Details>
+      <Details>{formatDateHandler(createdAt)} </Details>
       <Action>{status}</Action>
       <SelectComponent options={options} onChange={handleSelectChange} />
 

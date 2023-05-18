@@ -35,9 +35,10 @@ const Login = () => {
       const { email, password } = formik.values;
       dispatch(getUser({ email, password }));
     });
-    formik.resetForm();
+
     setTimeout(() => {
       window.location.reload(true);
+      formik.resetForm();
     }, 1000);
   }
 

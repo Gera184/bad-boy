@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "./components/side-bar/SideBar";
 import Header from "./components/header/Header";
 import "./App.css";
@@ -47,13 +47,15 @@ export const App = () => {
           <Header isMobile={isMobile} toggleMobileNav={toggleMobileNav} />
           <Content>
             <Routes>
-              {AppRoutes().map((route) => (
-                <Route
-                  key={route.path}
-                  element={route.element}
-                  path={route.path}
-                />
-              ))}
+              {AppRoutes().map((route) => {
+                return (
+                  <Route
+                    key={route.path}
+                    element={route.element}
+                    path={route.path}
+                  />
+                );
+              })}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Content>

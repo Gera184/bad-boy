@@ -57,4 +57,6 @@ const userSlice = createSlice({
   },
 });
 
+export const { isAdminPanelHandler } = userSlice.actions;
+
 export default userSlice.reducer;

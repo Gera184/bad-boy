@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCustomers, refilter } from "../../features/customers/customerSlice";
 import Loader from "./../../components/loader/loader";
 import { NoContentMsg } from "./Document List/DocumentsList.styles";
+import { formatDateHandler } from "../../utils/formatDate";
 
 const Customer = () => {
   const dispatch = useDispatch();
@@ -28,19 +29,6 @@ const Customer = () => {
   const { customers, _customers, loading, error } = useSelector(
     (store) => store.customer
   );
-
-  const formatDateHandler = (createdAt) => {
-    const date = new Date(createdAt);
-    const dateTimeString = date.toLocaleString("en-US", {
-      timeZone: "Asia/Jerusalem",
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-
-    return dateTimeString;
-  };
 
   async function getRandomImage() {
     try {
