@@ -8,7 +8,13 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { Wrapper, ContentWrapper, SidebarWrapper, Content } from "./App.styles";
+import {
+  Wrapper,
+  ContentWrapper,
+  SidebarWrapper,
+  Content,
+  FooterWrapper,
+} from "./App.styles";
 import { Footer } from "./pages/footer/Footer";
 import { AppRoutes } from "./routes";
 
@@ -59,7 +65,9 @@ export const App = () => {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Content>
-          <Footer />
+          <FooterWrapper>
+            <Footer />
+          </FooterWrapper>
         </ContentWrapper>
       </Wrapper>
     </Router>

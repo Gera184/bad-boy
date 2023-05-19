@@ -4,9 +4,9 @@ export const FooterWrapper = styled.footer`
   display: flex;
   direction: rtl;
   background-color: ${(props) => (props.isMain ? "#333333" : "#f0f0f0")};
-  padding: 1rem;
-  padding-top: ${(props) => (!props.isMain ? "25px" : "1rem")};
-  padding-bottom: ${(props) => (!props.isMain ? "25px" : "1rem")};
+  padding: 0.2rem;
+  padding-top: ${(props) => (!props.isMain ? "0px" : "1rem")};
+  padding-bottom: ${(props) => (!props.isMain ? "0px" : "1rem")};
   text-align: center;
   text-align: center;
   align-content: center;
@@ -38,9 +38,10 @@ export const Content = styled.div`
   padding: 0 5rem;
   position: relative;
   margin-top: 2rem;
+  color: inherit;
 `;
 
-export const Contact = styled.div`
+export const Contact = styled.a`
   display: flex;
   align-items: center;
 `;

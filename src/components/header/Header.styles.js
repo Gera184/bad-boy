@@ -10,7 +10,7 @@ export const ContentHeaderWrapper = styled.div`
   position: relative;
   background-color: #e9f0f9;
   @media (max-width: 700px) {
-    background-color: #15233d;
+    background-color: white;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -96,9 +96,7 @@ export const MobileSearchWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   box-sizing: border-box;
-
   padding-top: 20px;
-
   position: absolute;
   top: 0;
   left: 0;

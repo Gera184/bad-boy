@@ -15,7 +15,7 @@ export const SidebarWrapper = styled.div`
   background-color: #15233d;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: auto;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -32,14 +32,19 @@ export const SidebarWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
 `;
 
 export const Content = styled.div`
   display: flex;
-  height: 100%;
+  flex: 1;
+  flex-direction: column;
   position: relative;
   overflow: auto;
+`;
+
+export const FooterWrapper = styled.footer`
+  flex-shrink: 0;
 `;

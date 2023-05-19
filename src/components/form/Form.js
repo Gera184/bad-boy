@@ -191,7 +191,7 @@ export const Form = ({ isAdmin = false }) => {
       <FormField>
         <input
           type="text"
-          placeholder="אימייל"
+          placeholder="אימייל (לא חובה)"
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
