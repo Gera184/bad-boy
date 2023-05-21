@@ -68,9 +68,9 @@ const Home = () => {
         </Content>
       </DetailsWrapper> */}
       <MessageWrapper>
-        <ContactFormHeading>שכירים,</ContactFormHeading>
-        <ContactFormHeading>תנו לנו להחזיר לכם כסף</ContactFormHeading>
-        <ContactFormHeading>ממס הכנסה​!</ContactFormHeading>
+        <ContactFormHeading>שכירים?</ContactFormHeading>
+        <ContactFormHeading>אנחנו נדאג להחזיר את מלוא כספכם</ContactFormHeading>
+        <ContactFormHeading></ContactFormHeading>
         <Form />
       </MessageWrapper>
       <TaxImageContainer>

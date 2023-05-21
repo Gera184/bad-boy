@@ -9,8 +9,9 @@ export const ContentHeaderWrapper = styled.div`
   width: 100%;
   position: relative;
   background-color: #e9f0f9;
+  border-bottom: 1px solid black;
   @media (max-width: 700px) {
-    background-color: white;
+    /* background-color: white; */
     height: 80px;
     display: flex;
     justify-content: center;
@@ -74,7 +75,7 @@ export const MobileHeader = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0px 20px;
-  background-color: white;
+  /* background-color: white; */
   .logo-img {
     padding: 5px;
     height: 8%;

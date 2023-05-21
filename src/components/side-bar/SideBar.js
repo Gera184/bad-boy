@@ -56,7 +56,9 @@ const SideBar = ({
                   <S.SidebarButtonLink style={linkStyle} to={li.path}>
                     <img src={li.icon} alt="error" />
 
-                    {isOpen && <span>{li.title}</span>}
+                    {isOpen && (
+                      <span style={{ color: "white" }}>{li.title}</span>
+                    )}
                   </S.SidebarButtonLink>
                 </S.SidebarButton>
               );
