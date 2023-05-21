@@ -92,7 +92,7 @@ export const Form = ({ isAdmin = false }) => {
     });
 
     const updatedCaseNumber = incrementWithLeadingZeros(
-      users[0]?.caseNumber ? users[0].caseNumber : "000000"
+      users[0]?.caseNumber ? users[0].caseNumber : "2081235"
     );
 
     if (users.caseNumber) {
