@@ -70,6 +70,9 @@ const customerSlice = createSlice({
     updateSelectedCustomer: (state, { payload }) => {
       state.customers = payload;
     },
+    sortByCategory: (state, { payload }) => {
+      state.customers = payload;
+    },
     addCustomer: (state, { payload }) => {
       const date = new Date(payload.createdAt);
       const dateTimeString = date.toLocaleString("en-US", {
@@ -106,7 +109,7 @@ const customerSlice = createSlice({
   },
 });
 
-export const { refilter, updateSelectedCustomer, addCustomer } =
+export const { refilter, updateSelectedCustomer, addCustomer, sortByCategory } =
   customerSlice.actions;
 
 export default customerSlice.reducer;

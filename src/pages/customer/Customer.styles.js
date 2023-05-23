@@ -13,6 +13,20 @@ export const Wrapper = styled.div`
     height: 150vh;
   }
 `;
+export const ActionBtnsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  gap: 1rem;
+`;
+export const ActionBtn = styled.button`
+  padding: 0.5rem 0.75rem;
+  background-color: goldenrod;
+  border-radius: 1rem;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+`;
 
 export const SearchContainer = styled.div`
   display: flex;
@@ -82,6 +96,7 @@ export const Client = styled(NavLink)`
     }
   }
 `;
+
 export const ImgWrapper = styled.div`
   height: 3rem;
   border-radius: 100%;

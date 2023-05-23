@@ -96,30 +96,8 @@ function DocumentList() {
     <DocumentContainer>
       {newDocModel && <AddDocument />}
       <FilterWrapper>
-        <FilterHeading>Documents</FilterHeading>
+        <FilterHeading>Client documents</FilterHeading>
       </FilterWrapper>
-      <SearchContainer>
-        <input
-          type="text"
-          placeholder="Search for Document"
-          onChange={(e) => dispatch(setSearchKey(e.target.value))}
-        />
-      </SearchContainer>
-      <AddBtnWrapper>
-        <button
-          onClick={() => {
-            dispatch(showNewDocModel());
-          }}
-        >
-          Add Customer
-        </button>
-      </AddBtnWrapper>
-      <ListHeaderWrapper>
-        <p>All documents</p>
-        <ListHeaderBtnWrapper>
-          <button disabled={true}>Export</button>
-        </ListHeaderBtnWrapper>
-      </ListHeaderWrapper>
 
       <DocumentsList>
         <Content>

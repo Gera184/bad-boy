@@ -42,8 +42,12 @@ export const Action = styled.div`
 export const SelectWrapper = styled.select`
   text-align: center;
   /* padding: 2px; */
+  border: 1px solid orange;
+  border-radius: 5px;
+  color: orange;
   padding-left: 10px;
   padding-right: 10px;
+  background-color: transparent;
 `;
 
 export const Option = styled.option``;

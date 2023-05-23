@@ -65,7 +65,7 @@ export const CardContainer = styled.div`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   padding: 16px;
   font-family: "Assistant", sans-serif;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   background-color: white;
   transition-property: opacity, transform;
   transition-duration: 0.9s;
