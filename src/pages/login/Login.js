@@ -18,6 +18,7 @@ import { getUser } from "../../features/user/userSlice";
 const Login = () => {
   const sendMessageFn = useAsyncFn(sendMessage);
   const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,16 +31,16 @@ const Login = () => {
     onSubmit: onSendMessage,
   });
 
-  function onSendMessage() {
-    sendMessageFn.execute(formik.values).then((res) => {
+  async function onSendMessage() {
+    try {
+      await sendMessageFn.execute(formik.values);
+
       const { email, password } = formik.values;
       dispatch(getUser({ email, password }));
-    });
-
-    setTimeout(() => {
-      window.location.reload(true);
       formik.resetForm();
-    }, 1000);
+    } catch (error) {
+      // Handle any errors from the API or form submission
+    }
   }
 
   return (

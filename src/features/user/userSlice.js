@@ -24,6 +24,7 @@ export const getUser = createAsyncThunk(
       // Return the user object as the fulfilled value
 
       localStorage.setItem("user", JSON.stringify(user));
+      window.location.reload(true);
 
       return { email: user.email, uid: user.uid };
     } catch (error) {

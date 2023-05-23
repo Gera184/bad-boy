@@ -6,6 +6,7 @@ export const LoginPage = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100vh;
 `;
 
 export const LoginForm = styled.form`
