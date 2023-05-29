@@ -8,6 +8,8 @@ import {
   UtilWrapper,
   Wrapper,
   Option,
+  InfoWrapper,
+  InfoTitle,
 } from "./Document.styles";
 import deleteIcon from "../../../assets/icons/delete.png";
 import viewDocIcon from "../../../assets/icons/view-doc.png";
@@ -55,6 +57,7 @@ function Document({
       <input type="checkbox" checked={checked} />
 
       <Name>{name}</Name>
+
       <Type>{email}</Type>
       <Details>{phone} </Details>
       <Details>{caseNumber} </Details>
@@ -65,9 +68,6 @@ function Document({
       <UtilWrapper>
         <button>
           <img src={viewDocIcon} alt="view" />
-        </button>
-        <button>
-          <img src={deleteIcon} alt="delete" />
         </button>
       </UtilWrapper>
     </Wrapper>

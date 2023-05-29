@@ -95,6 +95,15 @@ export const Client = styled(NavLink)`
       color: rgba(100, 84.3, 0, 0.7);
     }
   }
+  &:focus {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-right: 3px solid rgba(100, 84.3, 0, 0.7);
+    button {
+      cursor: pointer;
+      color: rgba(100, 84.3, 0, 0.7);
+    }
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -123,7 +132,7 @@ export const Time = styled.p`
   font-size: small;
   margin-top: 0.25rem;
 `;
-export const Number = styled.span`
+export const Number = styled.p`
   font-size: small;
   color: gray;
 `;

@@ -47,6 +47,7 @@ export const FilterWrapper = styled.div`
 
 export const FilterHeading = styled.h1`
   font-size: xx-large;
+  border-bottom: 1px solid black;
 `;
 
 export const FilterLabel = styled.label`
