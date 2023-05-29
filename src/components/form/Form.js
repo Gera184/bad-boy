@@ -55,7 +55,9 @@ export const Form = ({ isAdmin = false }) => {
     validationSchema: Yup.object({
       name: Yup.string(),
       email: Yup.string().email("Invalid Email"),
-      phone: Yup.string().required("Phone is required"),
+      phone: Yup.string()
+        .matches(/^(05\d{8})$/, "Invalid phone number")
+        .required("Phone is required"),
       ...(isAdmin
         ? {
             note: Yup.string().required("Note is required"),
@@ -68,13 +70,9 @@ export const Form = ({ isAdmin = false }) => {
   });
 
   function incrementWithLeadingZeros(inputString) {
-    const length = inputString.length;
-    let number = parseInt(inputString, 10) + 1;
-
-    // Using string interpolation to concatenate the leading zeros and the incremented number
-    const result = `${"0".repeat(length - String(number).length)}${number}`;
-
-    setCaseNumber(result);
+    const number = parseInt(inputString, 10) + 1;
+    const paddedNumber = String(number).padStart(inputString.length, "0");
+    setCaseNumber(paddedNumber);
   }
 
   const getCustomers = useCallback(async () => {
@@ -160,7 +158,7 @@ export const Form = ({ isAdmin = false }) => {
       ))}
     </SelectWrapper>
   );
-
+  console.log(caseNumber);
   const handleSelectChange = async (event) => {
     const isCustomerExist = customers.some(
       (customer) => customer.id === formik.values.id

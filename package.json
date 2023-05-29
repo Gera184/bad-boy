@@ -1,6 +1,6 @@
 {
   "homepage": "http://gera184.github.io/bad-boy",
-  "name": "ran-project",
+  "name": "dani-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "host": "react-scripts start --host 192.168.10.103"
+    "host": "react-scripts start --host 10.0.0.18"
   },
   "eslintConfig": {
     "extends": [
