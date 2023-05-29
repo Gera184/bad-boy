@@ -12,6 +12,7 @@ import {
   SearchClientWrapper,
   ActionBtnsWrapper,
   ActionBtn,
+  Number,
 } from "./Customer.styles";
 import DocumentList from "./Document List/DocumentList";
 
@@ -31,6 +32,7 @@ import { showNewDocModel } from "../../features/documents/documentSlice";
 import { Option, SelectWrapper } from "./Document/Document.styles";
 
 const options = [
+  { value: "all", label: "All" },
   { value: "new", label: "New" },
   { value: "not_answered", label: "Not answered" },
   { value: "deal", label: "Deal" },
@@ -77,13 +79,19 @@ const Customer = () => {
 
   function filterCustomersByCategory(event) {
     const selectedCategory = event.target.value;
-    setSelectedCategory(event.target.value);
+    setSelectedCategory(selectedCategory);
+    let filteredCustomers;
 
-    const filteredCustomers = _customers.filter((customer) => {
-      return (
-        customer.customerStatus.toLowerCase() === selectedCategory.toLowerCase()
-      );
-    });
+    if (selectedCategory.toLowerCase() === "all") {
+      filteredCustomers = _customers; // Assign all customers if "all" category is selected
+    } else {
+      filteredCustomers = _customers.filter((customer) => {
+        return (
+          customer.customerStatus.toLowerCase() ===
+          selectedCategory.toLowerCase()
+        );
+      });
+    }
 
     dispatch(sortByCategory(filteredCustomers));
   }
@@ -142,6 +150,7 @@ const Customer = () => {
                     <div>
                       <Name>{customer.name}</Name>
                       <Time>{formatDateHandler(customer.createdAt)}</Time>
+                      <Number>{index + 1}</Number>
                     </div>
                   </Client>
                 );

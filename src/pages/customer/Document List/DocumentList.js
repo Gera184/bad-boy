@@ -96,7 +96,7 @@ function DocumentList() {
     <DocumentContainer>
       {newDocModel && <AddDocument />}
       <FilterWrapper>
-        <FilterHeading>Client documents</FilterHeading>
+        <FilterHeading>{customers.length} סה״כ</FilterHeading>
       </FilterWrapper>
 
       <DocumentsList>
@@ -114,7 +114,7 @@ function DocumentList() {
               onChange={handleTextareaChange}
               onBlur={handleTextareaChangeSave}
               id="myTextarea"
-              rows="10"
+              rows="50"
               cols="50"
             />
           </TextAreaWrapper>

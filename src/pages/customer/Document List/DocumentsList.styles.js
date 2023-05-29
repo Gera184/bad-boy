@@ -42,6 +42,7 @@ export const FilterWrapper = styled.div`
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: flex-end;
 `;
 
 export const FilterHeading = styled.h1`

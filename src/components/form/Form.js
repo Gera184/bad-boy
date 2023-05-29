@@ -158,7 +158,7 @@ export const Form = ({ isAdmin = false }) => {
       ))}
     </SelectWrapper>
   );
-  console.log(caseNumber);
+
   const handleSelectChange = async (event) => {
     const isCustomerExist = customers.some(
       (customer) => customer.id === formik.values.id

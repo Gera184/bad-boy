@@ -123,3 +123,7 @@ export const Time = styled.p`
   font-size: small;
   margin-top: 0.25rem;
 `;
+export const Number = styled.span`
+  font-size: small;
+  color: gray;
+`;
