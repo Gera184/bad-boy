@@ -107,7 +107,7 @@ export const Form = ({ isAdmin = false }) => {
     const lastName = nameArray.slice(1).join(" ");
 
     const response = await axios.post(
-      "/api/crm/v3/objects/contacts",
+      "https://api.hubapi.com/crm/v3/objects/contacts",
       {
         properties: {
           email: email,
