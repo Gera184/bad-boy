@@ -6,7 +6,7 @@ import {
   Heading,
   HeadingWrapper,
   Wrapper,
-} from "./AddDocument.styles";
+} from "./AddClient.styles";
 
 import { useDispatch } from "react-redux";
 import { hideNewDocModel } from "../../../features/documents/documentSlice";

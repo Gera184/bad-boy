@@ -1,30 +1,22 @@
 import React, { useEffect, useState } from "react";
 import {
-  AddBtnWrapper,
   Content,
   DocumentContainer,
   DocumentsList,
   FilterHeading,
   FilterWrapper,
-  ListHeaderBtnWrapper,
-  ListHeaderWrapper,
-  SearchContainer,
   TextArea,
   TextAreaWrapper,
-} from "./DocumentsList.styles";
-import AddDocument from "../Add Document/AddDocument";
-import Document from "../Document/Document";
+} from "./ClientDetails.styles";
+import AddClient from "../add-client/AddClient";
+import ClientDetails from "../client-deatils/ClientDetails";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setSearchKey,
-  showNewDocModel,
-} from "../../../features/documents/documentSlice";
 import { updateSelectedCustomer } from "../../../features/customers/customerSlice";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 
-function DocumentList() {
+function ClientDetailsWrapper() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [textValue, setTextValue] = useState("");
@@ -94,7 +86,7 @@ function DocumentList() {
 
   return (
     <DocumentContainer>
-      {newDocModel && <AddDocument />}
+      {newDocModel && <AddClient />}
       <FilterWrapper>
         <FilterHeading>{customers.length} סה״כ</FilterHeading>
       </FilterWrapper>
@@ -102,7 +94,7 @@ function DocumentList() {
       <DocumentsList>
         <Content>
           {selectedCustomer && (
-            <Document
+            <ClientDetails
               {...selectedCustomer}
               key={selectedCustomer.id}
               handleSelectChange={handleSelectChange}
@@ -124,4 +116,4 @@ function DocumentList() {
   );
 }
 
-export default DocumentList;
+export default ClientDetailsWrapper;

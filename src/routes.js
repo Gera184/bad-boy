@@ -1,6 +1,6 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import Customer from "./pages/customer/Customer";
+import Customer from "./pages/admin/Clients";
 import { Navigate } from "react-router-dom";
 
 export const AppRoutes = () => {

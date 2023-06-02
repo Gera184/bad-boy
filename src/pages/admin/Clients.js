@@ -13,8 +13,8 @@ import {
   ActionBtnsWrapper,
   ActionBtn,
   Number,
-} from "./Customer.styles";
-import DocumentList from "./Document List/DocumentList";
+} from "./Clients.styles";
+import ClientDetailsWrapper from "./client-details-wrapper/ClientDetailsWrapper";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useState } from "react";
@@ -25,11 +25,11 @@ import {
   refilter,
   sortByCategory,
 } from "../../features/customers/customerSlice";
-import Loader from "./../../components/loader/loader";
-import { NoContentMsg } from "./Document List/DocumentsList.styles";
+import Loader from "../../components/loader/loader";
+import { NoContentMsg } from "./client-details-wrapper/ClientDetails.styles";
 import { formatDateHandler } from "../../utils/formatDate";
 import { showNewDocModel } from "../../features/documents/documentSlice";
-import { Option, SelectWrapper } from "./Document/Document.styles";
+import { Option, SelectWrapper } from "./client-deatils/ClientDetails.styles";
 
 const options = [
   { value: "all", label: "All" },
@@ -44,7 +44,7 @@ const options = [
   { value: "arabic", label: "Arabic" },
 ];
 
-const Customer = () => {
+const Clients = () => {
   const dispatch = useDispatch();
   const [searchKey, setSearchKey] = useState("");
   const [avatar, setAvatar] = useState(null);
@@ -166,7 +166,9 @@ const Customer = () => {
         </SideMenuContainer>
 
         <Routes>
-          <Route path={"/:id"} element={<DocumentList />} />
+          <Route path={"/:id"} element={<ClientDetailsWrapper />} />
+
+          {/*Redirects to first client*/}
           {customers.length && (
             <Route path="/" element={<Navigate to={`${customers[0].id}`} />} />
           )}
@@ -176,4 +178,4 @@ const Customer = () => {
   );
 };
 
-export default Customer;
+export default Clients;

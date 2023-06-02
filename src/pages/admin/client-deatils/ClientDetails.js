@@ -1,4 +1,7 @@
 import React from "react";
+import viewDocIcon from "../../../assets/icons/view-doc.png";
+import { formatDateHandler } from "../../../utils/formatDate";
+
 import {
   Action,
   Details,
@@ -8,14 +11,9 @@ import {
   UtilWrapper,
   Wrapper,
   Option,
-  InfoWrapper,
-  InfoTitle,
-} from "./Document.styles";
-import deleteIcon from "../../../assets/icons/delete.png";
-import viewDocIcon from "../../../assets/icons/view-doc.png";
-import { formatDateHandler } from "../../../utils/formatDate";
+} from "./ClientDetails.styles";
 
-function Document({
+function ClientDetails({
   name,
   email,
   phone,
@@ -57,7 +55,6 @@ function Document({
       <input type="checkbox" checked={checked} />
 
       <Name>{name}</Name>
-
       <Type>{email}</Type>
       <Details>{phone} </Details>
       <Details>{caseNumber} </Details>
@@ -74,4 +71,4 @@ function Document({
   );
 }
 
-export default Document;
+export default ClientDetails;

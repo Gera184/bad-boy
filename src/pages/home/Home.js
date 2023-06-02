@@ -35,38 +35,6 @@ const Home = () => {
 
   return (
     <Wrapper>
-      {/* <DetailsWrapper>
-        <MapBackground />
-        <Content>
-          <ContentSub>
-            <Heading>שמרו על קשר</Heading>
-            <DetailText>
-              ללמעלה מ-90% מהשכירים מגיע לקבל החזרי מס הכנסה. הניסיון שלנו מראה
-              כי החזר המס הממוצע המתקבל אצל לקוחותינו מגיע לכ-9,500 שקל!
-            </DetailText>
-            <ContactList>
-              <Contact>
-                <ContactIcon>
-                  <Phone />
-                </ContactIcon>
-                <ContactDetails>0527457797</ContactDetails>
-              </Contact>
-              <Contact>
-                <ContactIcon>
-                  <Mail />
-                </ContactIcon>
-                <ContactDetails>daniel@gmail.com</ContactDetails>
-              </Contact>
-              <Contact>
-                <ContactIcon>
-                  <Location />
-                </ContactIcon>
-                <ContactDetails>מעלות תרשיחא סיטי</ContactDetails>
-              </Contact>
-            </ContactList>
-          </ContentSub>
-        </Content>
-      </DetailsWrapper> */}
       <MessageWrapper>
         <ContactFormHeading>שכירים?</ContactFormHeading>
         <ContactFormHeading>אנחנו נדאג להחזיר את מלוא כספכם</ContactFormHeading>

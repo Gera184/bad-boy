@@ -18,11 +18,12 @@ import { db } from "../../firebase-config";
 import {
   Option,
   SelectWrapper,
-} from "../../pages/customer/Document/Document.styles";
+} from "../../pages/admin/client-deatils/ClientDetails.styles";
 import { hideNewDocModel } from "../../features/documents/documentSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addCustomer } from "../../features/customers/customerSlice";
 import { notification } from "../notifay/Notify";
+import axios from "axios";
 
 const options = [
   { value: "new", label: "New" },
@@ -99,6 +100,31 @@ export const Form = ({ isAdmin = false }) => {
     return users;
   }, []);
 
+  const postData = async (data) => {
+    const { email, name, phone } = data;
+    const nameArray = name.split(" ");
+    const firstName = nameArray[0];
+    const lastName = nameArray.slice(1).join(" ");
+
+    const response = await axios.post(
+      "/api/crm/v3/objects/contacts",
+      {
+        properties: {
+          email: email,
+          firstname: firstName,
+          lastname: lastName,
+          phone: phone,
+          hs_lead_status: "NEW",
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer pat-eu1-c1033bc8-6135-4a46-bc10-2e3868d115db`,
+        },
+      }
+    );
+  };
+
   function onSendMessage() {
     sendMessageFn.execute(formik.values).then(() => {
       const documentRef = doc(db, collectionName, documentId);
@@ -137,6 +163,8 @@ export const Form = ({ isAdmin = false }) => {
         .catch((error) => {
           console.error("Error writing data to Firestore: ", error);
         });
+
+      postData(data);
     });
 
     formik.resetForm();
