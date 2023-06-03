@@ -101,28 +101,12 @@ export const Form = ({ isAdmin = false }) => {
   }, []);
 
   const postData = async (data) => {
-    const { email, name, phone } = data;
-    const nameArray = name.split(" ");
-    const firstName = nameArray[0];
-    const lastName = nameArray.slice(1).join(" ");
-
-    const response = await axios.post(
-      "https://api.hubapi.com/crm/v3/objects/contacts",
-      {
-        properties: {
-          email: email,
-          firstname: firstName,
-          lastname: lastName,
-          phone: phone,
-          hs_lead_status: "NEW",
-        },
-      },
-      {
-        headers: {
-          Authorization: `Bearer pat-eu1-c1033bc8-6135-4a46-bc10-2e3868d115db`,
-        },
-      }
-    );
+    try {
+      await axios.post("/.netlify/functions/postData", data);
+      notification("added");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   function onSendMessage() {
@@ -142,12 +126,6 @@ export const Form = ({ isAdmin = false }) => {
       setDoc(documentRef, data)
         .then(() => {
           console.log("Data successfully written to Firestore");
-
-          if (isAdmin) {
-            notification("admin_added");
-          } else {
-            notification("added");
-          }
 
           setCaseNumber((prevCaseNumber) =>
             prevCaseNumber

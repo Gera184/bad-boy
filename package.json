@@ -1,5 +1,4 @@
 {
-  "homepage": "http://gera184.github.io/bad-boy",
   "name": "dani-project",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +8,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "express": "^4.18.2",
     "firebase": "^9.21.0",
     "formik": "^2.2.9",
     "http-proxy-middleware": "^2.0.6",
@@ -30,7 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "host": "react-scripts start --host 10.0.0.18"
+    "host": "react-scripts start --host 192.168.1.229",
+    "dev": "netlify dev"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "netlify-cli": "^15.3.1"
   }
 }
