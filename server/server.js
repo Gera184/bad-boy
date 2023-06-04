@@ -15,13 +15,13 @@ class Server {
   }
 
   middlewares() {
-    this.app.use(cors()); // Enable CORS
-    this.app.use(express.json());
-    this.app.use(express.static(path.join(__dirname, "../build")));
     this.app.use((req, res, next) => {
       console.log(req);
       next();
     });
+    this.app.use(cors()); // Enable CORS
+    this.app.use(express.json());
+    this.app.use(express.static(path.join(__dirname, "../build")));
   }
 
   // Bind controllers to routes
