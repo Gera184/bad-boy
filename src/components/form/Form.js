@@ -106,7 +106,7 @@ export const Form = ({ isAdmin = false }) => {
     const firstName = nameArray[0];
     const lastName = nameArray.slice(1).join(" ");
 
-    const data = JSON.stringify({
+    const tempData = JSON.stringify({
       properties: {
         email: email,
         firstname: firstName,
@@ -121,7 +121,7 @@ export const Form = ({ isAdmin = false }) => {
         Authorization: "Bearer pat-eu1-57eb6b62-69eb-4b49-87d4-f90b4b6d056b",
         "Content-Type": "application/json",
       },
-      data: data,
+      data: tempData,
     };
 
     axios(config)
