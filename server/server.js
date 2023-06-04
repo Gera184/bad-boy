@@ -18,6 +18,10 @@ class Server {
     this.app.use(cors()); // Enable CORS
     this.app.use(express.json());
     this.app.use(express.static(path.join(__dirname, "../build")));
+    this.app.use((req, res, next) => {
+      console.log(req);
+      next();
+    });
   }
 
   // Bind controllers to routes
