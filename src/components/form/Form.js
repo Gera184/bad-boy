@@ -105,30 +105,32 @@ export const Form = ({ isAdmin = false }) => {
     const nameArray = name.split(" ");
     const firstName = nameArray[0];
     const lastName = nameArray.slice(1).join(" ");
-    const response = await axios.post(
-      "https://api.hubapi.com/crm/v3/objects/contacts",
-      {
-        properties: {
-          email: "example@hubspot.com",
-          firstname: "Jane",
-          lastname: "Doe",
-          phone: "(555) 555-5555",
-          company: "HubSpot",
-          website: "hubspot.com",
-          lifecyclestage: "marketingqualifiedlead",
-        },
-        tokenKey: "pat-eu1-4bb88ef7-7197-445c-9dd5-09b7792f9f73",
+
+    const data = JSON.stringify({
+      properties: {
+        email: email,
+        firstname: firstName,
+        lastname: lastName,
       },
+    });
 
-      {
-        headers: {
-          Authorization: `Bearer pat-eu1-4bb88ef7-7197-445c-9dd5-09b7792f9f73`,
-        },
-      }
-    );
+    const config = {
+      method: "post",
+      url: "https://api.hubapi.com/crm/v3/objects/contacts",
+      headers: {
+        Authorization: "Bearer pat-eu1-57eb6b62-69eb-4b49-87d4-f90b4b6d056b",
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
 
-    // Handle the response as needed
-    console.log(response.data);
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   function onSendMessage() {
