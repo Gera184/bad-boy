@@ -4,15 +4,15 @@ const axios = require("axios");
 
 router.post("/", async (req, res) => {
   const { email, name, phone } = req.body;
-  const nameArray = name.split(" ");
+  const nameArray = name?.split(" ");
   const firstName = nameArray[0];
-  const lastName = nameArray.slice(1).join(" ");
+  const lastName = nameArray?.slice(1)?.join(" ");
 
   const tempData = JSON.stringify({
     properties: {
       email: email,
-      firstname: firstName,
-      lastname: lastName,
+      firstname: firstName || "",
+      lastname: lastName || "",
       phone: phone,
       hs_lead_status: "NEW",
     },
