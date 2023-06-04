@@ -101,12 +101,34 @@ export const Form = ({ isAdmin = false }) => {
   }, []);
 
   const postData = async (data) => {
-    try {
-      await axios.post("/.netlify/functions/postData", data);
-      notification("added");
-    } catch (error) {
-      console.error(error);
-    }
+    const { email, name, phone } = data;
+    const nameArray = name.split(" ");
+    const firstName = nameArray[0];
+    const lastName = nameArray.slice(1).join(" ");
+    const response = await axios.post(
+      "https://api.hubapi.com/crm/v3/objects/contacts",
+      {
+        properties: {
+          email: "example@hubspot.com",
+          firstname: "Jane",
+          lastname: "Doe",
+          phone: "(555) 555-5555",
+          company: "HubSpot",
+          website: "hubspot.com",
+          lifecyclestage: "marketingqualifiedlead",
+        },
+        tokenKey: "pat-eu1-4bb88ef7-7197-445c-9dd5-09b7792f9f73",
+      },
+
+      {
+        headers: {
+          Authorization: `Bearer pat-eu1-4bb88ef7-7197-445c-9dd5-09b7792f9f73`,
+        },
+      }
+    );
+
+    // Handle the response as needed
+    console.log(response.data);
   };
 
   function onSendMessage() {
