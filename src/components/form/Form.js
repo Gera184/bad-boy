@@ -103,10 +103,9 @@ export const Form = ({ isAdmin = false }) => {
   const postData = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/homepage/postData",
+        "http://localhost:8080/api/contact/",
         data
       );
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
