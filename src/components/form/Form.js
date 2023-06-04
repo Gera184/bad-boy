@@ -101,36 +101,12 @@ export const Form = ({ isAdmin = false }) => {
   }, []);
 
   const postData = async (data) => {
-    const { email, name, phone } = data;
-    const nameArray = name.split(" ");
-    const firstName = nameArray[0];
-    const lastName = nameArray.slice(1).join(" ");
-
-    const tempData = JSON.stringify({
-      properties: {
-        email: email,
-        firstname: firstName,
-        lastname: lastName,
-      },
-    });
-
-    const config = {
-      method: "post",
-      url: "https://api.hubapi.com/crm/v3/objects/contacts",
-      headers: {
-        Authorization: "Bearer pat-eu1-57eb6b62-69eb-4b49-87d4-f90b4b6d056b",
-        "Content-Type": "application/json",
-      },
-      data: tempData,
-    };
-
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    try {
+      const response = await axios.post("http://localhost:8080/postData", data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   function onSendMessage() {
