@@ -110,7 +110,7 @@ export const Form = ({ isAdmin = false }) => {
       console.error(error);
     }
   };
-
+  console.log("object");
   function onSendMessage() {
     sendMessageFn.execute(formik.values).then(() => {
       const documentRef = doc(db, collectionName, documentId);
