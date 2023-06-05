@@ -8,15 +8,12 @@ import {
   LoginForm,
   LoginPage,
 } from "./Login.styles";
-import { useAsyncFn } from "../../hooks/useAsync";
-import { sendMessage } from "../../services/contact.service";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { getUser } from "../../features/user/userSlice";
+import { getUser } from "../../redux/user/userSlice";
 
 const Login = () => {
-  const sendMessageFn = useAsyncFn(sendMessage);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -33,8 +30,6 @@ const Login = () => {
 
   async function onSendMessage() {
     try {
-      await sendMessageFn.execute(formik.values);
-
       const { email, password } = formik.values;
       dispatch(getUser({ email, password }));
       formik.resetForm();

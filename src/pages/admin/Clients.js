@@ -24,11 +24,11 @@ import {
   getCustomers,
   refilter,
   sortByCategory,
-} from "../../features/customers/customerSlice";
+} from "../../redux/customers/customerSlice";
 import Loader from "../../components/loader/loader";
 import { NoContentMsg } from "./client-details-wrapper/ClientDetails.styles";
 import { formatDateHandler } from "../../utils/formatDate";
-import { showNewDocModel } from "../../features/documents/documentSlice";
+import { showNewDocModel } from "../../redux/documents/documentSlice";
 import { Option, SelectWrapper } from "./client-deatils/ClientDetails.styles";
 
 const options = [

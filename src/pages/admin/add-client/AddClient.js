@@ -9,7 +9,7 @@ import {
 } from "./AddClient.styles";
 
 import { useDispatch } from "react-redux";
-import { hideNewDocModel } from "../../../features/documents/documentSlice";
+import { hideNewDocModel } from "../../../redux/documents/documentSlice";
 import { Form } from "../../../components/form/Form";
 
 function AddDocument() {

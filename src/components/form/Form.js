@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ContactForm, Error, FormField } from "./Form.styles";
 import { v4 as uuidv4 } from "uuid";
-import { useAsyncFn } from "../../hooks/useAsync";
-import { sendMessage } from "../../services/contact.service";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -19,9 +17,9 @@ import {
   Option,
   SelectWrapper,
 } from "../../pages/admin/client-deatils/ClientDetails.styles";
-import { hideNewDocModel } from "../../features/documents/documentSlice";
+import { hideNewDocModel } from "../../redux/documents/documentSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { addCustomer } from "../../features/customers/customerSlice";
+import { addCustomer } from "../../redux/customers/customerSlice";
 import { notification } from "../notifay/Notify";
 import axios from "axios";
 
@@ -39,7 +37,6 @@ const options = [
 
 export const Form = ({ isAdmin = false }) => {
   const dispatch = useDispatch();
-  const sendMessageFn = useAsyncFn(sendMessage);
   const documentId = uuidv4();
   const collectionName = "customers";
   const [caseNumber, setCaseNumber] = useState("");
@@ -102,47 +99,55 @@ export const Form = ({ isAdmin = false }) => {
 
   const postData = async (data) => {
     try {
+<<<<<<< HEAD
       const response = await axios.post("http://gytb.co.il/api/contact/", data);
+=======
+      const response = await axios.post(
+        "http://localhost:8080/api/contact/",
+        data
+      );
+      if (response.statusText === "OK") {
+        notification("added");
+      } else {
+        notification("error");
+      }
+>>>>>>> dev
     } catch (error) {
       console.error(error);
     }
   };
 
   function onSendMessage() {
-    sendMessageFn.execute(formik.values).then(() => {
-      const documentRef = doc(db, collectionName, documentId);
-      const data = {
-        id: uuidv4(),
-        name: formik.values.name,
-        phone: formik.values.phone,
-        email: formik.values.email,
-        createdAt: isAdmin ? new Date() : serverTimestamp(),
-        caseNumber: caseNumber,
-        customerStatus: isAdmin ? selectedValue : "new",
-        note: isAdmin ? formik.values.note : "",
-      };
+    const documentRef = doc(db, collectionName, documentId);
+    const data = {
+      id: uuidv4(),
+      name: formik.values.name,
+      phone: formik.values.phone,
+      email: formik.values.email,
+      createdAt: isAdmin ? new Date() : serverTimestamp(),
+      caseNumber: caseNumber,
+      customerStatus: isAdmin ? selectedValue : "new",
+      note: isAdmin ? formik.values.note : "",
+    };
 
-      setDoc(documentRef, data)
-        .then(() => {
-          console.log("Data successfully written to Firestore");
+    setDoc(documentRef, data)
+      .then(() => {
+        console.log("Data successfully written to Firestore");
 
-          setCaseNumber((prevCaseNumber) =>
-            prevCaseNumber
-              ? incrementWithLeadingZeros(prevCaseNumber)
-              : "000000"
-          ); // Increment caseNumber state
+        setCaseNumber((prevCaseNumber) =>
+          prevCaseNumber ? incrementWithLeadingZeros(prevCaseNumber) : "000000"
+        ); // Increment caseNumber state
 
-          if (isAdmin) {
-            dispatch(addCustomer(data));
-            dispatch(hideNewDocModel());
-          }
-        })
-        .catch((error) => {
-          console.error("Error writing data to Firestore: ", error);
-        });
+        if (isAdmin) {
+          dispatch(addCustomer(data));
+          dispatch(hideNewDocModel());
+        }
+      })
+      .catch((error) => {
+        console.error("Error writing data to Firestore: ", error);
+      });
 
-      postData(data);
-    });
+    postData(data);
 
     formik.resetForm();
     setCaseNumber("");
@@ -233,11 +238,8 @@ export const Form = ({ isAdmin = false }) => {
         </>
       )}
       <FormField>
-        <button type="submit">
-          {sendMessageFn.loading ? "בשליחה" : "שלח"}
-        </button>
+        <button type="submit">שלח</button>
       </FormField>
-      {sendMessageFn.error && <Error>{sendMessageFn.error}</Error>}
     </ContactForm>
   );
 };
