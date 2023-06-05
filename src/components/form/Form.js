@@ -100,13 +100,12 @@ export const Form = ({ isAdmin = false }) => {
   const postData = async (data) => {
     try {
       const response = await axios.post("http://gytb.co.il/api/contact/", data);
-      if (response.statusText === "OK") {
+      if (response?.statusText === "OK") {
         notification("added");
-      } else {
-        notification("error");
       }
     } catch (error) {
       console.error(error);
+      notification("error");
     }
   };
 
