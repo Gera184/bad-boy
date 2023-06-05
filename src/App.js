@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SideBar from "./components/side-bar/SideBar";
 import Header from "./components/header/Header";
 import "./App.css";
@@ -50,7 +50,7 @@ export const App = () => {
           />
         </SidebarWrapper>
         <ContentWrapper>
-          <Header isMobile={isMobile} toggleMobileNav={toggleMobileNav} />
+          <Header />
           <Content>
             <Routes>
               {AppRoutes().map((route) => {

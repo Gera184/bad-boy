@@ -32,7 +32,6 @@ const Home = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
   return (
     <Wrapper>
       <MessageWrapper>
