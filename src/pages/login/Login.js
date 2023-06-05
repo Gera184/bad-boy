@@ -13,7 +13,7 @@ import { sendMessage } from "../../services/contact.service";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { getUser } from "../../features/user/userSlice";
+import { getUser } from "../../redux/user/userSlice";
 
 const Login = () => {
   const sendMessageFn = useAsyncFn(sendMessage);

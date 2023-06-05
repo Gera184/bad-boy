@@ -19,9 +19,9 @@ import {
   Option,
   SelectWrapper,
 } from "../../pages/admin/client-deatils/ClientDetails.styles";
-import { hideNewDocModel } from "../../features/documents/documentSlice";
+import { hideNewDocModel } from "../../redux/documents/documentSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { addCustomer } from "../../features/customers/customerSlice";
+import { addCustomer } from "../../redux/customers/customerSlice";
 import { notification } from "../notifay/Notify";
 import axios from "axios";
 

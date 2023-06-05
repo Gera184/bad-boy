@@ -12,7 +12,7 @@ import AddClient from "../add-client/AddClient";
 import ClientDetails from "../client-deatils/ClientDetails";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSelectedCustomer } from "../../../features/customers/customerSlice";
+import { updateSelectedCustomer } from "../../../redux/customers/customerSlice";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase-config";
 
