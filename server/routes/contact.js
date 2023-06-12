@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 
 router.post("/", async (req, res) => {
-  const { email, name, phone } = req.body;
+  const { email, name, phone, caseNumber } = req.body;
   const nameArray = name?.split(" ");
   const firstName = nameArray[0];
   const lastName = nameArray?.slice(1)?.join(" ");
@@ -15,6 +15,7 @@ router.post("/", async (req, res) => {
       lastname: lastName || "",
       phone: phone,
       hs_lead_status: "NEW",
+      case_number: caseNumber || "000000",
     },
   });
 
