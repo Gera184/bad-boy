@@ -142,7 +142,7 @@ export const Form = ({ isAdmin = false }) => {
     postData(data);
 
     formik.resetForm();
-    setCaseNumber("");
+    incrementWithLeadingZeros(caseNumber);
     setSelectedValue("");
   }
 
