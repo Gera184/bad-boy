@@ -12,6 +12,7 @@
     "formik": "^2.2.9",
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
@@ -29,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "host": "react-scripts start --host 192.168.1.229",
+    "host": "react-scripts start --host 10.0.0.18",
     "dev": "netlify dev"
   },
   "eslintConfig": {
@@ -49,6 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {}
+  }
 }

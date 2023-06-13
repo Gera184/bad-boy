@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCustomer } from "../../redux/customers/customerSlice";
 import { notification } from "../notifay/Notify";
 import axios from "axios";
+import Confetti from "../confetti/Confetti";
 
 const options = [
   { value: "new", label: "New" },
@@ -41,6 +42,7 @@ export const Form = ({ isAdmin = false }) => {
   const collectionName = "customers";
   const [caseNumber, setCaseNumber] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false);
   const { customers } = useSelector((store) => store.customer);
 
   const formik = useFormik({
@@ -102,6 +104,11 @@ export const Form = ({ isAdmin = false }) => {
       const response = await axios.post("http://gytb.co.il/api/contact/", data);
       if (response?.statusText === "OK") {
         notification("added");
+        setShowConfetti(true);
+
+        setTimeout(() => {
+          setShowConfetti(false);
+        }, 10000);
       }
     } catch (error) {
       console.error(error);
@@ -178,6 +185,7 @@ export const Form = ({ isAdmin = false }) => {
 
   return (
     <ContactForm onSubmit={formik.handleSubmit}>
+      {showConfetti && <Confetti />}
       <FormField>
         <input
           type="text"
