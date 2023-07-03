@@ -25,11 +25,26 @@ export const ContainerRight = styled.div`
 export const RetailerLabel = styled.p``;
 
 export const IconAndTextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
   img {
     height: 30px;
     width: 30px;
   }
+  p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  select {
+    border: none;
+    background-color: transparent;
+  }
 `;
+
 export const LogoImage = styled.div`
   img {
     height: 37px;

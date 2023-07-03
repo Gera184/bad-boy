@@ -9,8 +9,20 @@ import ErnLogo from "../../assets/images/ErnLogo.svg";
 import Language from "../../assets/icons/Language.svg";
 import Logout from "../../assets/icons/Logout.svg";
 import User from "../../assets/icons/User.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { languageChangeAction } from "../../redux/actions/langActions";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const { language } = useSelector((lang) => lang);
+  const { texts, lang } = language;
+
+  const handleLanguageChange = (event) => {
+    const newLanguage = event.target.value;
+
+    dispatch(languageChangeAction(newLanguage));
+  };
+
   return (
     <Wrapper>
       <ContainerRight>
@@ -22,15 +34,20 @@ const Header = () => {
       <ContainerLeft>
         <IconAndTextWrapper>
           <img src={User} alt="User" />
-          <p>יציאה</p>
+          <select>
+            <option>E045680</option>
+          </select>
         </IconAndTextWrapper>
         <IconAndTextWrapper>
           <img src={Language} alt="Language" />
-          <p>עברית</p>
+          <select value={lang} onChange={handleLanguageChange}>
+            <option value="hebrew">עברית</option>
+            <option value="arabic">ערבית</option>
+          </select>
         </IconAndTextWrapper>
         <IconAndTextWrapper>
           <img src={Logout} alt="Logout" />
-          <p>משתמש</p>
+          <p>יציאה</p>
         </IconAndTextWrapper>
       </ContainerLeft>
     </Wrapper>

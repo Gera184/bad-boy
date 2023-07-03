@@ -1,35 +1,43 @@
 import React from "react";
-import * as S from "./Sidebar.styles";
 import { routes } from "../../routes";
+import {
+  Wrapper,
+  SidebarHeader,
+  OpenHamburgerBtn,
+  CloseBtn,
+  SidebarMain,
+  SidebarButtons,
+  SidebarButton,
+  SidebarButtonLink,
+  SidebarBottom,
+} from "./Sidebar.styles";
 
 const SideBar = () => {
   return (
-    <S.Wrapper>
-      <S.SidebarHeader>
-        <S.OpenHamburgerBtn>&#8801;</S.OpenHamburgerBtn>
+    <Wrapper>
+      <SidebarHeader>
+        <OpenHamburgerBtn>&#8801;</OpenHamburgerBtn>
 
-        <S.CloseBtn>&#10005;</S.CloseBtn>
-      </S.SidebarHeader>
+        <CloseBtn>&#10005;</CloseBtn>
+      </SidebarHeader>
 
-      <S.SidebarMain>
-        <S.SidebarButtons>
+      <SidebarMain>
+        <SidebarButtons>
           {routes.map((li, index) => {
             return (
-              <S.SidebarButton key={index}>
-                <S.SidebarButtonLink to={li.path}>
-                  {li.title}
-                </S.SidebarButtonLink>
-              </S.SidebarButton>
+              <SidebarButton key={index}>
+                <SidebarButtonLink to={li.path}>{li.title}</SidebarButtonLink>
+              </SidebarButton>
             );
           })}
-        </S.SidebarButtons>
-        <S.SidebarBottom>
-          <S.SidebarButton>
-            <S.SidebarButtonLink to="/logout"></S.SidebarButtonLink>
-          </S.SidebarButton>
-        </S.SidebarBottom>
-      </S.SidebarMain>
-    </S.Wrapper>
+        </SidebarButtons>
+        <SidebarBottom>
+          <SidebarButton>
+            <SidebarButtonLink to="/logout"></SidebarButtonLink>
+          </SidebarButton>
+        </SidebarBottom>
+      </SidebarMain>
+    </Wrapper>
   );
 };
 

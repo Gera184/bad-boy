@@ -5,12 +5,10 @@ export const Wrapper = styled.div`
   width: 180px;
   display: flex;
   flex-direction: column;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  background-color: #d3d3d3;
+  background-color: #ffffff;
+  border-left: 1px solid #d3d3d3;
 `;
+
 export const SidebarHeader = styled.div`
   display: flex;
   justify-content: center;
@@ -27,7 +25,7 @@ export const SidebarHeader = styled.div`
   }
 `;
 
-const ToggleButton = styled.button`
+export const ToggleButton = styled.button`
   all: unset;
   display: none;
   cursor: pointer;
