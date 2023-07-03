@@ -1,26 +1,21 @@
-import React from "react";
-import Logo from "../../assets/icons/logo.png";
-
-import {
-  ContentHeaderWrapper,
-  Container,
-  DeatilsWrapper,
-  MobileHeader,
-} from "./Header.styles";
+import React from 'react'
+import { HeaderContainerLeft, HeaderContainerRight, HeaderWrapper } from './Header.styles'
+import ErnLogo from '../../assets/images/ErnLogo.svg'
 
 const Header = () => {
   return (
-    <ContentHeaderWrapper>
-      <MobileHeader>
-        <img style={{ height: "75px" }} src={Logo} alt="error" />
-      </MobileHeader>
-      <Container container="left">
-        <DeatilsWrapper>
-          <img style={{ height: "100px" }} src={Logo} alt="error" />
-        </DeatilsWrapper>
-      </Container>
-    </ContentHeaderWrapper>
-  );
-};
+    <HeaderWrapper>
+      <HeaderContainerLeft>
+      <div> exit</div>
+      <div>language</div>
+      <div> user</div>
+      </HeaderContainerLeft>
+      <HeaderContainerRight>
+      <p>retailerInfo</p>
+      <img src={ErnLogo} alt="logo"/>
+      </HeaderContainerRight>
+    </HeaderWrapper>
+  )
+}
 
-export default Header;
+export default Header
