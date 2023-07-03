@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//async actions not allowed instead use inside the actions
+
 const userSlice = createSlice({
   name: "user",
   initialState: {

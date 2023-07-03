@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import hebrew from "../../jsons/HebrewLanguageSpec.json";
 import arabic from "../../jsons/ArabicLanguageSpec.json";
 
+//async actions not allowed instead use inside the actions
+
 const langReducer = createSlice({
   name: "lang",
   initialState: {

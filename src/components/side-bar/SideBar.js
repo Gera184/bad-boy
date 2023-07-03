@@ -2,40 +2,38 @@ import React from "react";
 import { routes } from "../../routes";
 import {
   Wrapper,
-  SidebarHeader,
-  OpenHamburgerBtn,
-  CloseBtn,
   SidebarMain,
   SidebarButtons,
   SidebarButton,
   SidebarButtonLink,
   SidebarBottom,
+  SidebarButtonLinkContainer,
 } from "./Sidebar.styles";
+import { useSelector } from "react-redux";
 
 const SideBar = () => {
+  const { language } = useSelector((lang) => lang);
+  const { checkspurchasetransaction } = language.texts;
+
   return (
     <Wrapper>
-      <SidebarHeader>
-        <OpenHamburgerBtn>&#8801;</OpenHamburgerBtn>
-
-        <CloseBtn>&#10005;</CloseBtn>
-      </SidebarHeader>
-
       <SidebarMain>
         <SidebarButtons>
           {routes.map((li, index) => {
             return (
               <SidebarButton key={index}>
-                <SidebarButtonLink to={li.path}>{li.title}</SidebarButtonLink>
+                <SidebarButtonLinkContainer>
+                  <SidebarButtonLink to={li.path}>{li.title}</SidebarButtonLink>
+                </SidebarButtonLinkContainer>
               </SidebarButton>
             );
           })}
         </SidebarButtons>
-        <SidebarBottom>
+        {/* <SidebarBottom>
           <SidebarButton>
             <SidebarButtonLink to="/logout"></SidebarButtonLink>
           </SidebarButton>
-        </SidebarBottom>
+        </SidebarBottom> */}
       </SidebarMain>
     </Wrapper>
   );

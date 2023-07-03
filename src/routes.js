@@ -6,12 +6,6 @@ import CheckPurchase from "./pages/check-purchase/CheckPurchase.js";
 
 export const routes = [
   {
-    title: "",
-    route: "/home",
-    path: "",
-    element: <Home />,
-  },
-  {
     title: "שידור עסקת צ'קים",
     route: "/CheckPurchase",
     path: "/CheckPurchase",

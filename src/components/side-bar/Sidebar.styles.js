@@ -53,16 +53,31 @@ export const SidebarMain = styled.div`
 
 export const SidebarButtons = styled.ul`
   padding: 0;
+  padding-top: 5rem;
 `;
 export const SidebarButton = styled.li`
-  list-style: none;
+  width: 137px;
+  height: 42px;
+  padding: 11px 15px 10px 15px;
+`;
+export const SidebarButtonLinkContainer = styled.div`
+  display: flex;
   width: 100%;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #a69f9f;
+  background-color: #fcfcfc;
+  justify-content: center;
 `;
 
 export const SidebarButtonLink = styled(NavLink)`
   text-decoration: none;
-
   color: black;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
 `;
 
 export const SidebarBottom = styled.div`

@@ -15,12 +15,14 @@ export const ContainerLeft = styled.div`
   gap: 1rem;
   display: flex;
   justify-content: space-between;
+  padding-left: 30px;
 `;
 export const ContainerRight = styled.div`
   gap: 1rem;
   align-items: center;
   display: flex;
   justify-content: space-between;
+  padding-right: 30px;
 `;
 export const RetailerLabel = styled.p``;
 
