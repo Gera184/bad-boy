@@ -10,14 +10,6 @@ export const Wrapper = styled.div`
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   background-color: #d3d3d3;
-
-  @media (max-width: 700px) {
-    width: 100%;
-    overflow: hidden;
-    position: absolute;
-    height: 70px;
-    z-index: 10;
-  }
 `;
 export const SidebarHeader = styled.div`
   display: flex;
@@ -33,11 +25,6 @@ export const SidebarHeader = styled.div`
     height: auto;
     cursor: pointer;
   }
-  @media (max-width: 700px) {
-    justify-content: space-between;
-    padding: 0.75rem 2.5rem;
-    height: 70px;
-  }
 `;
 
 const ToggleButton = styled.button`
@@ -45,18 +32,6 @@ const ToggleButton = styled.button`
   display: none;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.3);
-  @media (max-width: 700px) {
-    display: block;
-    ${({ isMobile }) =>
-      isMobile &&
-      `
-        opacity: 0;
-        z-index:-100;
-        visibility: hidden;
-        cursor: not-allowed;
-        transition: all 0.4s ease-in;
-    `}
-  }
 `;
 
 export const OpenHamburgerBtn = styled(ToggleButton)`
@@ -90,11 +65,6 @@ export const SidebarButtonLink = styled(NavLink)`
   text-decoration: none;
 
   color: black;
-  /* &.active,
-  &:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 40px;
-  } */
 `;
 
 export const SidebarBottom = styled.div`

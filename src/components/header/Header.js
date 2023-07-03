@@ -1,38 +1,39 @@
-import { HeaderContainerLeft, HeaderContainerRight, HeaderWrapper, IconAndText, LogoImage } from './Header.styles'
-import ErnLogo from '../../assets/images/ErnLogo.svg'
-import Language from '../../assets/icons/Language.svg'
-import Logout from '../../assets/icons/Logout.svg'
-import User from '../../assets/icons/User.svg'
-import logo from "../../assets/images/ErnLogo.svg";
-
 import {
-  ContentHeaderWrapper,
-  Container,
-  BellWrapper,
-  LogoWrapper,
+  ContainerLeft,
+  ContainerRight,
+  IconAndTextWrapper,
+  LogoImage,
+  Wrapper,
 } from "./Header.styles";
+import ErnLogo from "../../assets/images/ErnLogo.svg";
+import Language from "../../assets/icons/Language.svg";
+import Logout from "../../assets/icons/Logout.svg";
+import User from "../../assets/icons/User.svg";
 
 const Header = () => {
   return (
-    <ContentHeaderWrapper>
-      <HeaderContainerRight>
+    <Wrapper>
+      <ContainerRight>
         <LogoImage>
-          <img src={ErnLogo} alt="logo"/>
+          <img src={ErnLogo} alt="logo" />
         </LogoImage>
-        <p>retailerInfo</p>
-      </HeaderContainerRight>
-      <HeaderContainerLeft>
-        <IconAndText>
-          <img src={User} alt="User"/>
-        </IconAndText>
-        <IconAndText>
-          <img src={Language} alt="Language"/>
-        </IconAndText>
-        <IconAndText>
-          <img src={Logout} alt="Logout"/>
-        </IconAndText>
-      </HeaderContainerLeft>
-    </ContentHeaderWrapper>
+        {/* <p>retailerInfo</p> */}
+      </ContainerRight>
+      <ContainerLeft>
+        <IconAndTextWrapper>
+          <img src={User} alt="User" />
+          <p>יציאה</p>
+        </IconAndTextWrapper>
+        <IconAndTextWrapper>
+          <img src={Language} alt="Language" />
+          <p>עברית</p>
+        </IconAndTextWrapper>
+        <IconAndTextWrapper>
+          <img src={Logout} alt="Logout" />
+          <p>משתמש</p>
+        </IconAndTextWrapper>
+      </ContainerLeft>
+    </Wrapper>
   );
 };
 

@@ -16,11 +16,11 @@ export const App = () => {
     <Router>
       <Header />
       <Wrapper>
-      <SideBar />
+        <SideBar />
         <ContentWrapper>
           <Content>
             <Routes>
-              {routes.map((route, index) => (
+              {routes.map((route) => (
                 <Route
                   key={route.route}
                   exact
@@ -33,7 +33,6 @@ export const App = () => {
             </Routes>
           </Content>
         </ContentWrapper>
-        
       </Wrapper>
     </Router>
   );
