@@ -1,4 +1,5 @@
 {
+  "checkPurchase": "עסקת צ׳קים",
   "_continue": "המשך",
   "0": "תקלה טכנית, העבר שנית",
   "1": "עסקה נדחתה",
@@ -132,7 +133,7 @@
   "password": "סיסמה",
   "payment": "תשלום",
   "paymentnumber": "מספר תשלום",
-  "paymentsnumber": "מספר תשלומים",
+  "paymentsnumber": "תשלומים",
   "phone": "מחלקת חיתום עסקאות",
   "print": "הדפסה",
   "processupdate": "?האם לבצע עדכון גירסה לתוכנה כעת",

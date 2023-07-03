@@ -8,12 +8,18 @@ import {
   SidebarButtonLink,
   SidebarBottom,
   SidebarButtonLinkContainer,
+  SidebarButtonLogout,
 } from "./Sidebar.styles";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import headset from "../../assets/icons/Headset.svg";
+import collapseArrow from "../../assets/icons/Collapse_Arrow.svg";
 
 const SideBar = () => {
   const { language } = useSelector((lang) => lang);
-  const { checkspurchasetransaction } = language.texts;
+
+  const location = useLocation();
+  const activeRoute = location.pathname;
 
   return (
     <Wrapper>
@@ -22,18 +28,18 @@ const SideBar = () => {
           {routes.map((li, index) => {
             return (
               <SidebarButton key={index}>
-                <SidebarButtonLinkContainer>
+                <SidebarButtonLinkContainer active={li.route === activeRoute}>
                   <SidebarButtonLink to={li.path}>{li.title}</SidebarButtonLink>
                 </SidebarButtonLinkContainer>
               </SidebarButton>
             );
           })}
         </SidebarButtons>
-        {/* <SidebarBottom>
-          <SidebarButton>
-            <SidebarButtonLink to="/logout"></SidebarButtonLink>
-          </SidebarButton>
-        </SidebarBottom> */}
+        <SidebarBottom>
+          <img src={collapseArrow} alt="collapseArrow" />
+          <img src={headset} alt="headset" />
+          <SidebarButtonLogout>יצירת קשר ERN</SidebarButtonLogout>
+        </SidebarBottom>
       </SidebarMain>
     </Wrapper>
   );

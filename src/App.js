@@ -1,7 +1,6 @@
 import React from "react";
 import SideBar from "./components/side-bar/SideBar";
 import Header from "./components/header/Header";
-import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -29,7 +28,7 @@ export const App = () => {
                 />
               ))}
               {/* default route */}
-              <Route path="*" element={<Navigate to="/home" />} />
+              {/* <Route path="*" element={<Navigate to="/home" />} /> */}
             </Routes>
           </Content>
         </ContentWrapper>

@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   width: 100%;
   z-index: 1;
   background-color: #f9f9f9;
+  direction: rtl;
 `;
 
 export const ContainerLeft = styled.div`
@@ -44,6 +45,8 @@ export const IconAndTextWrapper = styled.div`
   select {
     border: none;
     background-color: transparent;
+    font-weight: 400;
+    font-size: 14px;
   }
 `;
 

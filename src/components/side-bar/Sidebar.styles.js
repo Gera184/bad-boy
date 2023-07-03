@@ -25,21 +25,6 @@ export const SidebarHeader = styled.div`
   }
 `;
 
-export const ToggleButton = styled.button`
-  all: unset;
-  display: none;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.3);
-`;
-
-export const OpenHamburgerBtn = styled(ToggleButton)`
-  font-size: 45px;
-`;
-
-export const CloseBtn = styled(ToggleButton)`
-  font-size: 25px;
-`;
-
 export const SidebarMain = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,7 +52,7 @@ export const SidebarButtonLinkContainer = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #a69f9f;
-  background-color: #fcfcfc;
+  background-color: ${(props) => (props.active ? "#0B0B0B" : "#fcfcfc")};
   justify-content: center;
 `;
 
@@ -78,10 +63,29 @@ export const SidebarButtonLink = styled(NavLink)`
   font-weight: 400;
   line-height: 15px;
   letter-spacing: 0em;
+
+  &.active {
+    color: white;
+  }
+`;
+export const SidebarButtonLogout = styled(NavLink)`
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
 `;
 
 export const SidebarBottom = styled.div`
   display: flex;
-  justify-content: center;
-  padding-bottom: 67px;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  gap: 0.3rem;
+  border-top: 1px solid #d8d8d8;
+  img {
+    height: 20px;
+    width: 20px;
+  }
 `;
