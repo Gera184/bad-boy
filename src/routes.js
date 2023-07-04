@@ -1,4 +1,3 @@
-import Home from "./pages/home/Home";
 import UpdatePurchase from "./pages/update-purchase/UpdatePurchase.js";
 import PhoneHokPurchase from "./pages/phone-hok-purchase/PhoneHokPurchase.js";
 import HokPurchase from "./pages/hok-purchase/HokPurchase.js";

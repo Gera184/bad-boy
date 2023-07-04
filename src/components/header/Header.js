@@ -11,6 +11,8 @@ import Logout from "../../assets/icons/Logout.svg";
 import User from "../../assets/icons/User.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { languageChangeAction } from "../../redux/actions/langActions";
+import { useEffect } from "react";
+import { useAxios } from "../../hooks/useAxios";
 
 const Header = () => {
   const dispatch = useDispatch();
