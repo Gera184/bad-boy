@@ -5,9 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: {
-      maxPayment: 50,
-    },
+    user: {},
   },
   reducers: {},
 });

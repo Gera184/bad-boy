@@ -69,6 +69,7 @@ function CheckPurchase() {
     return errors;
   };
 
+  //UseMemo is a React Hook that allows you to memoize a value or function, optimizing performance by preventing unnecessary recalculations or re-rendering.
   const generateOptions = useMemo(() => {
     return (start, end) => {
       const options = [];
