@@ -28,7 +28,7 @@ export const App = () => {
                 />
               ))}
               {/* default route */}
-              {/* <Route path="*" element={<Navigate to="/home" />} /> */}
+              <Route path="*" element={<Navigate to="/CheckPurchase" />} />
             </Routes>
           </Content>
         </ContentWrapper>
