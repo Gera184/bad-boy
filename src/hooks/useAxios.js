@@ -16,11 +16,12 @@ axios.defaults.baseURL = "https://test.eranit.co.il/ErnTransApiChannel/pos";
 export const useAxios = () => {
   const [response, setResponse] = useState(undefined);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const operation = async (params) => {
     try {
       const result = await axios.request(params);
+      setLoading(true);
       setResponse(result.data);
     } catch (error) {
       setError(error);

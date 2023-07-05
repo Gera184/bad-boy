@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAxios } from "../../hooks/useAxios";
 import { loginAction } from "../../redux/actions/userActions";
@@ -24,13 +24,19 @@ const Login = () => {
     });
   };
 
-  //   if (error) {
-  //     return <p>error</p>;
-  //   }
+  useEffect(() => {
+    if (response) {
+      dispatch(loginAction(response));
+    }
+  }, [response]);
 
-  //   if (loading) {
-  //     return <p>loading....</p>;
-  //   }
+  if (error) {
+    return <p>error</p>;
+  }
+
+  if (loading) {
+    return <p>loading....</p>;
+  }
 
   return <button onClick={loginHandler}>login</button>;
 };

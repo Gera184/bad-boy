@@ -8,7 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Wrapper, ContentWrapper, Content } from "./App.styles";
-import { routes } from "./routes.js";
+import { AppRoutes, routes } from "./routes.js";
 
 export const App = () => {
   return (
@@ -19,7 +19,7 @@ export const App = () => {
         <ContentWrapper>
           <Content>
             <Routes>
-              {routes.map((route) => (
+              {AppRoutes().map((route) => (
                 <Route
                   key={route.route}
                   exact

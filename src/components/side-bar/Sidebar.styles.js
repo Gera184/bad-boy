@@ -39,6 +39,7 @@ export const SidebarMain = styled.div`
 export const SidebarButtons = styled.ul`
   padding: 0;
   padding-top: 5rem;
+  list-style: none;
 `;
 export const SidebarButton = styled.li`
   width: 137px;

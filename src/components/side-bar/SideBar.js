@@ -1,5 +1,4 @@
 import React from "react";
-import { routes } from "../../routes";
 import {
   Wrapper,
   SidebarMain,
@@ -14,6 +13,7 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import headset from "../../assets/icons/Headset.svg";
 import collapseArrow from "../../assets/icons/Collapse_Arrow.svg";
+import { config } from "./config";
 
 const SideBar = () => {
   const { language } = useSelector((lang) => lang);
@@ -25,10 +25,10 @@ const SideBar = () => {
     <Wrapper>
       <SidebarMain>
         <SidebarButtons>
-          {routes.map((li, index) => {
+          {config.map((li, index) => {
             return (
               <SidebarButton key={index}>
-                <SidebarButtonLinkContainer active={li.route === activeRoute}>
+                <SidebarButtonLinkContainer active={li.path === activeRoute}>
                   <SidebarButtonLink to={li.path}>{li.title}</SidebarButtonLink>
                 </SidebarButtonLinkContainer>
               </SidebarButton>
