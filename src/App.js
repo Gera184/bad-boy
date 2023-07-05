@@ -8,7 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Wrapper, ContentWrapper, Content } from "./App.styles";
-import { AppRoutes, routes } from "./routes.js";
+import { AppRoutes } from "./routes.js";
 
 export const App = () => {
   return (

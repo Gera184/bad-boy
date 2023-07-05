@@ -1,17 +1,18 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Container, FormWrapper, Title, Wrapper } from "./CheckPurchase.styles";
 import { useSelector } from "react-redux";
-import FormHandler from "../../components/form/FormHandler";
+
 import Button from "../../components/button/Button";
 import plus from "../../assets/icons/Plus.svg";
+import FormHandler from "../../components/form/form-handler/FormHandler";
+import { FormPaymentDetails } from "../../components/form/form-payment-deatils/FormPaymentDeatils";
 
 function CheckPurchase() {
   const { language } = useSelector((lang) => lang);
-
   const {
     checkPurchase,
     purchasedetails,
-    customerdeatils,
+    customerdetails,
     purchasesum,
     paymentsnumber,
     checknumber,
@@ -29,6 +30,12 @@ function CheckPurchase() {
         {
           placeHolder: paymentsnumber,
           type: "select",
+          optionsList: [
+            { value: "1", text: "sadsad" },
+            { value: "1", text: "sadsad" },
+            { value: "1", text: "sadsad" },
+            { value: "1", text: "sadsad" },
+          ],
         },
         {
           placeHolder: checknumber,
@@ -41,15 +48,16 @@ function CheckPurchase() {
       ],
     },
     {
-      title: customerdeatils,
+      title: customerdetails,
       inputs: [
         {
           placeHolder: "Customer Name",
           type: "text",
         },
         {
-          placeHolder: "Email",
-          type: "email",
+          placeHolder: "Select",
+          type: "select",
+          optionsList: [{ value: "2", text: "sadsad" }],
         },
         {
           placeHolder: "Address",
@@ -97,23 +105,6 @@ function CheckPurchase() {
     return errors;
   };
 
-  //UseMemo is a React Hook that allows you to memoize a value or function, optimizing performance by preventing unnecessary recalculations or re-rendering.
-  const generateOptions = useMemo(() => {
-    return (start, end) => {
-      const options = [];
-
-      for (let i = start; i <= end; i++) {
-        options.push(
-          <option key={i} value={i}>
-            {i}
-          </option>
-        );
-      }
-
-      return options;
-    };
-  }, []);
-
   return (
     <Wrapper>
       <Container>
@@ -128,8 +119,8 @@ function CheckPurchase() {
           handleSubmit={handleSubmit}
           validate={validate}
           config={config}
-          generateOptions={generateOptions}
         />
+        <FormPaymentDetails />
       </FormWrapper>
     </Wrapper>
   );

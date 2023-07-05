@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAxios } from "../../hooks/useAxios";
 import { loginAction } from "../../redux/actions/userActions";
+import Button from "../button/Button";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Login = () => {
         accept: "*/*",
       },
       data: {
-        retailerId: "10020076",
+        retailerId: "43543543",
         sessionId: "aaa",
         userCode: "bbb",
         posManufacturerId: "ccc",
@@ -26,7 +27,11 @@ const Login = () => {
 
   useEffect(() => {
     if (response) {
-      dispatch(loginAction(response));
+      if (response.responseCode === 0) {
+        dispatch(loginAction(response));
+      } else {
+        alert(response.responseMessage);
+      }
     }
   }, [response]);
 

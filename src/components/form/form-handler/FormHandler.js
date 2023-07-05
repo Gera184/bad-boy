@@ -1,5 +1,5 @@
 import { ErrorMessage, Formik, Form } from "formik";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   StyledForm,
   StyledInput,
@@ -15,9 +15,27 @@ const FormHandler = ({
   validate,
   config,
   children,
-  generateOptions = null,
   width = "100%",
 }) => {
+  //UseMemo is a React Hook that allows you to memoize a value or function, optimizing performance by preventing unnecessary recalculations or re-rendering.
+  const generateOptions = useMemo(() => {
+    return (optionsList) => {
+      const options = [];
+
+      for (let index = 0; index < optionsList.length; index++) {
+        const { value, text } = optionsList[index];
+
+        options.push(
+          <option key={index} value={value}>
+            {text}
+          </option>
+        );
+      }
+
+      return options;
+    };
+  }, []);
+
   return (
     <Formik
       initialValues={initialValues}
@@ -37,16 +55,14 @@ const FormHandler = ({
                 <div key={inputIndex}>
                   {input.type === "select" ? (
                     <>
-                      {generateOptions ? (
-                        <StyledSelect
-                          as="select"
-                          name={input.placeHolder}
-                          defaultValue=""
-                          placeholder="Select an option"
-                        >
-                          {generateOptions(1, 10)}
-                        </StyledSelect>
-                      ) : null}
+                      <StyledSelect
+                        as="select"
+                        name={input.placeHolder}
+                        defaultValue=""
+                        placeholder="Select an option"
+                      >
+                        {generateOptions(input.optionsList)}
+                      </StyledSelect>
 
                       <ErrorMessage
                         name={input.placeHolder}
