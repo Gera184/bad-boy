@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Container,
+  Details,
   PaymentDetailsWrapper,
   Title,
   Wrapper,
@@ -9,17 +10,74 @@ import {
 export const FormPaymentDetails = ({ paymentDetails }) => {
   paymentDetails = {
     titles: ["מספר תשלום", "תאריך חיוב", "סכום צ׳ק", "מספר צ׳ק"],
-    values: ["1", "05/05/2023", "₪1200", "16546545"],
+    values: [
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+      {
+        rows: ["1", "05/05/2023", "₪1200", "16546545", "16546545"],
+      },
+    ],
   };
+
+  const { titles, values } = paymentDetails;
 
   return (
     <Wrapper>
       <PaymentDetailsWrapper>
         <Container>
-          <Title>{paymentDetails.titles.map((title) => title)}</Title>
-        </Container>
-        <Container>
-          <Title>{paymentDetails.values.map((value) => value)}</Title>
+          {titles.map((title, index) => (
+            <div key={index}>
+              <Title> {title} </Title>
+              {values.map((row, rowIndex) => (
+                <div key={rowIndex}>
+                  <Details key={rowIndex}>{row.rows[index]}</Details>
+                </div>
+              ))}
+            </div>
+          ))}
         </Container>
       </PaymentDetailsWrapper>
     </Wrapper>
