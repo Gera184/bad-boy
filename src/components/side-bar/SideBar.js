@@ -13,10 +13,11 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import headset from "../../assets/icons/Headset.svg";
 import collapseArrow from "../../assets/icons/Collapse_Arrow.svg";
-import { config } from "./config";
+import { getConfigHandler } from "./getConfigHandler";
 
 const SideBar = () => {
   const { language } = useSelector((lang) => lang);
+  const config = getConfigHandler(language);
 
   const location = useLocation();
   const activeRoute = location.pathname;

@@ -40,12 +40,12 @@ const FormHandler = ({
 
     config.forEach((section) => {
       section.inputs.forEach((input) => {
-        formValues[input.placeHolder] = "";
+        formValues[input.name] = "";
       });
     });
 
     return formValues;
-  }, []);
+  }, [config]);
 
   return (
     <Formik
@@ -68,7 +68,7 @@ const FormHandler = ({
                     <>
                       <StyledSelect
                         as="select"
-                        name={input.placeHolder}
+                        name={input.name}
                         defaultValue=""
                         placeholder="Select an option"
                       >
@@ -76,7 +76,7 @@ const FormHandler = ({
                       </StyledSelect>
 
                       <ErrorMessage
-                        name={input.placeHolder}
+                        name={input.name}
                         component="div"
                         className="error"
                       />
@@ -85,12 +85,11 @@ const FormHandler = ({
                     <>
                       <StyledInput
                         type={input.type}
-                        name={input.placeHolder}
+                        name={input.name}
                         placeholder={input.placeHolder}
-                        required
                       />
                       <ErrorMessage
-                        name={input.placeHolder}
+                        name={input.name}
                         component="div"
                         className="error"
                       />
@@ -101,6 +100,7 @@ const FormHandler = ({
             </StyledForm>
           </React.Fragment>
         ))}
+
         {children}
       </Form>
     </Formik>

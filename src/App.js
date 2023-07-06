@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Wrapper, ContentWrapper, Content } from "./App.styles";
 import { AppRoutes } from "./routes.js";
+import { FormFooter } from "./components/form/form-footer/FormFooter";
 
 export const App = () => {
   return (
@@ -31,6 +32,7 @@ export const App = () => {
               <Route path="*" element={<Navigate to="/CheckPurchase" />} />
             </Routes>
           </Content>
+          <FormFooter />
         </ContentWrapper>
       </Wrapper>
     </Router>
