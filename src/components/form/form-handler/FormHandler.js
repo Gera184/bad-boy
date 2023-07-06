@@ -10,7 +10,6 @@ import {
 } from "./FormHandler.styles";
 
 const FormHandler = ({
-  initialValues,
   handleSubmit,
   validate,
   config,
@@ -36,11 +35,23 @@ const FormHandler = ({
     };
   }, []);
 
+  const initialFormValues = useMemo(() => {
+    const formValues = {};
+
+    config.forEach((section) => {
+      section.inputs.forEach((input) => {
+        formValues[input.placeHolder] = "";
+      });
+    });
+
+    return formValues;
+  }, []);
+
   return (
     <Formik
-      initialValues={initialValues}
       onSubmit={handleSubmit}
       validate={validate}
+      initialValues={initialFormValues}
     >
       <Form>
         {config.map((title, index) => (
@@ -76,6 +87,7 @@ const FormHandler = ({
                         type={input.type}
                         name={input.placeHolder}
                         placeholder={input.placeHolder}
+                        required
                       />
                       <ErrorMessage
                         name={input.placeHolder}
@@ -86,10 +98,10 @@ const FormHandler = ({
                   )}
                 </div>
               ))}
-              {children}
             </StyledForm>
           </React.Fragment>
         ))}
+        {children}
       </Form>
     </Formik>
   );

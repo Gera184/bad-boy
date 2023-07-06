@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 //the default base URL for all Axios requests made in the code
+
 //if removed you will require  to provide the full URL for each request
 
 axios.defaults.baseURL = "https://test.eranit.co.il/ErnTransApiChannel/pos";

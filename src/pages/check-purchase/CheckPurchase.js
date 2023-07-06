@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, FormWrapper, Title, Wrapper } from "./CheckPurchase.styles";
 import { useSelector } from "react-redux";
 
 import Button from "../../components/button/Button";
 import plus from "../../assets/icons/Plus.svg";
 import FormHandler from "../../components/form/form-handler/FormHandler";
-import { FormPaymentDetails } from "../../components/form/form-payment-deatils/FormPaymentDeatils";
+import { FormTable } from "../../components/form/form-table/FormTable";
+import { FormFooter } from "../../components/form/form-footer/FormFooter";
 
 function CheckPurchase() {
   const { language } = useSelector((lang) => lang);
@@ -71,11 +72,57 @@ function CheckPurchase() {
     },
   ];
 
-  const initialValues = {
-    purchasesum: config.placeHolder, // Set the default value for number fields
-    paymentsnumber: config.placeHolder, // Set the default value for select fields
-    checknumber: config.placeHolder, // Set the default value for number fields
-    date: config.placeHolder, // Set the default value for date fields
+  const paymentsData = {
+    titles: [
+      "language.texts.purchasesum",
+      "תאריך חיוב",
+      "סכום צ׳ק",
+      "מספר צ׳ק",
+    ],
+    values: [
+      {
+        paymentsNumber: "1",
+        dueDate: "05/05/2023",
+        pyamentSum: "₪1200",
+        checkNumber: "16546545",
+      },
+      {
+        paymentsNumber: "1",
+        dueDate: "05/05/2023",
+        pyamentSum: "₪1200",
+        checkNumber: "16546545",
+      },
+      {
+        paymentsNumber: "1",
+        dueDate: "05/05/2023",
+        pyamentSum: "₪1200",
+        checkNumber: "16546545",
+      },
+      {
+        paymentsNumber: "1",
+        dueDate: "05/05/2023",
+        pyamentSum: "₪1200",
+        checkNumber: "16546545",
+      },
+      {
+        paymentsNumber: "1",
+        dueDate: "05/05/2023",
+        pyamentSum: "₪1200",
+        checkNumber: "16546545",
+      },
+      {
+        paymentsNumber: "1",
+        dueDate: "05/05/2023",
+        pyamentSum: "₪1200",
+        checkNumber: "16546545",
+      },
+      {
+        paymentsNumber: "1",
+        dueDate: "05/05/2023",
+        pyamentSum: "₪1200",
+        checkNumber: "16546545",
+      },
+    ],
   };
 
   const handleSubmit = (values) => {
@@ -113,15 +160,14 @@ function CheckPurchase() {
           <img src={plus} alt="plus" /> עסקה חדשה
         </Button>
       </Container>
-      <FormWrapper>
-        <FormHandler
-          initialValues={initialValues}
-          handleSubmit={handleSubmit}
-          validate={validate}
-          config={config}
-        />
-        <FormPaymentDetails />
-      </FormWrapper>
+      <FormHandler
+        handleSubmit={handleSubmit}
+        validate={validate}
+        config={config}
+      >
+        <FormTable tableDetails={paymentsData} />
+        <FormFooter />
+      </FormHandler>
     </Wrapper>
   );
 }
