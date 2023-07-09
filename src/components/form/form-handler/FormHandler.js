@@ -1,13 +1,19 @@
-import { ErrorMessage, Formik, Form } from "formik";
+import { ErrorMessage, Formik } from "formik";
 import React, { useMemo } from "react";
+
 import {
+  FormWrapper,
   StyledForm,
   StyledInput,
   StyledSelect,
   Title,
   TitleContainer,
   TitleWrapper,
+  SectionContainer,
+  HeaderContainer,
 } from "./FormHandler.styles";
+import { FormFooter } from "../form-footer/FormFooter";
+import { ButtonWrapper } from "../../button/Button.styles";
 
 const FormHandler = ({
   handleSubmit,
@@ -38,7 +44,7 @@ const FormHandler = ({
   const initialFormValues = useMemo(() => {
     const formValues = {};
 
-    config.forEach((section) => {
+    config.sections.forEach((section) => {
       section.inputs.forEach((input) => {
         formValues[input.name] = "";
       });
@@ -53,56 +59,73 @@ const FormHandler = ({
       validate={validate}
       initialValues={initialFormValues}
     >
-      <Form>
-        {config.map((title, index) => (
-          <React.Fragment key={index}>
-            <TitleWrapper isFirst={index === 0}>
-              <TitleContainer>
-                <Title>{title.title}</Title>
-              </TitleContainer>
-            </TitleWrapper>
-            <StyledForm width={width}>
-              {title.inputs.map((input, inputIndex) => (
-                <div key={inputIndex}>
-                  {input.type === "select" ? (
-                    <>
-                      <StyledSelect
-                        as="select"
-                        name={input.name}
-                        defaultValue=""
-                        placeholder="Select an option"
-                      >
-                        {generateOptions(input.optionsList)}
-                      </StyledSelect>
+      <FormWrapper>
+        <div>
+          <HeaderContainer>
+            <Title>{config.header.title}</Title>
+            <ButtonWrapper type={"button"}>
+              {/* <img src={button.src} alt={button.alt} /> */}
+              עסקה חדשה
+            </ButtonWrapper>
+          </HeaderContainer>
+          <SectionContainer>
+            {config.sections.map((title, index) => (
+              <React.Fragment key={index}>
+                <TitleWrapper isFirst={index === 0}>
+                  <TitleContainer>
+                    <Title>{title.title}</Title>
+                  </TitleContainer>
+                </TitleWrapper>
+                <StyledForm width={width}>
+                  {title.inputs.map((input, inputIndex) => (
+                    <div key={inputIndex}>
+                      {input.type === "select" ? (
+                        <>
+                          <StyledSelect
+                            as="select"
+                            name={input.name}
+                            defaultValue=""
+                            placeholder="Select an option"
+                          >
+                            {generateOptions(input.optionsList)}
+                          </StyledSelect>
 
-                      <ErrorMessage
-                        name={input.name}
-                        component="div"
-                        className="error"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <StyledInput
-                        type={input.type}
-                        name={input.name}
-                        placeholder={input.placeHolder}
-                      />
-                      <ErrorMessage
-                        name={input.name}
-                        component="div"
-                        className="error"
-                      />
-                    </>
-                  )}
-                </div>
-              ))}
-            </StyledForm>
-          </React.Fragment>
-        ))}
-
-        {children}
-      </Form>
+                          <ErrorMessage
+                            name={input.name}
+                            component="div"
+                            className="error"
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <StyledInput
+                            type={input.type}
+                            name={input.name}
+                            placeholder={input.placeHolder}
+                            label={input.label}
+                            required
+                          />
+                          <ErrorMessage
+                            name={input.name}
+                            component="div"
+                            className="error"
+                          />
+                        </>
+                      )}
+                    </div>
+                  ))}
+                </StyledForm>
+              </React.Fragment>
+            ))}
+          </SectionContainer>
+          <SectionContainer>{children}</SectionContainer>
+        </div>
+        <FormFooter
+          handleSubmit={handleSubmit}
+          validate={validate}
+          config={config.footer}
+        />
+      </FormWrapper>
     </Formik>
   );
 };

@@ -1,8 +1,10 @@
 import React from "react";
-import { ButtonWrapper } from "./Button.styles";
+import { ButtonWrapper} from "./Button.styles";
 
-const Button = ({ children }) => {
-  return <ButtonWrapper type="submit">{children}</ButtonWrapper>;
+const Button = ({ type,children }) => {
+  return <ButtonWrapper type={type}>{children}</ButtonWrapper>;
 };
 
 export default Button;
+ 
+

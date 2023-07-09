@@ -1,5 +1,26 @@
 import styled from "styled-components";
-import { Field } from "formik";
+import { Field, Form } from "formik";
+
+export const FormWrapper = styled(Form)`
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+width: 100%;
+`
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 55px;
+  padding-right: 55px;
+  padding-left: 66px;
+`;
+
+export const SectionContainer = styled.div`
+  padding-right: 55px;
+  padding-left: 66px;
+`;
 
 export const StyledInput = styled(Field)`
   border: none;
@@ -44,3 +65,6 @@ export const Title = styled.p`
   margin: 0;
   padding-right: 10px;
 `;
+
+
+

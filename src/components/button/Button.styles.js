@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from "styled-components"; 
 
 export const ButtonWrapper = styled.button`
+  margin-left:10px;
   border-radius: 20px;
   display: flex;
   align-items: center;

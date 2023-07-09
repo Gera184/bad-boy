@@ -9,15 +9,19 @@ export const FooterWrapper = styled.div`
   height: 110px;
 `;
 
-export const FooterStatusTitle = styled.h2``;
-
-export const FooterStatusWrapper = styled.div`
-  margin: 0 109px 0 0;
+export const FooterStatusTitle = styled.h2`
+  margin: 0;
 `;
 
-export const FooterStatus = styled.p``;
+export const FooterStatusWrapper = styled.div``;
 
-export const FooterStatusInfo = styled.p``;
+export const FooterStatus = styled.p`
+  margin: 0;
+`;
+
+export const FooterStatusInfo = styled.p`
+  margin: 0;
+`;
 
 export const FooterInputLabel = styled.label``;
 
@@ -25,4 +29,6 @@ export const FooterInput = styled.input``;
 
 export const FooterButtonWrapper = styled.div``;
 
-export const FooterMessage = styled.p``;
+export const FooterMessage = styled.p`
+  margin: 0;
+`;
