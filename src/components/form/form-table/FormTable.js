@@ -15,13 +15,13 @@ export const FormTable = ({ tableDetails }) => {
       <TableWrapper>
         <thead>
           <TableRow>
-            {titles.map((title, index) => (
+            {titles?.map((title, index) => (
               <TableHeader key={index}>{title}</TableHeader>
             ))}
           </TableRow>
         </thead>
         <tbody>
-          {values.map((value, rowIndex) => (
+          {values?.map((value, rowIndex) => (
             <TableRow key={rowIndex}>
               {Object.keys(value).map((key, colIndex) => (
                 <TableCell isFirst={colIndex === 0} key={key}>

@@ -5,7 +5,7 @@ import axios from "axios";
 
 //if removed you will require  to provide the full URL for each request
 
-axios.defaults.baseURL = "https://test.eranit.co.il/ErnTransApiChannel/pos";
+axios.defaults.baseURL = "https://test.eranit.co.il/ErnTransApiChannel/Pos";
 
 /**
  fixed :

@@ -12,14 +12,14 @@ import {
 export const FormFooter = () => {
   return (
     <FooterWrapper>
-      <FooterStatusWrapper>
+      {/* <FooterStatusWrapper>
         <FooterStatusTitle>Status</FooterStatusTitle>
         <FooterStatus>Open</FooterStatus>
         <FooterStatusInfo>Additino==onal Info</FooterStatusInfo>
       </FooterStatusWrapper>
       <FooterButtonWrapper>
         <Button>hjkhjk</Button>
-      </FooterButtonWrapper>
+      </FooterButtonWrapper> */}
     </FooterWrapper>
   );
 };

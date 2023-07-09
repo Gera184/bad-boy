@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAxios } from "../../hooks/useAxios";
 import { loginAction } from "../../redux/actions/userActions";
-import Button from "../button/Button";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -16,11 +15,12 @@ const Login = () => {
         accept: "*/*",
       },
       data: {
-        retailerId: "43543543",
-        sessionId: "aaa",
-        userCode: "bbb",
-        posManufacturerId: "ccc",
-        posManufacturerVersion: "ddd",
+        loginRetailerId: 300000,
+        sessionId: "string",
+        userCode: "string",
+        posManufacturerId: "string",
+        posManufacturerVersion: "string",
+        retailerId: 0,
       },
     });
   };
@@ -35,6 +35,7 @@ const Login = () => {
     }
   }, [response]);
 
+  console.log(response);
   if (error) {
     return <p>error</p>;
   }

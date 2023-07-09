@@ -72,7 +72,7 @@ export function getConfigHandler(language) {
           {
             name: "purchaseSum",
             placeHolder: purchasesum,
-            type: "text",
+            type: "number",
             label: purchasesum,
           },
           {
@@ -88,7 +88,7 @@ export function getConfigHandler(language) {
           {
             name: "checkNumber",
             placeHolder: checknumber,
-            type: "text",
+            type: "number",
             label: checknumber,
           },
           {
@@ -105,19 +105,19 @@ export function getConfigHandler(language) {
           {
             name: "bank",
             placeHolder: bank,
-            type: "text",
+            type: "number",
             label: bank,
           },
           {
             name: "branch",
             placeHolder: branch,
-            type: "text",
+            type: "number",
             label: branch,
           },
           {
             name: "account",
             placeHolder: account,
-            type: "text",
+            type: "number",
             label: account,
           },
           {
@@ -129,7 +129,7 @@ export function getConfigHandler(language) {
           {
             name: "CustomerNumber",
             placeHolder: CustomerNumber,
-            type: "text",
+            type: "number",
             label: CustomerNumber,
           },
         ],

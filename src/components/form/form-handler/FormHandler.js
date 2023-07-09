@@ -1,6 +1,5 @@
 import { ErrorMessage, Formik } from "formik";
-import React, { useMemo } from "react";
-
+import React, { useMemo, useRef } from "react";
 import {
   FormWrapper,
   StyledForm,
@@ -22,6 +21,8 @@ const FormHandler = ({
   children,
   width = "100%",
 }) => {
+  const formikRef = useRef(null);
+
   //UseMemo is a React Hook that allows you to memoize a value or function, optimizing performance by preventing unnecessary recalculations or re-rendering.
   const generateOptions = useMemo(() => {
     return (optionsList) => {
@@ -53,8 +54,15 @@ const FormHandler = ({
     return formValues;
   }, [config]);
 
+  const resetFormInputs = () => {
+    if (formikRef.current) {
+      formikRef.current.resetForm();
+    }
+  };
+
   return (
     <Formik
+      innerRef={formikRef}
       onSubmit={handleSubmit}
       validate={validate}
       initialValues={initialFormValues}
@@ -63,7 +71,7 @@ const FormHandler = ({
         <div>
           <HeaderContainer>
             <Title>{config.header.title}</Title>
-            <ButtonWrapper type={"button"}>
+            <ButtonWrapper type="button" onClick={resetFormInputs}>
               {/* <img src={button.src} alt={button.alt} /> */}
               עסקה חדשה
             </ButtonWrapper>
