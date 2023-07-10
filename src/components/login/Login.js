@@ -10,7 +10,7 @@ const Login = () => {
   const loginHandler = () => {
     operation({
       method: "POST",
-      url: "/GetRetailerParameters",
+      url: "/ErnTransApiChannel/Pos/GetRetailerParameters",
       headers: {
         accept: "*/*",
       },
@@ -35,7 +35,6 @@ const Login = () => {
     }
   }, [response]);
 
-  console.log(response);
   if (error) {
     return <p>error</p>;
   }

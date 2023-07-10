@@ -4,43 +4,26 @@ import {
   FormWrapper,
   StyledForm,
   StyledInput,
-  StyledSelect,
   Title,
   TitleContainer,
   TitleWrapper,
   SectionContainer,
   HeaderContainer,
+  Label,
 } from "./FormHandler.styles";
 import { FormFooter } from "../form-footer/FormFooter";
 import { ButtonWrapper } from "../../button/Button.styles";
+import Select from "../../select/Select";
 
 const FormHandler = ({
   handleSubmit,
   validate,
   config,
   children,
-  width = "100%",
+  action = null,
+  width,
 }) => {
   const formikRef = useRef(null);
-
-  //UseMemo is a React Hook that allows you to memoize a value or function, optimizing performance by preventing unnecessary recalculations or re-rendering.
-  const generateOptions = useMemo(() => {
-    return (optionsList) => {
-      const options = [];
-
-      for (let index = 0; index < optionsList.length; index++) {
-        const { value, text } = optionsList[index];
-
-        options.push(
-          <option key={index} value={value}>
-            {text}
-          </option>
-        );
-      }
-
-      return options;
-    };
-  }, []);
 
   const initialFormValues = useMemo(() => {
     const formValues = {};
@@ -53,6 +36,24 @@ const FormHandler = ({
 
     return formValues;
   }, [config]);
+
+  // const generateOptions = useMemo(() => {
+  //   return (optionsList) => {
+  //     const options = [];
+
+  //     for (let index = 0; index < optionsList?.length; index++) {
+  //       const { value, text } = optionsList[index];
+
+  //       options.push(
+  //         <option key={index} value={value}>
+  //           {text}
+  //         </option>
+  //       );
+  //     }
+
+  //     return options;
+  //   };
+  // }, []);
 
   const resetFormInputs = () => {
     if (formikRef.current) {
@@ -89,15 +90,12 @@ const FormHandler = ({
                     <div key={inputIndex}>
                       {input.type === "select" ? (
                         <>
-                          <StyledSelect
-                            as="select"
+                          <Select
                             name={input.name}
-                            defaultValue=""
-                            placeholder="Select an option"
-                          >
-                            {generateOptions(input.optionsList)}
-                          </StyledSelect>
-
+                            options={input.optionsList}
+                            placeHolder={input.placeHolder}
+                            action={action}
+                          />
                           <ErrorMessage
                             name={input.name}
                             component="div"
@@ -106,18 +104,34 @@ const FormHandler = ({
                         </>
                       ) : (
                         <>
-                          <StyledInput
-                            type={input.type}
-                            name={input.name}
-                            placeholder={input.placeHolder}
-                            label={input.label}
-                            required
-                          />
-                          <ErrorMessage
-                            name={input.name}
-                            component="div"
-                            className="error"
-                          />
+                          {input.type === "checkbox" ? (
+                            <>
+                              <StyledInput
+                                type={input.type}
+                                name={input.name}
+                              />
+                              <Label>{input.placeHolder} </Label>
+                              <ErrorMessage
+                                name={input.name}
+                                component="div"
+                                className="error"
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <StyledInput
+                                type={input.type}
+                                name={input.name}
+                                placeholder={input.placeHolder}
+                                label={input.label}
+                              />
+                              <ErrorMessage
+                                name={input.name}
+                                component="div"
+                                className="error"
+                              />
+                            </>
+                          )}
                         </>
                       )}
                     </div>

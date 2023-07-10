@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Field, Form } from "formik";
 
 export const FormWrapper = styled(Form)`
-height: 100%;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-width: 100%;
-`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+`;
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -36,12 +36,14 @@ export const StyledInput = styled(Field)`
 export const StyledSelect = styled(Field)`
   border: none;
   border-bottom: 1px solid #8c8c8c;
-  width: 60px;
 `;
+
 export const StyledForm = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: ${(props) => props.width && props.width};
+  justify-content: flex-start;
+  width: ${(props) => (props.width ? props.width : "100%")};
+  flex-wrap: wrap;
+  gap: 60px 30px; /* Add 60px vertical spacing and 30px horizontal spacing */
 `;
 
 export const TitleWrapper = styled.div`
@@ -65,6 +67,11 @@ export const Title = styled.p`
   margin: 0;
   padding-right: 10px;
 `;
-
-
-
+export const Label = styled.label`
+  color: #000;
+  text-align: right;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+`;

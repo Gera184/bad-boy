@@ -79,10 +79,7 @@ export function getConfigHandler(language) {
             name: "paymentNumber",
             placeHolder: paymentsnumber,
             type: "select",
-            optionsList: [
-              { value: "1", text: "1" },
-              { value: "2", text: "2" },
-            ],
+            optionsList: [],
             label: paymentsnumber,
           },
           {

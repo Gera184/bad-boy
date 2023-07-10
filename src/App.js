@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import SideBar from "./components/side-bar/SideBar";
 import Header from "./components/header/Header";
 import {
@@ -9,8 +10,35 @@ import {
 } from "react-router-dom";
 import { Wrapper, ContentWrapper, Content } from "./App.styles";
 import { AppRoutes } from "./routes.js";
+import { getCitiesAction } from "./redux/actions/citiesActions";
+import { getBanksAction } from "./redux/actions/banksActions";
+import axios from "axios";
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [citiesResponse, banksResponse] = await Promise.all([
+          axios.get(
+            "https://test.eranit.co.il/ErnServices/api/generaldata/getcities"
+          ),
+          axios.get(
+            "https://test.eranit.co.il/ErnServices/api/generaldata/GetBanks"
+          ),
+        ]);
+
+        dispatch(getCitiesAction(citiesResponse.data));
+        dispatch(getBanksAction(banksResponse.data));
+      } catch (error) {
+        console.error(error); // Handle any errors that occur during the requests
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
   return (
     <Router>
       <Header />

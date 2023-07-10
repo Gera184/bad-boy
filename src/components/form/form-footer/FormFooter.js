@@ -8,6 +8,7 @@ import {
   FooterStatusWrapper,
   FooterWrapper,
 } from "./FormFooter.styles";
+import { ButtonWrapper } from "../../button/Button.styles";
 
 export const FormFooter = () => {
   return (
@@ -18,8 +19,8 @@ export const FormFooter = () => {
         <FooterStatusInfo>Additino==onal Info</FooterStatusInfo>
       </FooterStatusWrapper>
       <FooterButtonWrapper>
-        <Button>hjkhjk</Button>
-      </FooterButtonWrapper> */}
+    </FooterButtonWrapper> */}
+      <ButtonWrapper type="submit">send</ButtonWrapper>
     </FooterWrapper>
   );
 };
