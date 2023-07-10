@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   OptionItem,
   SelectDropdown,
@@ -6,23 +6,26 @@ import {
   SelectWrapper,
 } from "./Select.styles";
 
-const Select = ({ name, options, placeHolder, action }) => {
+const Select = ({ options, placeHolder, action }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
   const handleOptionClick = (option) => {
+    const { Name } = option;
     action(option);
 
+    setSearchTerm(Name);
     setIsOpen(false);
-    setSearchTerm("");
   };
 
   const filteredOptions = options?.filter((option) =>
     option.Name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <SelectWrapper>
       <SelectInput
@@ -34,7 +37,7 @@ const Select = ({ name, options, placeHolder, action }) => {
       />
       {isOpen && (
         <SelectDropdown>
-          {filteredOptions.map((option, index) => (
+          {filteredOptions?.map((option, index) => (
             <OptionItem key={index} onClick={() => handleOptionClick(option)}>
               {option.Name}
             </OptionItem>

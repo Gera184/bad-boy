@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FormHandler from "../../components/form/form-handler/FormHandler";
 import { validate } from "./validation";
 import { getConfigHandler } from "./getConfigHandler";
-import { useAxios } from "../../hooks/useAxios";
-import {
-  getCitiesAction,
-  getStreetsAction,
-} from "../../redux/actions/citiesActions";
+import { getStreetsAction } from "../../redux/actions/citiesActions";
 
 const HokPurchase = () => {
   const dispatch = useDispatch();
@@ -17,6 +13,20 @@ const HokPurchase = () => {
     citiesData,
     banks
   );
+
+  const initialFormValues = useMemo(() => {
+    const formValues = {};
+
+    config.sections.forEach((section) => {
+      section.inputs.forEach((input) => {
+        formValues[input.name] = "";
+      });
+    });
+
+    return formValues;
+  }, [config]);
+
+  const [inputValues, setInputValues] = useState(initialFormValues);
 
   const handleSubmit = (values) => {
     // Handle form submission here
@@ -33,6 +43,8 @@ const HokPurchase = () => {
       validate={validate}
       config={config}
       action={handleControlChange}
+      inputValues={inputValues}
+      setInputValues={setInputValues}
     ></FormHandler>
   );
 };

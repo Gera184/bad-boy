@@ -7,7 +7,9 @@ export const getCitiesAction = (cities) => {
   };
 };
 
-export const getStreetsAction = () => {
+export const getStreetsAction = (value) => {
+  const { Id } = value;
+
   return async (dispatch) => {
     try {
       const response = await useAxios({
@@ -17,7 +19,6 @@ export const getStreetsAction = () => {
           accept: "*/*",
         },
       });
-      console.log({ response });
       dispatch(citiesActions.getStreets(response));
     } catch (error) {
       console.error(error);

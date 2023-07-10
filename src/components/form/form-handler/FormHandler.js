@@ -1,5 +1,5 @@
 import { ErrorMessage, Formik } from "formik";
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import {
   FormWrapper,
   StyledForm,
@@ -22,20 +22,10 @@ const FormHandler = ({
   children,
   action = null,
   width,
+  inputValues,
+  setInputValues,
 }) => {
   const formikRef = useRef(null);
-
-  const initialFormValues = useMemo(() => {
-    const formValues = {};
-
-    config.sections.forEach((section) => {
-      section.inputs.forEach((input) => {
-        formValues[input.name] = "";
-      });
-    });
-
-    return formValues;
-  }, [config]);
 
   // const generateOptions = useMemo(() => {
   //   return (optionsList) => {
@@ -61,12 +51,22 @@ const FormHandler = ({
     }
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    // Update the input value in the state
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      [name]: value,
+    }));
+  };
+
   return (
     <Formik
       innerRef={formikRef}
       onSubmit={handleSubmit}
       validate={validate}
-      initialValues={initialFormValues}
+      initialValues={inputValues}
     >
       <FormWrapper>
         <div>
@@ -89,9 +89,8 @@ const FormHandler = ({
                   {title.inputs.map((input, inputIndex) => (
                     <div key={inputIndex}>
                       {input.type === "select" ? (
-                        <>
+                        <div>
                           <Select
-                            name={input.name}
                             options={input.optionsList}
                             placeHolder={input.placeHolder}
                             action={action}
@@ -101,7 +100,7 @@ const FormHandler = ({
                             component="div"
                             className="error"
                           />
-                        </>
+                        </div>
                       ) : (
                         <>
                           {input.type === "checkbox" ? (
@@ -123,6 +122,8 @@ const FormHandler = ({
                                 type={input.type}
                                 name={input.name}
                                 placeholder={input.placeHolder}
+                                value={inputValues[input.name]} // Pass the corresponding value from state
+                                onChange={handleChange} // Add onChange using handleChange
                                 label={input.label}
                               />
                               <ErrorMessage
