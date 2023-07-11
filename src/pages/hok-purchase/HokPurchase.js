@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FormHandler from "../../components/form/form-handler/FormHandler";
 import { validate } from "./validation";
@@ -7,13 +7,9 @@ import { getStreetsAction } from "../../redux/actions/citiesActions";
 
 const HokPurchase = () => {
   const dispatch = useDispatch();
-  const { language, citiesData, banks } = useSelector((state) => state);
-  const { config, paymentsData } = getConfigHandler(
-    language,
-    citiesData,
-    banks
-  );
-
+  const { language, citiesData, banksData } = useSelector((state) => state);
+  const { paymentnumber, PaymentDate, checksum, checknumber } = language.texts;
+  const { config } = getConfigHandler(language, citiesData, banksData);
   const initialFormValues = useMemo(() => {
     const formValues = {};
 
@@ -27,6 +23,10 @@ const HokPurchase = () => {
   }, [config]);
 
   const [inputValues, setInputValues] = useState(initialFormValues);
+  const [paymentsData, setPaymentsData] = useState({
+    titles: [paymentnumber, PaymentDate, checksum, checknumber],
+    values: [],
+  });
 
   const handleSubmit = (values) => {
     // Handle form submission here
@@ -37,6 +37,12 @@ const HokPurchase = () => {
     dispatch(getStreetsAction(value));
   };
 
+  const PaymentDataHandler = useCallback(() => {}, [inputValues]);
+
+  useEffect(() => {
+    PaymentDataHandler();
+  }, []);
+
   return (
     <FormHandler
       handleSubmit={handleSubmit}
@@ -45,6 +51,7 @@ const HokPurchase = () => {
       action={handleControlChange}
       inputValues={inputValues}
       setInputValues={setInputValues}
+      initialFormValues={initialFormValues}
     ></FormHandler>
   );
 };

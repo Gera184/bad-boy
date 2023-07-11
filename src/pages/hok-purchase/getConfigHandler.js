@@ -1,5 +1,8 @@
-export function getConfigHandler(language, citiesData, banks) {
+import citisJson from "../../assets/mocks/cities.json";
+
+export function getConfigHandler(language, citiesData, banksData) {
   const { cities, streets } = citiesData;
+  const { banks } = banksData;
 
   const {
     PurchaseTypeHok,
@@ -19,36 +22,6 @@ export function getConfigHandler(language, citiesData, banks) {
     HouseNumber,
     StreetName,
   } = language.texts;
-
-  const paymentsData = {
-    // titles: [paymentnumber, PaymentDate, checksum, checknumber],
-    // values: [
-    //   {
-    //     paymentsNumber: "1",
-    //     dueDate: "05/05/2023",
-    //     pyamentSum: "₪1200",
-    //     checkNumber: "16546545",
-    //   },
-    //   {
-    //     paymentsNumber: "1",
-    //     dueDate: "05/05/2023",
-    //     pyamentSum: "₪1200",
-    //     checkNumber: "16546545",
-    //   },
-    //   {
-    //     paymentsNumber: "1",
-    //     dueDate: "05/05/2023",
-    //     pyamentSum: "₪1200",
-    //     checkNumber: "16546545",
-    //   },
-    //   {
-    //     paymentsNumber: "1",
-    //     dueDate: "05/05/2023",
-    //     pyamentSum: "₪1200",
-    //     checkNumber: "16546545",
-    //   },
-    // ],
-  };
 
   const config = {
     header: {
@@ -81,8 +54,7 @@ export function getConfigHandler(language, citiesData, banks) {
           {
             name: "paymentNumber",
             placeHolder: paymentsnumber,
-            type: "select",
-            optionsList: [],
+            type: "number",
             label: paymentsnumber,
           },
           {
@@ -100,7 +72,7 @@ export function getConfigHandler(language, citiesData, banks) {
             name: "numberAndBankName",
             placeHolder: numberAndBankName,
             type: "select",
-            optionsList: [],
+            optionsList: banks,
             label: numberAndBankName,
           },
           {
@@ -131,7 +103,7 @@ export function getConfigHandler(language, citiesData, banks) {
             name: "CityName",
             placeHolder: CityName,
             type: "select",
-            optionsList: cities,
+            optionsList: cities || [],
             label: CityName,
           },
           {
@@ -164,5 +136,5 @@ export function getConfigHandler(language, citiesData, banks) {
     ],
   };
 
-  return { config, paymentsData };
+  return { config };
 }

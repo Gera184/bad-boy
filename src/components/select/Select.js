@@ -5,8 +5,9 @@ import {
   SelectInput,
   SelectWrapper,
 } from "./Select.styles";
+import arrowDown from "../../assets/icons/arrowDown.svg";
 
-const Select = ({ options, placeHolder, action }) => {
+const Select = ({ options, placeHolder, action, filterKey }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,15 +16,15 @@ const Select = ({ options, placeHolder, action }) => {
   };
 
   const handleOptionClick = (option) => {
-    const { Name } = option;
+    const selectedKey = option[filterKey];
     action(option);
 
-    setSearchTerm(Name);
+    setSearchTerm(selectedKey);
     setIsOpen(false);
   };
 
   const filteredOptions = options?.filter((option) =>
-    option.Name.toLowerCase().includes(searchTerm.toLowerCase())
+    option[filterKey]?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -35,11 +36,12 @@ const Select = ({ options, placeHolder, action }) => {
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
       />
+      <img src={arrowDown} alt="arrowDown" />
       {isOpen && (
         <SelectDropdown>
           {filteredOptions?.map((option, index) => (
             <OptionItem key={index} onClick={() => handleOptionClick(option)}>
-              {option.Name}
+              {option[filterKey]}
             </OptionItem>
           ))}
         </SelectDropdown>

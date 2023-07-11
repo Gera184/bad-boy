@@ -37,7 +37,7 @@ export const App = () => {
     };
 
     fetchData();
-  }, [dispatch]);
+  }, []);
 
   return (
     <Router>

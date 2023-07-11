@@ -1,19 +1,17 @@
-import { ErrorMessage, Formik } from "formik";
+import { Formik } from "formik";
 import React, { useRef } from "react";
 import {
   FormWrapper,
   StyledForm,
-  StyledInput,
   Title,
   TitleContainer,
   TitleWrapper,
   SectionContainer,
   HeaderContainer,
-  Label,
 } from "./FormHandler.styles";
 import { FormFooter } from "../form-footer/FormFooter";
 import { ButtonWrapper } from "../../button/Button.styles";
-import Select from "../../select/Select";
+import { FormInputs } from "../form-inputs/FormInputs";
 
 const FormHandler = ({
   handleSubmit,
@@ -24,6 +22,7 @@ const FormHandler = ({
   width,
   inputValues,
   setInputValues,
+  initialFormValues,
 }) => {
   const formikRef = useRef(null);
 
@@ -46,9 +45,9 @@ const FormHandler = ({
   // }, []);
 
   const resetFormInputs = () => {
-    if (formikRef.current) {
-      formikRef.current.resetForm();
-    }
+    formikRef.current.resetForm();
+    setInputValues(initialFormValues);
+    formikRef.current.setErrors({});
   };
 
   const handleChange = (event) => {
@@ -86,68 +85,19 @@ const FormHandler = ({
                   </TitleContainer>
                 </TitleWrapper>
                 <StyledForm width={width}>
-                  {title.inputs.map((input, inputIndex) => (
-                    <div key={inputIndex}>
-                      {input.type === "select" ? (
-                        <div>
-                          <Select
-                            options={input.optionsList}
-                            placeHolder={input.placeHolder}
-                            action={action}
-                          />
-                          <ErrorMessage
-                            name={input.name}
-                            component="div"
-                            className="error"
-                          />
-                        </div>
-                      ) : (
-                        <>
-                          {input.type === "checkbox" ? (
-                            <>
-                              <StyledInput
-                                type={input.type}
-                                name={input.name}
-                              />
-                              <Label>{input.placeHolder} </Label>
-                              <ErrorMessage
-                                name={input.name}
-                                component="div"
-                                className="error"
-                              />
-                            </>
-                          ) : (
-                            <>
-                              <StyledInput
-                                type={input.type}
-                                name={input.name}
-                                placeholder={input.placeHolder}
-                                value={inputValues[input.name]} // Pass the corresponding value from state
-                                onChange={handleChange} // Add onChange using handleChange
-                                label={input.label}
-                              />
-                              <ErrorMessage
-                                name={input.name}
-                                component="div"
-                                className="error"
-                              />
-                            </>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  ))}
+                  <FormInputs
+                    title={title}
+                    action={action}
+                    inputValues={inputValues}
+                    handleChange={handleChange}
+                  />
                 </StyledForm>
               </React.Fragment>
             ))}
           </SectionContainer>
           <SectionContainer>{children}</SectionContainer>
         </div>
-        <FormFooter
-          handleSubmit={handleSubmit}
-          validate={validate}
-          config={config.footer}
-        />
+        <FormFooter config={config.footer} />
       </FormWrapper>
     </Formik>
   );

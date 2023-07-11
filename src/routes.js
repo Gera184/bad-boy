@@ -56,7 +56,7 @@ export const AppRoutes = () => {
         element: <Login />,
       },
     ],
-    [RequireAuth]
+    []
   );
 
   return routes;

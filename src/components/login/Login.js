@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useAxios } from "../../hooks/useAxios";
 import { loginAction } from "../../redux/actions/userActions";
 
@@ -33,7 +34,7 @@ const Login = () => {
         alert(response.responseMessage);
       }
     }
-  }, [response]);
+  }, []);
 
   if (error) {
     return <p>error</p>;

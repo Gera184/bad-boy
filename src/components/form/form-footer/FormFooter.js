@@ -1,13 +1,5 @@
 import React from "react";
-import Button from "../../button/Button";
-import {
-  FooterButtonWrapper,
-  FooterStatus,
-  FooterStatusInfo,
-  FooterStatusTitle,
-  FooterStatusWrapper,
-  FooterWrapper,
-} from "./FormFooter.styles";
+import { FooterWrapper } from "./FormFooter.styles";
 import { ButtonWrapper } from "../../button/Button.styles";
 
 export const FormFooter = () => {

@@ -9,7 +9,7 @@ const store = configureStore({
     user: userReducer,
     language: langReducer,
     citiesData: citiesReducer,
-    banks: banksReducer,
+    banksData: banksReducer,
   },
 });
 

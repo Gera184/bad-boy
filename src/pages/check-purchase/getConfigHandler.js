@@ -4,11 +4,8 @@ export function getConfigHandler(language) {
     customerdetails,
     purchasesum,
     paymentsnumber,
-    paymentnumber,
     checknumber,
-    checksum,
     duedate,
-    PaymentDate,
     bank,
     branch,
     account,
@@ -16,36 +13,6 @@ export function getConfigHandler(language) {
     CustomerNumber,
     checkPurchase,
   } = language.texts;
-
-  const paymentsData = {
-    titles: [paymentnumber, PaymentDate, checksum, checknumber],
-    values: [
-      {
-        paymentsNumber: "1",
-        dueDate: "05/05/2023",
-        pyamentSum: "₪1200",
-        checkNumber: "16546545",
-      },
-      {
-        paymentsNumber: "1",
-        dueDate: "05/05/2023",
-        pyamentSum: "₪1200",
-        checkNumber: "16546545",
-      },
-      {
-        paymentsNumber: "1",
-        dueDate: "05/05/2023",
-        pyamentSum: "₪1200",
-        checkNumber: "16546545",
-      },
-      {
-        paymentsNumber: "1",
-        dueDate: "05/05/2023",
-        pyamentSum: "₪1200",
-        checkNumber: "16546545",
-      },
-    ],
-  };
 
   const config = {
     header: {
@@ -134,5 +101,5 @@ export function getConfigHandler(language) {
     ],
   };
 
-  return { config, paymentsData };
+  return { config };
 }

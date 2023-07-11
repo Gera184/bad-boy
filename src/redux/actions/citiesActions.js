@@ -8,7 +8,7 @@ export const getCitiesAction = (cities) => {
 };
 
 export const getStreetsAction = (value) => {
-  const { Id } = value;
+  // const { Id } = value;
 
   return async (dispatch) => {
     try {

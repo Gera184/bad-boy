@@ -15,7 +15,7 @@ import { languageChangeAction } from "../../redux/actions/langActions";
 const Header = () => {
   const dispatch = useDispatch();
   const { language } = useSelector((lang) => lang);
-  const { texts, lang } = language;
+  const { lang } = language;
 
   const handleLanguageChange = (event) => {
     const newLanguage = event.target.value;
