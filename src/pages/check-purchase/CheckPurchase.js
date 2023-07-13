@@ -34,18 +34,28 @@ function CheckPurchase() {
     console.log(values);
   };
 
-  const HandleTable = () => {
+  const HandleTable = useCallback(() => {
     const { purchaseSum, paymentNumber, dueDate, checkNumber } = inputValues;
 
-    if (purchaseSum !== "" && paymentNumber !== "" && checkNumber !== "" && dueDate !== "") {
-      const paymentData = initTable(purchaseSum, paymentNumber, checkNumber, dueDate);
+    if (
+      purchaseSum !== "" &&
+      paymentNumber !== "" &&
+      checkNumber !== "" &&
+      dueDate !== ""
+    ) {
+      const paymentData = initTable(
+        purchaseSum,
+        paymentNumber,
+        checkNumber,
+        dueDate
+      );
 
       setPaymentsData((prevPaymentsData) => ({
         titles: [...prevPaymentsData.titles],
         rows: paymentData,
       }));
     }
-  };
+  }, [inputValues, setPaymentsData]);
 
   useEffect(() => {
     HandleTable();
@@ -66,7 +76,6 @@ function CheckPurchase() {
       initialFormValues={initialFormValues}
     >
       <FormTable tableDetails={paymentsData} />
-
     </FormHandler>
   );
 }
