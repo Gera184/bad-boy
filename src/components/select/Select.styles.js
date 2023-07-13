@@ -25,7 +25,7 @@ export const SelectDropdown = styled.div`
   z-index: 9999;
 `;
 
-export const OptionItem = styled.option`
+export const OptionItem = styled.div`
   padding: 8px;
   cursor: pointer;
 

@@ -6,9 +6,14 @@ import {
   TableWrapper,
   Wrapper,
 } from "./FormTable.styles";
+import { ErrorMessage } from "formik";
+import { TableInput } from "./FormTable.styles";
+import { initTableByEdit } from "../../../utils/initTableByEdit";
+
 
 export const FormTable = ({ tableDetails }) => {
-  const { titles, values } = tableDetails;
+  const { titles, rows } = tableDetails;
+
 
   return (
     <Wrapper>
@@ -21,11 +26,22 @@ export const FormTable = ({ tableDetails }) => {
           </TableRow>
         </thead>
         <tbody>
-          {values?.map((value, rowIndex) => (
+          {rows?.map((row, rowIndex) => (
             <TableRow key={rowIndex}>
-              {Object.keys(value).map((key, colIndex) => (
-                <TableCell isFirst={colIndex === 0} key={key}>
-                  {value[key]}
+              {Object.keys(row).map((prop, colIndex) => (
+                <TableCell isFirst={colIndex === 0} key={prop}>
+                  {row[prop]?.input ?
+                    <TableInput key={prop}
+                      type={row[prop].input.type}
+                      name={row[prop].input.name}
+                      value={row[prop].value}
+                      onChange={initTableByEdit}
+                    />
+
+
+                    : <>{row[prop].value}</>
+
+                  }
                 </TableCell>
               ))}
             </TableRow>

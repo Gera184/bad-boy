@@ -5,3 +5,10 @@ export const getBanksAction = (banks) => {
     dispatch(banksActions.getBanks(banks));
   };
 };
+
+export const getBranchesAction = (Bank) => {
+  const {Branches} = Bank;
+  return (dispatch) => {
+    dispatch(banksActions.getBranches(Branches));
+  };
+};
