@@ -48,10 +48,12 @@ export const StyledInput = styled(Field)`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  width: 100%;
 
   ${({ error }) =>
     error &&
     `
+    padding-right:17px;
     border-bottom: 1px solid red;
   `}
 `;
@@ -68,10 +70,7 @@ export const StyledForm = styled.div`
   flex-wrap: wrap;
   gap: 24px 30px; /* Add 60px vertical spacing and 30px horizontal spacing */
 `;
-export const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+
 export const ErrorMessageText = styled.div`
   color: var(--error, #9f0000);
   text-align: right;
@@ -90,6 +89,7 @@ export const TitleWrapper = styled.div`
   padding-top: ${(props) => (props.isFirst ? "30px" : "55px")};
   padding-bottom: 50px;
 `;
+
 export const TitleContainer = styled.div`
   height: 42px;
   display: flex;
@@ -100,6 +100,7 @@ export const TitleContainer = styled.div`
     color: var(--button-blue, #0053ab);
   }
 `;
+
 export const Title = styled.p`
   margin: 0;
   color: var(--text-blue, #0b1937);
@@ -109,10 +110,25 @@ export const Title = styled.p`
   font-weight: 700;
   line-height: normal;
 `;
+
 export const Label = styled.label`
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: 0em;
   text-align: right;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const IconContainer = styled.div`
+  position: absolute;
 `;

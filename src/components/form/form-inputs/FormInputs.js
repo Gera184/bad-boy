@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import Select from "../../select/Select";
-import { ErrorMessage, useFormikContext } from "formik";
+import { useFormikContext } from "formik";
 import {
   CheckboxWrapper,
-  ErrorMessageText,
+  IconContainer,
+  InputContainer,
   InputWrapper,
   Label,
   StyledInput,
 } from "../form-handler/FormHandler.styles";
+import X from "../../../assets/icons/X.svg";
 
 export const FormInputs = ({ title, action, inputValues, handleChange }) => {
   const { errors, touched } = useFormikContext();
-
   let filterKey = null;
   return (
     <>
       {title.inputs.map((input, inputIndex) => {
         const error = errors[input.name];
         const touch = touched[input.name];
+        const hasError = error && touch;
 
         if (
           input.type === "select" &&
@@ -46,12 +48,7 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
                   filterKey={filterKey}
                   name={input.name}
                   handleChange={handleChange}
-                  error={error && touch ? "error" : ""}
-                />
-                <ErrorMessage
-                  name={input.name}
-                  component="div"
-                  className="error"
+                  error={hasError ? "error" : ""}
                 />
               </InputWrapper>
             ) : (
@@ -65,32 +62,24 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
                       onChange={handleChange}
                     />
                     <Label>{input.label} </Label>
-                    <ErrorMessage
-                      name={input.name}
-                      component="div"
-                      className="error"
-                    />
                   </CheckboxWrapper>
                 ) : (
                   <InputWrapper>
                     <Label>{input.label} </Label>
-                    <StyledInput
-                      type={input.type}
-                      name={input.name}
-                      value={inputValues[input.name]} // Pass the corresponding value from state
-                      onChange={handleChange} // Add onChange using handleChange
-                      label={input.label}
-                      error={error && touch ? "error" : ""}
-                    />
-                    <ErrorMessage
-                      name={input.name}
-                      render={(msg) => (
-                        <ErrorMessageText>
-                          {/* Custom error message based on the error */}
-                          {error && touch && <span>הערך אינו תקין</span>}
-                        </ErrorMessageText>
-                      )}
-                    />
+                    <InputContainer>
+                      <StyledInput
+                        type={input.type}
+                        name={input.name}
+                        value={inputValues[input.name]} // Pass the corresponding value from state
+                        onChange={handleChange} // Add onChange using handleChange
+                        label={input.label}
+                        error={hasError ? "error" : ""}
+                      />
+
+                      <IconContainer>
+                        {hasError && <img src={X} alt="Error Icon" />}
+                      </IconContainer>
+                    </InputContainer>
                   </InputWrapper>
                 )}
               </>

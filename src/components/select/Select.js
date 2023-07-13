@@ -62,15 +62,17 @@ const Select = ({
       <img onClick={() => setIsOpen(true)} src={arrowDown} alt="arrowDown" />
       {isOpen && (
         <SelectDropdown>
-          {filteredOptions?.map((option, index) => (
-            <OptionItem
-              key={index}
-              name={name}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option[filterKey]}
-            </OptionItem>
-          ))}
+          {filteredOptions?.map((option, index) => {
+            return (
+              <OptionItem
+                key={index}
+                name={name}
+                onClick={() => handleOptionClick(option)}
+              >
+                {option[filterKey]}
+              </OptionItem>
+            );
+          })}
         </SelectDropdown>
       )}
     </SelectWrapper>

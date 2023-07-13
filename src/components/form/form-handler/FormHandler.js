@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   FormWrapper,
   StyledForm,
@@ -43,6 +43,9 @@ const FormHandler = ({
       ...prevInputValues,
       [name]: inputValue,
     }));
+
+    // Update the formikRef's values manually
+    formikRef.current.setFieldValue(name, inputValue);
   };
 
   return (
@@ -50,7 +53,7 @@ const FormHandler = ({
       innerRef={formikRef}
       onSubmit={handleSubmit}
       validate={validate}
-      initialValues={inputValues}
+      initialValues={inputValues} // Use inputValues as initialValues
     >
       <FormWrapper>
         <Spacer>
