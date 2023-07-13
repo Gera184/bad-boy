@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Wrapper,
   SidebarMain,
@@ -8,6 +9,7 @@ import {
   SidebarBottom,
   SidebarButtonLinkContainer,
   SidebarButtonLogout,
+  CustomTooltip,
 } from "./Sidebar.styles";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
@@ -16,8 +18,16 @@ import collapseArrow from "../../assets/icons/Collapse_Arrow.svg";
 import { getConfigHandler } from "./getConfigHandler";
 
 const SideBar = () => {
-  const { language } = useSelector((lang) => lang);
-  const config = getConfigHandler(language);
+  const { language, user } = useSelector((state) => state);
+
+  const userMock = {
+    allowPurchaseTypeCheck: true,
+    allowPurchaseTypeHok: true,
+    allowPurchaseTypePhoneHok: false,
+    allowUpdateTransaction: false,
+  };
+
+  const config = getConfigHandler(language, userMock);
 
   const location = useLocation();
   const activeRoute = location.pathname;
@@ -29,9 +39,23 @@ const SideBar = () => {
           {config.map((li, index) => {
             return (
               <SidebarButton key={index}>
-                <SidebarButtonLinkContainer active={li.path === activeRoute}>
-                  <SidebarButtonLink to={li.path}>{li.title}</SidebarButtonLink>
-                </SidebarButtonLinkContainer>
+                <SidebarButtonLink
+                  id={li.path}
+                  to={li.path}
+                  data-tooltip-id={!li.permission ? "my-tooltip" : ""}
+                  data-tooltip-place="left"
+                >
+                  <SidebarButtonLinkContainer active={li.path === activeRoute}>
+                    {li.title}
+                  </SidebarButtonLinkContainer>
+                </SidebarButtonLink>
+
+                <CustomTooltip id="my-tooltip">
+                  <p>
+                    נראה ששירות זה לא קיים בחבילה שלך אפשר ליצור קשר עם שירות
+                    לקוחות 03-9534222
+                  </p>
+                </CustomTooltip>
               </SidebarButton>
             );
           })}

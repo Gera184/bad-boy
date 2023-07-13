@@ -10,6 +10,7 @@ const HokPurchase = () => {
   const { language, citiesData, banksData } = useSelector((state) => state);
   const { paymentnumber, PaymentDate, checksum, checknumber } = language.texts;
   const { config } = getConfigHandler(language, citiesData, banksData);
+
   const initialFormValues = useMemo(() => {
     const formValues = {};
 
@@ -33,8 +34,15 @@ const HokPurchase = () => {
     console.log(values);
   };
 
-  const handleControlChange = (value) => {
-    dispatch(getStreetsAction(value));
+  const handleSelectChange = (value, sender) => {
+    switch (sender) {
+      case "CityName":
+        dispatch(getStreetsAction(value));
+        break;
+
+      default:
+        break;
+    }
   };
 
   const PaymentDataHandler = useCallback(() => {}, [inputValues]);
@@ -48,7 +56,7 @@ const HokPurchase = () => {
       handleSubmit={handleSubmit}
       validate={validate}
       config={config}
-      action={handleControlChange}
+      action={handleSelectChange}
       inputValues={inputValues}
       setInputValues={setInputValues}
       initialFormValues={initialFormValues}

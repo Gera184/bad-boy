@@ -1,48 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useAxios } from "../../hooks/useAxios";
+import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/actions/userActions";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { response, loading, error, operation } = useAxios();
+  const state = useSelector((state) => state);
 
   const loginHandler = () => {
-    operation({
-      method: "POST",
-      url: "/ErnTransApiChannel/Pos/GetRetailerParameters",
-      headers: {
-        accept: "*/*",
-      },
-      data: {
-        loginRetailerId: 300000,
-        sessionId: "string",
-        userCode: "string",
-        posManufacturerId: "string",
-        posManufacturerVersion: "string",
-        retailerId: 0,
-      },
-    });
+    dispatch(loginAction());
   };
 
-  useEffect(() => {
-    if (response) {
-      if (response.responseCode === 0) {
-        dispatch(loginAction(response));
-      } else {
-        alert(response.responseMessage);
-      }
-    }
-  }, []);
-
-  if (error) {
-    return <p>error</p>;
-  }
-
-  if (loading) {
-    return <p>loading....</p>;
-  }
+  // useEffect(() => {
+  //   if (response) {
+  //     if (response.responseCode === 0) {
+  //       dispatch(loginAction(response));
+  //     } else {
+  //       alert(response.responseMessage);
+  //     }
+  //   }
+  // }, []);
 
   return <button onClick={loginHandler}>login</button>;
 };

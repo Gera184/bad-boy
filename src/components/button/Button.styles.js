@@ -1,15 +1,16 @@
-import styled from "styled-components"; 
+import styled from "styled-components";
 
 export const ButtonWrapper = styled.button`
-  margin-left:10px;
-  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 137px;
-  height: 39px;
-  background-color: #000000;
 
+  border-radius: 100px;
+  background: var(--button-blue, #0053ab);
+  height: 35px;
+  padding: 12px 20px;
+  gap: 10px;
+  flex-shrink: 0;
   //for the button text
   color: #fff;
   text-align: right;

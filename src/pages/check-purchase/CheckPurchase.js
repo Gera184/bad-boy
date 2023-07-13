@@ -35,22 +35,6 @@ function CheckPurchase() {
 
   const PaymentDataHandler = useCallback(() => {
     const { purchaseSum, paymentNumber, dueDate, checkNumber } = inputValues;
-    const paymentData = {
-      paymentNumber: paymentNumber,
-      dueDate: dueDate,
-      checkSum: 0,
-      checkNumber: checkNumber,
-    };
-    if (
-      purchaseSum === "9999" &&
-      paymentNumber === "9999" &&
-      checkNumber === "9999"
-    ) {
-      setPaymentsData((prevPaymentsData) => ({
-        ...prevPaymentsData,
-        values: [paymentData],
-      }));
-    }
   }, [inputValues]);
 
   useEffect(() => {
@@ -66,9 +50,7 @@ function CheckPurchase() {
       setInputValues={setInputValues}
       initialFormValues={initialFormValues}
     >
-      {paymentsData.values.length > 0 && (
-        <FormTable tableDetails={paymentsData} />
-      )}
+      <FormTable tableDetails={paymentsData} />
     </FormHandler>
   );
 }

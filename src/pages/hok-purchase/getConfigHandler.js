@@ -1,5 +1,3 @@
-import citisJson from "../../assets/mocks/cities.json";
-
 export function getConfigHandler(language, citiesData, banksData) {
   const { cities, streets } = citiesData;
   const { banks } = banksData;

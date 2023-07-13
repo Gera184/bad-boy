@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const FooterWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+
   background-color: #e7e6e6;
-  height: 110px;
+  height: 100px;
+  padding: 32px 1064px 33px 51px;
 `;
 
 export const FooterStatusTitle = styled.h2`

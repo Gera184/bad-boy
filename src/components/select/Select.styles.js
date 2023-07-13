@@ -22,6 +22,7 @@ export const SelectDropdown = styled.div`
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 4px 4px;
+  z-index: 9999;
 `;
 
 export const OptionItem = styled.div`

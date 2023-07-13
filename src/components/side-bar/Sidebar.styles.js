@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -22,6 +23,23 @@ export const SidebarHeader = styled.div`
     max-width: 90%;
     height: auto;
     cursor: pointer;
+  }
+`;
+
+export const CustomTooltip = styled(Tooltip)`
+  z-index: 1;
+  width: 254px;
+  height: 78px;
+  border-radius: 5px;
+  background: var(--text-blue, #0b1937);
+
+  p {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
   }
 `;
 
@@ -53,8 +71,11 @@ export const SidebarButtonLinkContainer = styled.div`
   align-items: center;
   text-align: center;
   border: 1px solid #a69f9f;
-  background-color: ${(props) => (props.active ? "#0B0B0B" : "#fcfcfc")};
+  background-color: ${(props) =>
+    props.active ? "var(--button-blue, #0053ab)" : "var(--but-bg, #E5EEF7)"};
   justify-content: center;
+  border-radius: 6px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
 `;
 
 export const SidebarButtonLink = styled(NavLink)`
@@ -69,6 +90,7 @@ export const SidebarButtonLink = styled(NavLink)`
     color: white;
   }
 `;
+
 export const SidebarButtonLogout = styled(NavLink)`
   text-decoration: none;
   color: black;

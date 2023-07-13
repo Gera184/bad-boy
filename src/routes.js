@@ -6,9 +6,22 @@ import Login from "./components/login/Login.js";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useCallback, useMemo } from "react";
+import { NoPermission } from "./pages/no-permission/NoPermission.js";
 
 export const AppRoutes = () => {
   const { user } = useSelector((state) => state.user);
+
+  let allowPurchaseTypeCheck = true;
+  let allowPurchaseTypeHok = true;
+  let allowPurchaseTypePhoneHok = false;
+  let allowUpdateTransaction = false;
+
+  // if (user.data) {
+  //   allowPurchaseTypeCheck = user.data.allowPurchaseTypeCheck;
+  //   allowPurchaseTypeHok = user.data.allowPurchaseTypeHok;
+  //   allowPurchaseTypePhoneHok = user.data.allowPurchaseTypePhoneHok;
+  //   allowUpdateTransaction = user.data.allowUpdateTransaction;
+  // }
 
   const RequireAuth = useCallback(
     ({ children }) => {
@@ -26,6 +39,7 @@ export const AppRoutes = () => {
             <CheckPurchase />
           </RequireAuth>
         ),
+        permission: allowPurchaseTypeCheck,
       },
       {
         route: "/HokPurchase",
@@ -34,6 +48,7 @@ export const AppRoutes = () => {
             <HokPurchase />
           </RequireAuth>
         ),
+        permission: allowPurchaseTypeHok,
       },
       {
         route: "/PhoneHokPurchase",
@@ -42,6 +57,7 @@ export const AppRoutes = () => {
             <PhoneHokPurchase />
           </RequireAuth>
         ),
+        permission: allowPurchaseTypePhoneHok,
       },
       {
         route: "/UpdatePurchase",
@@ -50,6 +66,7 @@ export const AppRoutes = () => {
             <UpdatePurchase />
           </RequireAuth>
         ),
+        permission: allowUpdateTransaction,
       },
       {
         route: "/login",

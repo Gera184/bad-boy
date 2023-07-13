@@ -12,7 +12,7 @@ export const FormFooter = () => {
       </FooterStatusWrapper>
       <FooterButtonWrapper>
     </FooterButtonWrapper> */}
-      <ButtonWrapper type="submit">send</ButtonWrapper>
+      {/* <ButtonWrapper type="submit">send</ButtonWrapper> */}
     </FooterWrapper>
   );
 };

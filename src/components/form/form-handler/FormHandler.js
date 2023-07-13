@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   FormWrapper,
   StyledForm,
@@ -8,6 +8,8 @@ import {
   TitleWrapper,
   SectionContainer,
   HeaderContainer,
+  SectionWrapper,
+  Spacer,
 } from "./FormHandler.styles";
 import { FormFooter } from "../form-footer/FormFooter";
 import { ButtonWrapper } from "../../button/Button.styles";
@@ -26,24 +28,6 @@ const FormHandler = ({
 }) => {
   const formikRef = useRef(null);
 
-  // const generateOptions = useMemo(() => {
-  //   return (optionsList) => {
-  //     const options = [];
-
-  //     for (let index = 0; index < optionsList?.length; index++) {
-  //       const { value, text } = optionsList[index];
-
-  //       options.push(
-  //         <option key={index} value={value}>
-  //           {text}
-  //         </option>
-  //       );
-  //     }
-
-  //     return options;
-  //   };
-  // }, []);
-
   const resetFormInputs = () => {
     formikRef.current.resetForm();
     setInputValues(initialFormValues);
@@ -51,12 +35,13 @@ const FormHandler = ({
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
+    const inputValue = type === "checkbox" ? checked : value;
 
     // Update the input value in the state
     setInputValues((prevInputValues) => ({
       ...prevInputValues,
-      [name]: value,
+      [name]: inputValue,
     }));
   };
 
@@ -68,35 +53,39 @@ const FormHandler = ({
       initialValues={inputValues}
     >
       <FormWrapper>
-        <div>
-          <HeaderContainer>
-            <Title>{config.header.title}</Title>
-            <ButtonWrapper type="button" onClick={resetFormInputs}>
-              {/* <img src={button.src} alt={button.alt} /> */}
-              עסקה חדשה
-            </ButtonWrapper>
-          </HeaderContainer>
-          <SectionContainer>
-            {config.sections.map((title, index) => (
-              <React.Fragment key={index}>
-                <TitleWrapper isFirst={index === 0}>
-                  <TitleContainer>
-                    <Title>{title.title}</Title>
-                  </TitleContainer>
-                </TitleWrapper>
-                <StyledForm width={width}>
-                  <FormInputs
-                    title={title}
-                    action={action}
-                    inputValues={inputValues}
-                    handleChange={handleChange}
-                  />
-                </StyledForm>
-              </React.Fragment>
-            ))}
-          </SectionContainer>
-          <SectionContainer>{children}</SectionContainer>
-        </div>
+        <Spacer>
+          <SectionWrapper>
+            <HeaderContainer>
+              <Title>{config.header.title}</Title>
+            </HeaderContainer>
+            <SectionContainer>
+              {config.sections.map((title, index) => (
+                <React.Fragment key={index}>
+                  <TitleWrapper isFirst={index === 0}>
+                    <TitleContainer>
+                      <Title>{title.title}</Title>
+                      {index === 0 && (
+                        <ButtonWrapper type="button" onClick={resetFormInputs}>
+                          {/* <img src={button.src} alt={button.alt} /> */}
+                          עסקה חדשה
+                        </ButtonWrapper>
+                      )}
+                    </TitleContainer>
+                  </TitleWrapper>
+                  <StyledForm width={width}>
+                    <FormInputs
+                      title={title}
+                      action={action}
+                      inputValues={inputValues}
+                      handleChange={handleChange}
+                    />
+                  </StyledForm>
+                </React.Fragment>
+              ))}
+            </SectionContainer>
+            <SectionContainer>{children}</SectionContainer>
+          </SectionWrapper>
+        </Spacer>
         <FormFooter config={config.footer} />
       </FormWrapper>
     </Formik>

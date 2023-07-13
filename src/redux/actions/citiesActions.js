@@ -8,13 +8,13 @@ export const getCitiesAction = (cities) => {
 };
 
 export const getStreetsAction = (value) => {
-  // const { Id } = value;
+  const { Id } = value;
 
   return async (dispatch) => {
     try {
       const response = await useAxios({
         method: "GET",
-        url: "/ErnServices/api/generaldata/GetStreets?cityid=8",
+        url: `/ErnServices/api/generaldata/GetStreets?cityid=${Id}`,
         headers: {
           accept: "*/*",
         },

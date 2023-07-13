@@ -2,20 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import SideBar from "./components/side-bar/SideBar";
 import Header from "./components/header/Header";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Wrapper, ContentWrapper, Content } from "./App.styles";
 import { AppRoutes } from "./routes.js";
 import { getCitiesAction } from "./redux/actions/citiesActions";
 import { getBanksAction } from "./redux/actions/banksActions";
 import axios from "axios";
+import { NoPermission } from "./pages/no-permission/NoPermission";
 
 export const App = () => {
   const dispatch = useDispatch();
+  const routes = AppRoutes();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,16 +44,27 @@ export const App = () => {
         <ContentWrapper>
           <Content>
             <Routes>
-              {AppRoutes().map((route) => (
-                <Route
-                  key={route.route}
-                  exact
-                  path={route.route}
-                  element={route.element}
-                />
-              ))}
-              {/* default route */}
-              <Route path="*" element={<Navigate to="/CheckPurchase" />} />
+              {routes.map((route) => {
+                if (route.permission) {
+                  return (
+                    <Route
+                      key={route.route}
+                      exact
+                      path={route.route}
+                      element={route.element}
+                    />
+                  );
+                } else {
+                  return (
+                    <Route
+                      key={route.route}
+                      exact
+                      path={route.route}
+                      element={<NoPermission />}
+                    />
+                  );
+                }
+              })}
             </Routes>
           </Content>
         </ContentWrapper>
