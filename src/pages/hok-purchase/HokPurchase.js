@@ -4,6 +4,7 @@ import FormHandler from "../../components/form/form-handler/FormHandler";
 import { validate } from "./validation";
 import { getConfigHandler } from "./getConfigHandler";
 import { getStreetsAction } from "../../redux/actions/citiesActions";
+import { getBranchesAction } from "../../redux/actions/banksActions";
 
 const HokPurchase = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,9 @@ const HokPurchase = () => {
       case "CityName":
         dispatch(getStreetsAction(value));
         break;
-
+      case "numberAndBankName":
+        dispatch(getBranchesAction(value));
+        break;
       default:
         break;
     }

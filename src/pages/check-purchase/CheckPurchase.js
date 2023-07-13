@@ -4,6 +4,7 @@ import FormHandler from "../../components/form/form-handler/FormHandler";
 import { FormTable } from "../../components/form/form-table/FormTable";
 import { getConfigHandler } from "./getConfigHandler";
 import { validate } from "./validation";
+import { initTable } from "../../utils/initTable";
 
 function CheckPurchase() {
   const { language } = useSelector((lang) => lang);
@@ -25,7 +26,7 @@ function CheckPurchase() {
   const [inputValues, setInputValues] = useState(initialFormValues);
   const [paymentsData, setPaymentsData] = useState({
     titles: [paymentnumber, PaymentDate, checksum, checknumber],
-    values: [],
+    rows: [],
   });
 
   const handleSubmit = (values) => {
@@ -33,13 +34,27 @@ function CheckPurchase() {
     console.log(values);
   };
 
-  const PaymentDataHandler = useCallback(() => {
+  const HandleTable = () => {
     const { purchaseSum, paymentNumber, dueDate, checkNumber } = inputValues;
-  }, [inputValues]);
+
+    if (purchaseSum !== "" && paymentNumber !== "" && checkNumber !== "" && dueDate !== "") {
+      const paymentData = initTable(purchaseSum, paymentNumber, checkNumber, dueDate);
+
+      setPaymentsData((prevPaymentsData) => ({
+        titles: [...prevPaymentsData.titles],
+        rows: paymentData,
+      }));
+    }
+  };
 
   useEffect(() => {
-    PaymentDataHandler();
-  }, []);
+    HandleTable();
+  }, [
+    inputValues.purchaseSum,
+    inputValues.paymentNumber,
+    inputValues.dueDate,
+    inputValues.checkNumber,
+  ]);
 
   return (
     <FormHandler
@@ -51,6 +66,7 @@ function CheckPurchase() {
       initialFormValues={initialFormValues}
     >
       <FormTable tableDetails={paymentsData} />
+
     </FormHandler>
   );
 }
