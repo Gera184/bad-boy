@@ -39,6 +39,10 @@ const Select = ({
     setIsOpen(false);
   };
 
+  //react-window library is used to render a virtualized list of options.
+  //The List component from react-window replaces the filteredOptions?.map function, and the Row component is defined to render each option.
+  //By implementing virtualization, the Select component will render efficiently,
+  //even with a large number of options, as only the visible options will be rendered at any given time
   const filteredOptions = options?.filter((option) =>
     option[filterKey]?.toLowerCase().includes(value.toLowerCase())
   );

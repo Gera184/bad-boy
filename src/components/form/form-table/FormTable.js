@@ -7,7 +7,6 @@ import {
   Wrapper,
 } from "./FormTable.styles";
 import { TableInput } from "./FormTable.styles";
-import { initTableByEdit } from "../../../utils/initTableByEdit";
 
 export const FormTable = ({ tableDetails }) => {
   const { titles, rows } = tableDetails;
@@ -34,7 +33,6 @@ export const FormTable = ({ tableDetails }) => {
                       type={row[prop].input.type}
                       name={row[prop].input.name}
                       value={row[prop].value}
-                      onChange={initTableByEdit}
                     />
                   ) : (
                     <>{row[prop].value}</>

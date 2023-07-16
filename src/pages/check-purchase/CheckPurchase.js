@@ -36,7 +36,6 @@ function CheckPurchase() {
 
   const HandleTable = useCallback(() => {
     const { purchaseSum, paymentNumber, dueDate, checkNumber } = inputValues;
-
     if (
       purchaseSum !== "" &&
       paymentNumber !== "" &&
