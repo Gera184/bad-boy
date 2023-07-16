@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import SideBar from "./components/side-bar/SideBar";
 import Header from "./components/header/Header";
@@ -14,25 +14,25 @@ export const App = () => {
   const dispatch = useDispatch();
   const routes = AppRoutes();
 
+  const fetchData = useCallback(async () => {
+    try {
+      const [citiesResponse, banksResponse] = await Promise.all([
+        axios.get(
+          "https://test.eranit.co.il/ErnServices/api/generaldata/getcities"
+        ),
+        axios.get(
+          "https://test.eranit.co.il/ErnServices/api/generaldata/GetBanks"
+        ),
+      ]);
+
+      dispatch(getCitiesAction(citiesResponse.data));
+      dispatch(getBanksAction(banksResponse.data));
+    } catch (error) {
+      console.error(error); // Handle any errors that occur during the requests
+    }
+  }, [dispatch]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [citiesResponse, banksResponse] = await Promise.all([
-          axios.get(
-            "https://test.eranit.co.il/ErnServices/api/generaldata/getcities"
-          ),
-          axios.get(
-            "https://test.eranit.co.il/ErnServices/api/generaldata/GetBanks"
-          ),
-        ]);
-
-        dispatch(getCitiesAction(citiesResponse.data));
-        dispatch(getBanksAction(banksResponse.data));
-      } catch (error) {
-        console.error(error); // Handle any errors that occur during the requests
-      }
-    };
-
     fetchData();
   }, []);
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FixedSizeList as List } from "react-window";
 import {
   OptionItem,
   SelectDropdown,
@@ -25,7 +26,6 @@ const Select = ({
   const handleOptionClick = (option) => {
     const selectedOption = option[filterKey];
 
-    // Create a synthetic event object with the name and value
     const event = {
       target: {
         name: name,
@@ -43,6 +43,20 @@ const Select = ({
     option[filterKey]?.toLowerCase().includes(value.toLowerCase())
   );
 
+  const Row = ({ index, style }) => {
+    const option = filteredOptions[index];
+
+    return (
+      <OptionItem
+        style={style}
+        name={name}
+        onClick={() => handleOptionClick(option)}
+      >
+        {option[filterKey]}
+      </OptionItem>
+    );
+  };
+
   return (
     <SelectWrapper>
       <SelectInput
@@ -53,7 +67,6 @@ const Select = ({
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
         onBlur={() => {
-          // Delay closing the dropdown to allow option selection
           setTimeout(() => {
             setIsOpen(false);
           }, 200);
@@ -62,17 +75,14 @@ const Select = ({
       <img onClick={() => setIsOpen(true)} src={arrowDown} alt="arrowDown" />
       {isOpen && (
         <SelectDropdown>
-          {filteredOptions?.map((option, index) => {
-            return (
-              <OptionItem
-                key={index}
-                name={name}
-                onClick={() => handleOptionClick(option)}
-              >
-                {option[filterKey]}
-              </OptionItem>
-            );
-          })}
+          <List
+            height={200} // Adjust the height as needed
+            itemCount={filteredOptions.length}
+            itemSize={40} // Adjust the item height as needed
+            width="100%"
+          >
+            {Row}
+          </List>
         </SelectDropdown>
       )}
     </SelectWrapper>

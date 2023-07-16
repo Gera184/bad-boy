@@ -35,7 +35,7 @@ export const TableCell = styled.td`
 
 export const TableInput = styled(Field)`
   background: transparent;
-    border: none;
+  border: none;
   border-bottom: 1px solid #8c8c8c;
   color: #000;
   text-align: right;
