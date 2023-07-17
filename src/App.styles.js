@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   width: 100%;
+  height: 90vh;
   display: flex;
   flex-direction: column;
 `;

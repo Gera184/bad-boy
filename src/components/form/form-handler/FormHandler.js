@@ -12,7 +12,7 @@ import {
   Spacer,
 } from "./FormHandler.styles";
 import { FormFooter } from "../form-footer/FormFooter";
-import Button from "../../button/Button.js";
+import { ButtonWrapper } from "../../button/Button.styles";
 import { FormInputs } from "../form-inputs/FormInputs";
 
 const FormHandler = ({
@@ -68,10 +68,10 @@ const FormHandler = ({
                     <TitleContainer>
                       <Title>{title.title}</Title>
                       {index === 0 && (
-                        <Button type="button" onClick={resetFormInputs}>
+                        <ButtonWrapper type="button" onClick={resetFormInputs}>
                           {/* <img src={button.src} alt={button.alt} /> */}
                           עסקה חדשה
-                        </Button>
+                        </ButtonWrapper>
                       )}
                     </TitleContainer>
                   </TitleWrapper>
@@ -89,8 +89,7 @@ const FormHandler = ({
             <SectionContainer>{children}</SectionContainer>
           </SectionWrapper>
         </Spacer>
-
-        <FormFooter />
+        <FormFooter config={config.footer} />
       </FormWrapper>
     </Formik>
   );

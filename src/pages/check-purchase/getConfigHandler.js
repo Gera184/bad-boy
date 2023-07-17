@@ -12,11 +12,26 @@ export function getConfigHandler(language) {
     CellPhoneNumber,
     CustomerNumber,
     checkPurchase,
+    FirstPaymentCheckSum
   } = language.texts;
 
   const config = {
     header: {
       title: checkPurchase,
+    },
+    footer: {
+      sections: [
+        {
+          type: "status",
+          title: "title",
+          status: "status",
+          info: "info",
+        },
+        {
+          type: "buttonGroup",
+          name: "leftButtonGroup",
+        },
+      ],
     },
     sections: [
       {
@@ -46,6 +61,13 @@ export function getConfigHandler(language) {
             placeHolder: duedate,
             type: "date",
             label: duedate,
+          },
+          {
+            name: "firstCheckSum",
+            placeHolder: FirstPaymentCheckSum,
+            type: "number",
+            label: FirstPaymentCheckSum,
+            readOnly: true,
           },
         ],
       },

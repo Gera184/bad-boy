@@ -6,37 +6,19 @@ export const ButtonWrapper = styled.button`
   justify-content: center;
 
   border-radius: 100px;
-  background: ${(props) =>
-    props.background ? props.background : "var(--button-blue, #0053ab)"};
-  border: ${(props) =>
-    props.borderColor ? `1px solid ${props.borderColor}` : "1px solid black"};
-
+  background: var(--button-blue, #0053ab);
   height: 35px;
   padding: 12px 20px;
   gap: 10px;
   flex-shrink: 0;
   //for the button text
-
-  color: ${(props) =>
-    props.textColor ? props.textColor : "var(--white, #fff)"};
+  color: #fff;
   text-align: right;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "16px")};
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  font-size: 14px;
 
   img {
     width: 17px;
     height: 15px;
     padding-left: 5px;
   }
-
-  ${(props) =>
-    props.disabled &&
-    `
-      background: var(--disable, #858585);
-      cursor: not-allowed;
-      color: var(--disable-text, #464646);
-
-    `}
 `;

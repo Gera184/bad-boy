@@ -5,6 +5,7 @@ import { FormTable } from "../../components/form/form-table/FormTable";
 import { getConfigHandler } from "./getConfigHandler";
 import { validate } from "./validation";
 import { initTable } from "../../utils/initTable";
+import { initTableByEdit } from "../../utils/initTableByEdit";
 
 function CheckPurchase() {
   const { language } = useSelector((lang) => lang);
@@ -36,26 +37,39 @@ function CheckPurchase() {
 
   const HandleTable = useCallback(() => {
     const { purchaseSum, paymentNumber, dueDate, checkNumber } = inputValues;
+    let paymentData;
+
     if (
       purchaseSum !== "" &&
       paymentNumber !== "" &&
       checkNumber !== "" &&
-      dueDate !== ""
+      dueDate !== "" &&
+      paymentNumber <= purchaseSum
     ) {
-      const paymentData = initTable(
+      paymentData = initTable("FROM hANDLE:",
         purchaseSum,
         paymentNumber,
         checkNumber,
         dueDate
       );
 
-      setPaymentsData((prevPaymentsData) => ({
-        titles: [...prevPaymentsData.titles],
-        rows: paymentData,
-      }));
+      
     }
-  }, [inputValues, setPaymentsData]);
+    else {
+      paymentData = [];
+    }
 
+
+
+
+
+    setPaymentsData((prevPaymentsData) => ({
+      titles: [...prevPaymentsData.titles],
+      rows: paymentData,
+    }));
+
+
+  }, [inputValues, setPaymentsData]);
   useEffect(() => {
     HandleTable();
   }, [
@@ -63,8 +77,26 @@ function CheckPurchase() {
     inputValues.paymentNumber,
     inputValues.dueDate,
     inputValues.checkNumber,
-    HandleTable,
   ]);
+
+  const handleTableChange = useCallback((event) => {
+
+    setPaymentsData((prevPaymentsData) => ({
+      titles: [...prevPaymentsData.titles],
+      rows: initTableByEdit(prevPaymentsData.rows, event, inputValues.purchaseSum, inputValues.paymentNumber),
+    }));
+
+  }, [inputValues, setPaymentsData]);
+  useEffect(() => {
+    handleTableChange();
+  }, [inputValues.firstCheckSum]);
+
+
+  useEffect(() => {
+    //CALL CHANGE firstCheckSum TO READONLY=FALSE/TRUE
+    //callChangeReadonly()
+  }, [inputValues.paymentNumber]);
+
 
   return (
     <FormHandler
@@ -75,7 +107,9 @@ function CheckPurchase() {
       setInputValues={setInputValues}
       initialFormValues={initialFormValues}
     >
-      <FormTable tableDetails={paymentsData} />
+      <FormTable
+        tableDetails={paymentsData}
+        onChange={handleTableChange} />
     </FormHandler>
   );
 }

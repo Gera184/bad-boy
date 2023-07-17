@@ -16,6 +16,8 @@ import { useLocation } from "react-router";
 import headset from "../../assets/icons/Headset.svg";
 import collapseArrow from "../../assets/icons/Collapse_Arrow.svg";
 import { getConfigHandler } from "./getConfigHandler";
+import { BrowserView, MobileView } from 'react-device-detect';
+import Modal from 'react-modal';
 
 const SideBar = () => {
   const { language, user } = useSelector((state) => state);
@@ -32,41 +34,61 @@ const SideBar = () => {
   const location = useLocation();
   const activeRoute = location.pathname;
 
-  return (
-    <Wrapper>
-      <SidebarMain>
-        <SidebarButtons>
-          {config.map((li, index) => {
-            return (
-              <SidebarButton key={index}>
-                <SidebarButtonLink
-                  id={li.path}
-                  to={li.path}
-                  data-tooltip-id={!li.permission ? "my-tooltip" : ""}
-                  data-tooltip-place="left"
-                >
-                  <SidebarButtonLinkContainer active={li.path === activeRoute}>
-                    {li.title}
-                  </SidebarButtonLinkContainer>
-                </SidebarButtonLink>
+  const state = {
+    showModal: false
+  };
 
-                <CustomTooltip id="my-tooltip">
-                  <p>
-                    נראה ששירות זה לא קיים בחבילה שלך אפשר ליצור קשר עם שירות
-                    לקוחות 03-9534222
-                  </p>
-                </CustomTooltip>
-              </SidebarButton>
-            );
-          })}
-        </SidebarButtons>
-        <SidebarBottom>
-          <img src={collapseArrow} alt="collapseArrow" />
-          <img src={headset} alt="headset" />
-          <SidebarButtonLogout>יצירת קשר ERN</SidebarButtonLogout>
-        </SidebarBottom>
-      </SidebarMain>
-    </Wrapper>
+  const handleOpenModal = () => {
+    this.setState({ showModal: true });
+  }
+  
+  const handleCloseModal = () => {
+    this.setState({ showModal: false });
+  }
+
+
+  return (
+    <>
+      <BrowserView>
+        <Wrapper>
+          <SidebarMain>
+            <SidebarButtons>
+              {config.map((li, index) => {
+                return (
+                  <SidebarButton key={index}>
+                    <SidebarButtonLink
+                      id={li.path}
+                      to={li.path}
+                      data-tooltip-id={!li.permission ? "my-tooltip" : ""}
+                      data-tooltip-place="left"
+                    >
+                      <SidebarButtonLinkContainer active={li.path === activeRoute}>
+                        {li.title}
+                      </SidebarButtonLinkContainer>
+                    </SidebarButtonLink>
+
+                    <CustomTooltip id="my-tooltip">
+                      <p>
+                        נראה ששירות זה לא קיים בחבילה שלך אפשר ליצור קשר עם שירות
+                        לקוחות 03-9534222
+                      </p>
+                    </CustomTooltip>
+                  </SidebarButton>
+                );
+              })}
+            </SidebarButtons>
+            <SidebarBottom>
+              <img src={collapseArrow} alt="collapseArrow" />
+              <img src={headset} alt="headset" />
+              <SidebarButtonLogout>יצירת קשר ERN</SidebarButtonLogout>
+            </SidebarBottom>
+          </SidebarMain>
+        </Wrapper>
+      </BrowserView>
+      <MobileView>
+        
+      </MobileView>
+    </>
   );
 };
 

@@ -56,3 +56,14 @@ export const LogoImage = styled.div`
     width: 93px;
   }
 `;
+
+export const HeaderMobile = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 60px;
+background-color: red;
+img {
+  padding: 0 20px;
+}
+`

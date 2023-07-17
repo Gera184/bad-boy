@@ -50,6 +50,11 @@ export const StyledInput = styled(Field)`
   line-height: normal;
   width: 100%;
 
+  :read-only {
+    background: grey;
+
+  }
+
   ${({ error }) =>
     error &&
     `

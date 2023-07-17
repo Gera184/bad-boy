@@ -1,6 +1,8 @@
 import { dateToString } from "./dateToString";
 // TODO: UseMemo ???
-export const initTable = (purchaseSum, paymentNumber, checkNumber, dueDate) => {
+export const initTable = (blabla, purchaseSum, paymentNumber, checkNumber, dueDate) => {
+    console.log("initTable");
+
 
     const total = Number(purchaseSum);
     const payments = Number(paymentNumber);
@@ -18,8 +20,11 @@ export const initTable = (purchaseSum, paymentNumber, checkNumber, dueDate) => {
         checksum: {
             value: sumPerPayment + remainder,
             input: {
-                name: "checkSum_1",
+                name: "firstCheckSum",
                 type: "number",
+                min: 1,
+                max: purchaseSum,
+                readonly: payments === 1 // true/false
             }
         },
         checknumber: {
@@ -41,10 +46,10 @@ export const initTable = (purchaseSum, paymentNumber, checkNumber, dueDate) => {
                 PaymentDate: { value: dateToString(new Date(date.setMonth(date.getMonth() + 1))).toString() },
                 checksum: {
                     value: sumPerPayment,
-                    input: {
-                        name: "checkSum_" + index,
-                        type: "number",
-                    }
+                    // input: {
+                    //     name: "checkSum_" + index,
+                    //     type: "number",
+                    // }
                 },
                 checknumber: {
                     value: check + index - 1,

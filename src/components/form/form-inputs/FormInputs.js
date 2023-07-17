@@ -11,10 +11,9 @@ import {
 } from "../form-handler/FormHandler.styles";
 import X from "../../../assets/icons/X.svg";
 
-export const FormInputs = ({ title, action, inputValues, handleChange }) => {
+export const FormInputs = ({ title, action, inputValues, handleChange, ref }) => {
   const { errors, touched } = useFormikContext();
   let filterKey = null;
-
   return (
     <>
       {title.inputs.map((input, inputIndex) => {
@@ -74,6 +73,11 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
                         value={inputValues[input.name]} // Pass the corresponding value from state
                         onChange={handleChange} // Add onChange using handleChange
                         label={input.label}
+                        
+                        
+                        readOnly={input.readOnly}
+                        ref={ref}
+
                         error={hasError ? "error" : ""}
                       />
 

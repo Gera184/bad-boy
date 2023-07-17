@@ -38,10 +38,6 @@ const HokPurchase = () => {
   const handleSelectChange = (value, sender) => {
     switch (sender) {
       case "CityName":
-        setInputValues((prevInputValues) => ({
-          ...prevInputValues,
-          StreetName: "",
-        }));
         dispatch(getStreetsAction(value));
         break;
       case "numberAndBankName":
