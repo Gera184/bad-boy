@@ -63,6 +63,7 @@ function CheckPurchase() {
     inputValues.paymentNumber,
     inputValues.dueDate,
     inputValues.checkNumber,
+    HandleTable,
   ]);
 
   return (

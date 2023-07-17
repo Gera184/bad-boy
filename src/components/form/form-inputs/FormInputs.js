@@ -14,6 +14,7 @@ import X from "../../../assets/icons/X.svg";
 export const FormInputs = ({ title, action, inputValues, handleChange }) => {
   const { errors, touched } = useFormikContext();
   let filterKey = null;
+
   return (
     <>
       {title.inputs.map((input, inputIndex) => {

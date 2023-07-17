@@ -81,7 +81,7 @@ const Select = ({
         <SelectDropdown>
           <List
             height={200} // Adjust the height as needed
-            itemCount={filteredOptions.length}
+            itemCount={filteredOptions?.length}
             itemSize={40} // Adjust the item height as needed
             width="100%"
           >

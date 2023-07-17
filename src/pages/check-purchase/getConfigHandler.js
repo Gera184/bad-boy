@@ -18,20 +18,6 @@ export function getConfigHandler(language) {
     header: {
       title: checkPurchase,
     },
-    footer: {
-      sections: [
-        {
-          type: "status",
-          title: "title",
-          status: "status",
-          info: "info",
-        },
-        {
-          type: "buttonGroup",
-          name: "leftButtonGroup",
-        },
-      ],
-    },
     sections: [
       {
         title: purchasedetails,

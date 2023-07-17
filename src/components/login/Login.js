@@ -11,7 +11,6 @@ const Login = () => {
 
   const loginHandler = () => {
     dispatch(loginAction());
-    alert("logged in");
 
     navigate("/CheckPurchase");
   };
