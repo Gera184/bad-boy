@@ -32,7 +32,6 @@ export function getConfigHandler(language) {
             name: "paymentNumber",
             placeHolder: paymentsnumber,
             type: "select",
-            optionsList: [],
             label: paymentsnumber,
           },
           {

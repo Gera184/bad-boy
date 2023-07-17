@@ -75,6 +75,7 @@ const Select = ({
             setIsOpen(false);
           }, 200);
         }}
+        required
       />
       <img onClick={() => setIsOpen(true)} src={arrowDown} alt="arrowDown" />
       {isOpen && (

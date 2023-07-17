@@ -1,6 +1,6 @@
 export function getConfigHandler(language, citiesData, banksData) {
   const { cities, streets } = citiesData;
-  const { banks,branches } = banksData;
+  const { banks, branches } = banksData;
 
   const {
     PurchaseTypeHok,
@@ -52,7 +52,7 @@ export function getConfigHandler(language, citiesData, banksData) {
           {
             name: "paymentNumber",
             placeHolder: paymentsnumber,
-            type: "number",
+            type: "select",
             label: paymentsnumber,
           },
           {
@@ -78,7 +78,7 @@ export function getConfigHandler(language, citiesData, banksData) {
             placeHolder: branch,
             type: "select",
             label: branch,
-            optionsList:branches,
+            optionsList: branches,
           },
           {
             name: "account",

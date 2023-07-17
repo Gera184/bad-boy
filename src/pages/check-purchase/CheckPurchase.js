@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import FormHandler from "../../components/form/form-handler/FormHandler";
@@ -6,6 +7,7 @@ import { getConfigHandler } from "./getConfigHandler";
 import { validate } from "./validation";
 import { initTable } from "../../utils/initTable";
 import { initTableByEdit } from "../../utils/initTableByEdit";
+import { axiosRequest } from "../../utils/axiosRequest";
 
 function CheckPurchase() {
   const { language } = useSelector((lang) => lang);
@@ -30,9 +32,70 @@ function CheckPurchase() {
     rows: [],
   });
 
-  const handleSubmit = (values) => {
-    // Handle form submission here
-    console.log(values);
+  const handleSubmit = async (values) => {
+    const {
+      CustomerNumber,
+      account,
+      bank,
+      branch,
+      cellPhoneNumber,
+      checkNumber,
+      dueDate,
+      paymentNumber,
+      purchaseSum,
+    } = values;
+
+    try {
+      const response = await axiosRequest({
+        method: "POST",
+        url: "/ErnTransApiChannel/Pos/ProcessPurchaseTransaction",
+        headers: {
+          accept: "*/*",
+        },
+        data: {
+          clientRequestId: "string",
+          clientRequestCode: "string",
+          retailerId: 0,
+          manufacturerId: "string",
+          manufacturerVersion: 0,
+          requestUniqueId: "string",
+          bankNumber: bank,
+          branchNumber: branch,
+          checkType: "string",
+          secureDigit: "string",
+          accountNumber: account,
+          serviceId: 3,
+          transactionType: "string",
+          totalSum: purchaseSum,
+          voiceAuthorizationNumber: 0,
+          numberOfPayments: paymentNumber,
+          customerId: CustomerNumber,
+          guarantorId: 0,
+          phoneNumber: cellPhoneNumber,
+          checkNumber: checkNumber,
+          _DueDate: dueDate,
+          lastCheckSum: 0,
+          checkSum: 0,
+          swiped: "string",
+          j5Type: "string",
+          carNumber: "string",
+          orderNumber: "string",
+          orderCustomerNumber: "string",
+          paymentsList: [
+            {
+              paymentNumber: 0,
+              checkNumber: 0,
+              dueDate: "2023-07-17T12:06:45.948Z",
+              checkSum: 0,
+            },
+          ],
+        },
+      });
+
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const HandleTable = useCallback(() => {
@@ -44,7 +107,7 @@ function CheckPurchase() {
       paymentNumber !== "" &&
       checkNumber !== "" &&
       dueDate !== "" &&
-      paymentNumber <= purchaseSum
+      Number(paymentNumber) <= Number(purchaseSum)
     ) {
       paymentData = initTable(
         "FROM hANDLE:",
@@ -62,14 +125,6 @@ function CheckPurchase() {
       rows: paymentData,
     }));
   }, [inputValues, setPaymentsData]);
-  useEffect(() => {
-    HandleTable();
-  }, [
-    inputValues.purchaseSum,
-    inputValues.paymentNumber,
-    inputValues.dueDate,
-    inputValues.checkNumber,
-  ]);
 
   const handleTableChange = useCallback(
     (event) => {
@@ -83,11 +138,21 @@ function CheckPurchase() {
         ),
       }));
     },
-    [inputValues, setPaymentsData]
+    [inputValues]
   );
+
+  useEffect(() => {
+    HandleTable();
+  }, [
+    inputValues.purchaseSum,
+    inputValues.paymentNumber,
+    inputValues.dueDate,
+    inputValues.checkNumber,
+  ]);
+
   useEffect(() => {
     handleTableChange();
-  }, [inputValues.firstCheckSum]);
+  }, [handleTableChange, inputValues.firstCheckSum]);
 
   useEffect(() => {
     //CALL CHANGE firstCheckSum TO READONLY=FALSE/TRUE

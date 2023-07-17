@@ -7,16 +7,9 @@ import {
   Wrapper,
 } from "./FormTable.styles";
 import { TableInput } from "./FormTable.styles";
-import { initTableByEdit } from "../../../utils/initTableByEdit";
 
-export const FormTable = ({ tableDetails, onChange, readonly }) => {
+export const FormTable = ({ tableDetails, onChange }) => {
   let { titles, rows } = tableDetails;
-
-  // HandleTableChange = (event) =>
-  // {
-  //   //console.dir("aviad::: " ,event)
-  //   rows = initTableByEdit(event, rows)
-  // }
 
   return (
     <Wrapper>
@@ -30,7 +23,7 @@ export const FormTable = ({ tableDetails, onChange, readonly }) => {
         </thead>
 
         <tbody>
-          {rows?.length == 0 ? (
+          {rows?.length === 0 ? (
             <TableRow>
               <TableCell colSpan="100%" />
             </TableRow>

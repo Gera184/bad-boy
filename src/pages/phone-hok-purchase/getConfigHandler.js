@@ -1,6 +1,5 @@
 export function getConfigHandler(language) {
   const {
-    PurchaseTypeHok,
     purchasedetails,
     purchasesum,
     paymentsnumber,

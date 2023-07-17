@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import FormHandler from "../../components/form/form-handler/FormHandler";
 import { validate } from "./validation";
 import { getConfigHandler } from "./getConfigHandler";
 
 function PhoneHokPurchase() {
-  const dispatch = useDispatch();
   const { language } = useSelector((state) => state);
-  const { paymentnumber, PaymentDate, checksum, checknumber } = language.texts;
+  // const { paymentnumber, PaymentDate, checksum, checknumber } = language.texts;
   const { config } = getConfigHandler(language);
 
   const initialFormValues = useMemo(() => {
@@ -23,10 +22,10 @@ function PhoneHokPurchase() {
   }, [config]);
 
   const [inputValues, setInputValues] = useState(initialFormValues);
-  const [paymentsData, setPaymentsData] = useState({
-    titles: [paymentnumber, PaymentDate, checksum, checknumber],
-    values: [],
-  });
+  // const [paymentsData, setPaymentsData] = useState({
+  //   titles: [paymentnumber, PaymentDate, checksum, checknumber],
+  //   values: [],
+  // });
 
   const handleSubmit = (values) => {
     // Handle form submission here
@@ -35,11 +34,11 @@ function PhoneHokPurchase() {
 
   const handleSelectChange = (value) => {};
 
-  const PaymentDataHandler = useCallback(() => {}, [inputValues]);
+  const PaymentDataHandler = useCallback(() => {}, []);
 
   useEffect(() => {
     PaymentDataHandler();
-  }, []);
+  }, [PaymentDataHandler]);
 
   return (
     <FormHandler

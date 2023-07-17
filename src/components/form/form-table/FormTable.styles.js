@@ -25,7 +25,6 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  ${'' /* padding-right: ${(props) => (props.isFirst ? "29px" : "0px")}; */}
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
@@ -37,7 +36,6 @@ export const TableCell = styled.td`
 export const TableInput = styled(Field)`
   :read-only {
     background: grey;
-
   }
   background: transparent;
   border: none;

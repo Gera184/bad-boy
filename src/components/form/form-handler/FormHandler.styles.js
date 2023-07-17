@@ -32,6 +32,7 @@ export const SectionWrapper = styled.div`
   border: 1px solid var(--div, #e1e5ed);
   background: var(--white, #fff);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Enable vertical scrolling */
 `;
 
 export const SectionContainer = styled.div`
@@ -66,6 +67,7 @@ export const StyledSelect = styled(Field)`
 export const StyledForm = styled.div`
   display: flex;
   justify-content: flex-start;
+  align-items: flex-end;
   width: ${(props) => (props.width ? props.width : "100%")};
   flex-wrap: wrap;
   gap: 24px 30px; /* Add 60px vertical spacing and 30px horizontal spacing */
@@ -131,4 +133,9 @@ export const InputContainer = styled.div`
 
 export const IconContainer = styled.div`
   position: absolute;
+`;
+
+export const PaymentStyledSelect = styled(Field)`
+  border: none;
+  border-bottom: 1px solid #8c8c8c;
 `;

@@ -7,6 +7,7 @@ import {
   InputContainer,
   InputWrapper,
   Label,
+  PaymentStyledSelect,
   StyledInput,
 } from "../form-handler/FormHandler.styles";
 import X from "../../../assets/icons/X.svg";
@@ -40,18 +41,36 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
         return (
           <React.Fragment key={inputIndex}>
             {input.type === "select" ? (
-              <InputWrapper>
-                <Label>{input.label} </Label>
-                <Select
-                  options={input.optionsList}
-                  value={inputValues[input.name]} // Pass the corresponding value from state
-                  action={action}
-                  filterKey={filterKey}
-                  name={input.name}
-                  handleChange={handleChange}
-                  error={hasError ? "error" : ""}
-                />
-              </InputWrapper>
+              input.name === "paymentNumber" ? (
+                <InputWrapper>
+                  <Label>{input.label} </Label>
+                  <PaymentStyledSelect
+                    as="select"
+                    name={input.name}
+                    value={inputValues[input.name]} // Pass the corresponding value from state
+                    onChange={handleChange} // Add onChange using handleChange
+                  >
+                    {[...Array(10)].map((_, index) => (
+                      <option key={index + 1} value={index + 1}>
+                        {index + 1}
+                      </option>
+                    ))}
+                  </PaymentStyledSelect>
+                </InputWrapper>
+              ) : (
+                <InputWrapper>
+                  <Label>{input.label} </Label>
+                  <Select
+                    options={input.optionsList}
+                    value={inputValues[input.name]} // Pass the corresponding value from state
+                    action={action}
+                    filterKey={filterKey}
+                    name={input.name}
+                    handleChange={handleChange}
+                    error={hasError ? "error" : ""}
+                  />
+                </InputWrapper>
+              )
             ) : (
               <>
                 {input.type === "checkbox" ? (
@@ -61,6 +80,7 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
                       type={input.type}
                       name={input.name}
                       onChange={handleChange}
+                      required
                     />
                     <Label>{input.label} </Label>
                   </CheckboxWrapper>
@@ -76,6 +96,7 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
                         label={input.label}
                         error={hasError ? "error" : ""}
                         readOnly={input.readOnly}
+                        required
                       />
 
                       <IconContainer>

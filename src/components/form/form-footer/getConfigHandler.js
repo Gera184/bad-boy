@@ -1,8 +1,8 @@
 import V from "../../../assets/icons/V.svg";
-import InfoFull from "../../../assets/icons/info_full.svg";
+// import InfoFull from "../../../assets/icons/info_full.svg";
 
 export function getConfigHandler(language) {
-  const {} = language.texts;
+  // const {} = language.texts;
 
   const config = {
     statusLabel: "סטטוס עסקה",
@@ -20,10 +20,10 @@ export function getConfigHandler(language) {
     leftButtons: [
       {
         type: "submit",
-        background: "transparent",
-        textColor: "#33B629",
+        background: "var(--green, #33B629)",
+        textColor: "white",
         borderColor: "#33B629",
-        children: "הדפסת אישור",
+        children: "שידור עסקה",
       },
     ],
     error: {

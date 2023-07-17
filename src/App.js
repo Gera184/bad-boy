@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./components/side-bar/SideBar";
 import Header from "./components/header/Header";
@@ -48,7 +48,7 @@ export const App = () => {
     }
 
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return (
     <Router>

@@ -1,4 +1,4 @@
-import { useAxios } from "../../hooks/useAxios";
+import { axiosRequest } from "../../utils/axiosRequest";
 import { citiesActions } from "../reducers/citiesReducer";
 
 export const getCitiesAction = (cities) => {
@@ -12,7 +12,7 @@ export const getStreetsAction = (value) => {
 
   return async (dispatch) => {
     try {
-      const response = await useAxios({
+      const response = await axiosRequest({
         method: "GET",
         url: `/ErnServices/api/generaldata/GetStreets?cityid=${Id}`,
         headers: {

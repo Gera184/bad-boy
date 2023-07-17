@@ -18,8 +18,7 @@ import collapseArrow from "../../assets/icons/Collapse_Arrow.svg";
 import { getConfigHandler } from "./getConfigHandler";
 
 const SideBar = () => {
-  const { language, user } = useSelector((state) => state);
-
+  const { language } = useSelector((state) => state);
   const userMock = {
     allowPurchaseTypeCheck: true,
     allowPurchaseTypeHok: true,
@@ -37,12 +36,13 @@ const SideBar = () => {
       <SidebarMain>
         <SidebarButtons>
           {config.map((li, index) => {
+            const tooltipId = !li.permission ? `my-tooltip-${index}` : ""; // Generate unique tooltip ID
+
             return (
               <SidebarButton key={index}>
                 <SidebarButtonLink
-                  id={li.path}
                   to={li.path}
-                  data-tooltip-id={!li.permission ? "my-tooltip" : ""}
+                  data-tooltip-id={tooltipId}
                   data-tooltip-place="left"
                 >
                   <SidebarButtonLinkContainer active={li.path === activeRoute}>
@@ -50,7 +50,7 @@ const SideBar = () => {
                   </SidebarButtonLinkContainer>
                 </SidebarButtonLink>
 
-                <CustomTooltip id="my-tooltip">
+                <CustomTooltip id={tooltipId}>
                   <p>
                     נראה ששירות זה לא קיים בחבילה שלך אפשר ליצור קשר עם שירות
                     לקוחות 03-9534222

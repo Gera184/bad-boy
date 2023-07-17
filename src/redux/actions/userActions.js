@@ -1,10 +1,10 @@
-import { useAxios } from "../../hooks/useAxios";
+import { axiosRequest } from "../../utils/axiosRequest";
 import { userActions } from "../reducers/userReducer";
 
 export const loginAction = () => {
   return async (dispatch) => {
     try {
-      const response = await useAxios({
+      const response = await axiosRequest({
         method: "POST",
         url: "/ErnTransApiChannel/Pos/GetRetailerParameters",
         headers: {
@@ -19,6 +19,7 @@ export const loginAction = () => {
           retailerId: 0,
         },
       });
+
       dispatch(userActions.userData(response));
     } catch (error) {
       console.error(error);
