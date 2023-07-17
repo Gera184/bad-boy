@@ -75,6 +75,7 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
                         onChange={handleChange} // Add onChange using handleChange
                         label={input.label}
                         error={hasError ? "error" : ""}
+                        readOnly={input.readOnly}
                       />
 
                       <IconContainer>
