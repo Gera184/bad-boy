@@ -1,5 +1,5 @@
 import V from "../../../assets/icons/V.svg";
-// import InfoFull from "../../../assets/icons/info_full.svg";
+import InfoFull from "../../../assets/icons/info_full.svg";
 
 export function getConfigHandler(language) {
   // const {} = language.texts;
@@ -11,11 +11,11 @@ export function getConfigHandler(language) {
       alt: "v",
       text: "העסקה אושרה",
     },
-    // contactUsText: "התקשר אלינו 03-9534222",
+    contactUsText: "התקשר אלינו 03-9534222",
 
     middleContant: {
-      // buttonLabel: "הדפסת אישור",
-      // inputPlaceholder: "מספר אישור",
+      buttonLabel: "הדפסת אישור",
+      inputPlaceholder: "מספר אישור",
     },
     leftButtons: [
       {
@@ -27,8 +27,8 @@ export function getConfigHandler(language) {
       },
     ],
     error: {
-      // text: "אחד או יותר מהפרטים חסרים או שגויים",
-      // icon: InfoFull,
+      text: "אחד או יותר מהפרטים חסרים או שגויים",
+      icon: InfoFull,
     },
   };
 

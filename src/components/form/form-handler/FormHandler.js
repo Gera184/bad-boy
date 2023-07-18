@@ -25,6 +25,7 @@ const FormHandler = ({
   inputValues,
   setInputValues,
   initialFormValues,
+  response,
 }) => {
   const formikRef = useRef(null);
 
@@ -90,7 +91,7 @@ const FormHandler = ({
           </SectionWrapper>
         </Spacer>
 
-        <FormFooter />
+        <FormFooter response={response} />
       </FormWrapper>
     </Formik>
   );

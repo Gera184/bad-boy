@@ -26,6 +26,7 @@ function CheckPurchase() {
     return formValues;
   }, [config]);
 
+  const [response, setResponse] = useState(null);
   const [inputValues, setInputValues] = useState(initialFormValues);
   const [paymentsData, setPaymentsData] = useState({
     titles: [paymentnumber, PaymentDate, checksum, checknumber],
@@ -46,7 +47,7 @@ function CheckPurchase() {
     } = values;
 
     try {
-      const response = await axiosRequest({
+      const res = await axiosRequest({
         method: "POST",
         url: "/ErnTransApiChannel/Pos/ProcessPurchaseTransaction",
         headers: {
@@ -69,7 +70,7 @@ function CheckPurchase() {
           totalSum: purchaseSum,
           voiceAuthorizationNumber: 0,
           numberOfPayments: paymentNumber,
-          customerId: CustomerNumber,
+          customerId: 3,
           guarantorId: 0,
           phoneNumber: cellPhoneNumber,
           checkNumber: checkNumber,
@@ -92,7 +93,7 @@ function CheckPurchase() {
         },
       });
 
-      console.log(response);
+      setResponse(res);
     } catch (error) {
       console.error(error);
     }
@@ -167,6 +168,7 @@ function CheckPurchase() {
       inputValues={inputValues}
       setInputValues={setInputValues}
       initialFormValues={initialFormValues}
+      response={response}
     >
       <FormTable tableDetails={paymentsData} onChange={handleTableChange} />
     </FormHandler>
