@@ -9,9 +9,11 @@ const Button = ({
   textColor,
   disabled,
   children,
+  onClick,
 }) => {
   return (
     <ButtonWrapper
+      onClick={onClick}
       type={type}
       textColor={textColor}
       borderColor={borderColor}

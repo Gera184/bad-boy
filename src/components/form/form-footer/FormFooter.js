@@ -37,7 +37,6 @@ export const FormFooter = ({ response }) => {
   });
 
   useEffect(() => {
-    console.log(brResponse);
     switch (brResponse) {
       case "AUTH":
         setConfig({

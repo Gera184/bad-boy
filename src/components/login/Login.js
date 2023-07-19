@@ -39,8 +39,9 @@ const Login = () => {
   const [inputValues, setInputValues] = useState({}); // Initialize an empty object for input values
 
   const loginHandler = () => {
-    dispatch(loginAction());
-    navigate("/CheckPurchase");
+    console.log("object");
+    // dispatch(loginAction());
+    // navigate("/CheckPurchase");
   };
 
   const onChangeHandler = (event) => {
@@ -103,7 +104,7 @@ const Login = () => {
               </Field>
             ))}
             <ButtonsContainer>
-              <Button>{buttons.usernameAndPass}</Button>
+              <Button onClick={loginHandler}>{buttons.usernameAndPass}</Button>
               <LinkBtn>{buttons.forgotPasswordBtn}</LinkBtn>
             </ButtonsContainer>
           </LoginInputs>
