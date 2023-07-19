@@ -6,7 +6,7 @@ import banksReducer from "./reducers/banksReducer";
 
 const store = configureStore({
   reducer: {
-    user: userReducer,
+    userData: userReducer,
     language: langReducer,
     citiesData: citiesReducer,
     banksData: banksReducer,

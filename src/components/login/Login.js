@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction } from "../../redux/actions/userActions";
+import {
+  getRetailerParameters,
+  loginAction,
+} from "../../redux/actions/userActions";
 
 import {
   Wrapper,
@@ -24,19 +27,70 @@ import {
 import ErnLogo from "../../assets/images/ErnLogo.svg";
 import Button from "../button/Button";
 import { getConfigHandler } from "./getConfigHandler";
+import { useNavigate } from "react-router-dom";
+import { axiosRequest } from "../../utils/axiosRequest";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const { language } = useSelector((state) => state);
+  const { language, user } = useSelector((state) => state);
   const { config } = getConfigHandler(language);
   const { title, tabs, inputs, buttons, fotter } = config;
 
   const [tabIndex, setTabIndex] = useState(0);
   const [inputValues, setInputValues] = useState({}); // Initialize an empty object for input values
 
-  const loginHandler = () => {
-    dispatch(loginAction());
+  const loginHandler = async () => {
+    try {
+      const response = await axiosRequest({
+        method: "POST",
+        url: "/ErnTransApichannel/Authentication/Login",
+        headers: {
+          accept: "/",
+          userCode: "username",
+          tokenPublic: null,
+        },
+        data: {
+          manufacturerId: "RNT",
+          manufacturerVersion: "1",
+          retailerId: 0,
+          userCode: "username",
+          tokenPublic: null,
+          tx: "",
+        },
+      });
+
+      const { responseCode } = response;
+      const { sessionId } = response?.data;
+
+      if (responseCode === 0 && sessionId) {
+        dispatch(loginAction(response));
+        navigate("/CheckPurchase");
+
+        const secondResponse = await axiosRequest({
+          method: "POST",
+          url: "/ErnTransApiChannel/Pos/GetRetailerParameters",
+          headers: {
+            accept: "/",
+            userCode: "username",
+            tokenPublic: null,
+          },
+          data: {
+            loginRetailerId: 300000,
+            sessionId: "string",
+            userCode: "string",
+            posManufacturerId: "string",
+            posManufacturerVersion: "string",
+            retailerId: 0,
+          },
+        });
+
+        dispatch(getRetailerParameters(secondResponse));
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onChangeHandler = (event) => {
@@ -48,6 +102,10 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    navigate("/login");
+  }, []);
 
   return (
     <Wrapper>

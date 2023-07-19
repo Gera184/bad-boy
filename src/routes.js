@@ -45,11 +45,6 @@ export const AppRoutes = () => {
         element: <UpdatePurchase />,
         permission: allowUpdateTransaction,
       },
-      {
-        route: "/login",
-        element: <Login />,
-        permission: true,
-      },
     ],
     [
       allowPurchaseTypeCheck,

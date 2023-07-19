@@ -12,7 +12,7 @@ import { NoPermission } from "./pages/no-permission/NoPermission";
 import Login from "./components/login/Login";
 
 export const App = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.userData);
 
   const dispatch = useDispatch();
   const routes = AppRoutes();
@@ -53,42 +53,41 @@ export const App = () => {
   return (
     <Router>
       <Routes>
-        {routes.map((route) => {
-          if (!user || route.path === "/login") {
-            return (
-              <Route
-                key={route.route}
-                exact
-                path={route.route}
-                element={<Login />}
-              />
-            );
-          }
-          return (
-            <Route
-              key={route.route}
-              exact
-              path={route.route}
-              element={
-                <>
-                  <Header />
-                  <Wrapper>
-                    <SideBar />
-                    <ContentWrapper>
-                      <Content>
-                        {route.permission ? (
-                          <>{route.element}</>
-                        ) : (
-                          <NoPermission />
-                        )}
-                      </Content>
-                    </ContentWrapper>
-                  </Wrapper>
-                </>
-              }
-            />
-          );
-        })}
+        {!user ? (
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
+          </>
+        ) : (
+          <>
+            {routes.map((route) => {
+              return (
+                <Route
+                  key={route.route}
+                  exact
+                  path={route.route}
+                  element={
+                    <>
+                      <Header />
+                      <Wrapper>
+                        <SideBar />
+                        <ContentWrapper>
+                          <Content>
+                            {route.permission ? (
+                              <>{route.element}</>
+                            ) : (
+                              <NoPermission />
+                            )}
+                          </Content>
+                        </ContentWrapper>
+                      </Wrapper>
+                    </>
+                  }
+                />
+              );
+            })}
+          </>
+        )}
         <Route path="*" element={<>not found</>} />
       </Routes>
     </Router>
