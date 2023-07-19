@@ -18,18 +18,15 @@ import {
   Field,
   ButtonsContainer,
   LinkBtn,
-  Footer,
   Title,
 } from "./Login.styles";
 
 import ErnLogo from "../../assets/images/ErnLogo.svg";
 import Button from "../button/Button";
 import { getConfigHandler } from "./getConfigHandler";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { language } = useSelector((state) => state);
   const { config } = getConfigHandler(language);
@@ -39,9 +36,7 @@ const Login = () => {
   const [inputValues, setInputValues] = useState({}); // Initialize an empty object for input values
 
   const loginHandler = () => {
-    console.log("object");
-    // dispatch(loginAction());
-    // navigate("/CheckPurchase");
+    dispatch(loginAction());
   };
 
   const onChangeHandler = (event) => {
@@ -109,10 +104,6 @@ const Login = () => {
             </ButtonsContainer>
           </LoginInputs>
         </LoginsWrapper>
-        <Footer>
-          <h3>{fotter.title}</h3>
-          <p>{fotter.description}</p>
-        </Footer>
       </ContainerRight>
       <ContainerLeft></ContainerLeft>
     </Wrapper>

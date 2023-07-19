@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import {
   FormWrapper,
   StyledForm,
@@ -33,6 +33,17 @@ const FormHandler = ({
     formikRef.current.resetForm();
     setInputValues(initialFormValues);
     formikRef.current.setErrors({});
+  };
+
+  const handleDynamicReadOnly = (event) => {
+    let { name } = event.target;
+    if (name === "firstCheckSum") {
+      if (inputValues?.paymentNumber > 1) {
+        event.target.readOnly = false;
+      } else {
+        event.target.readOnly = true;
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -82,6 +93,7 @@ const FormHandler = ({
                       action={action}
                       inputValues={inputValues}
                       handleChange={handleChange}
+                      handleDynamicReadOnly={handleDynamicReadOnly}
                     />
                   </StyledForm>
                 </React.Fragment>

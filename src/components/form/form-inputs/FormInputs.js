@@ -12,7 +12,13 @@ import {
 } from "../form-handler/FormHandler.styles";
 import X from "../../../assets/icons/X.svg";
 
-export const FormInputs = ({ title, action, inputValues, handleChange }) => {
+export const FormInputs = ({
+  title,
+  action,
+  inputValues,
+  handleChange,
+  handleDynamicReadOnly,
+}) => {
   const { errors, touched } = useFormikContext();
   let filterKey = null;
 
@@ -37,6 +43,9 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
             filterKey = keyIncluded;
           }
         }
+
+        // Initialize readOnly from the config
+        const isReadOnly = input.readOnly || false;
 
         return (
           <React.Fragment key={inputIndex}>
@@ -95,7 +104,8 @@ export const FormInputs = ({ title, action, inputValues, handleChange }) => {
                         onChange={handleChange} // Add onChange using handleChange
                         label={input.label}
                         error={hasError ? "error" : ""}
-                        readOnly={input.readOnly}
+                        onFocus={handleDynamicReadOnly}
+                        readOnly={input.readOnly} // Use the initialized readOnly value
                         required
                       />
 
