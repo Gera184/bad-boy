@@ -77,6 +77,7 @@ const Select = ({
         }}
         required
       />
+
       <img onClick={() => setIsOpen(true)} src={arrowDown} alt="arrowDown" />
       {isOpen && (
         <SelectDropdown>

@@ -19,6 +19,7 @@ export const HeaderContainer = styled.div`
     padding-right: 25px;
   }
 `;
+
 export const Spacer = styled.div`
   padding-top: 20px;
   padding-right: 20px;
@@ -119,6 +120,10 @@ export const Label = styled.label`
   line-height: 21px;
   letter-spacing: 0em;
   text-align: right;
+
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  pointer-events: ${(props) => (props.visible ? "auto" : "none")};
+  transition: opacity 0.3s ease;
 `;
 
 export const InputWrapper = styled.div`

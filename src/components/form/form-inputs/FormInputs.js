@@ -28,6 +28,8 @@ export const FormInputs = ({
         const error = errors[input.name];
         const touch = touched[input.name];
         const hasError = error && touch;
+        const showLabel = inputValues[input.name].trim() !== "";
+        const showPlaceHolder = inputValues[input.name].trim() === "";
 
         if (
           input.type === "select" &&
@@ -43,9 +45,6 @@ export const FormInputs = ({
             filterKey = keyIncluded;
           }
         }
-
-        // Initialize readOnly from the config
-        const isReadOnly = input.readOnly || false;
 
         return (
           <React.Fragment key={inputIndex}>
@@ -68,13 +67,14 @@ export const FormInputs = ({
                 </InputWrapper>
               ) : (
                 <InputWrapper>
-                  <Label>{input.label} </Label>
+                  <Label visible={showLabel}>{input.label} </Label>
                   <Select
                     options={input.optionsList}
                     value={inputValues[input.name]} // Pass the corresponding value from state
                     action={action}
                     filterKey={filterKey}
                     name={input.name}
+                    placeHolder={showPlaceHolder ? input.placeHolder : ""}
                     handleChange={handleChange}
                     error={hasError ? "error" : ""}
                   />
@@ -91,11 +91,11 @@ export const FormInputs = ({
                       onChange={handleChange}
                       required
                     />
-                    <Label>{input.label} </Label>
+                    <Label visible={true}>{input.label} </Label>
                   </CheckboxWrapper>
                 ) : (
                   <InputWrapper>
-                    <Label>{input.label} </Label>
+                    <Label visible={showLabel}>{input.label} </Label>
                     <InputContainer>
                       <StyledInput
                         type={input.type}
@@ -103,6 +103,7 @@ export const FormInputs = ({
                         value={inputValues[input.name]} // Pass the corresponding value from state
                         onChange={handleChange} // Add onChange using handleChange
                         label={input.label}
+                        placeholder={showPlaceHolder ? input.placeHolder : ""}
                         error={hasError ? "error" : ""}
                         onFocus={handleDynamicReadOnly}
                         readOnly={input.readOnly} // Use the initialized readOnly value
