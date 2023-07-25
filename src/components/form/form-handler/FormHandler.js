@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   FormWrapper,
   StyledForm,
@@ -24,48 +24,59 @@ const FormHandler = ({
   width,
   inputValues,
   setInputValues,
-  initialFormValues,
   response,
 }) => {
   const formikRef = useRef(null);
+  const { initFormValues, initInputValues } = inputValues;
 
   const resetFormInputs = () => {
     formikRef.current.resetForm();
-    setInputValues(initialFormValues);
+    // setInputValues(initialFormValues);
     formikRef.current.setErrors({});
   };
 
-  const handleDynamicReadOnly = (event) => {
-    let { name } = event.target;
-    if (name === "firstCheckSum") {
-      if (inputValues?.paymentNumber > 1) {
-        event.target.readOnly = false;
-      } else {
-        event.target.readOnly = true;
-      }
-    }
+  const handleFocus = (fieldName) => {
+    formikRef.current.setFieldError(fieldName, ""); // Clear the error for the specified field
   };
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     const inputValue = type === "checkbox" ? checked : value;
 
-    // Update the input value in the state
+    // Update the value inside initInputValues
     setInputValues((prevInputValues) => ({
       ...prevInputValues,
-      [name]: inputValue,
+      initInputValues: {
+        ...prevInputValues.initInputValues,
+        [name]: {
+          ...prevInputValues.initInputValues[name],
+          value: inputValue,
+        },
+      },
     }));
-
-    // Update the formikRef's values manually
-    formikRef.current.setFieldValue(name, inputValue);
   };
+
+  useEffect(() => {
+    // Iterate over the inputValues and set the field values
+    const fieldValues = Object.keys(inputValues.initInputValues).reduce(
+      (values, name) => {
+        values[name] = inputValues.initInputValues[name].value;
+        return values;
+      },
+      {}
+    );
+
+    formikRef.current.setValues(fieldValues);
+  }, [inputValues]);
 
   return (
     <Formik
       innerRef={formikRef}
       onSubmit={handleSubmit}
       validate={validate}
-      initialValues={inputValues} // Use inputValues as initialValues
+      initialValues={initFormValues} // Use inputValues as initialValues
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       <FormWrapper>
         <Spacer>
@@ -91,9 +102,9 @@ const FormHandler = ({
                     <FormInputs
                       title={title}
                       action={action}
-                      inputValues={inputValues}
+                      inputValues={initInputValues}
                       handleChange={handleChange}
-                      handleDynamicReadOnly={handleDynamicReadOnly}
+                      handleFocus={handleFocus}
                     />
                   </StyledForm>
                 </React.Fragment>

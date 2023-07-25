@@ -15,15 +15,17 @@ function CheckPurchase() {
   const { config } = getConfigHandler(language);
 
   const initialFormValues = useMemo(() => {
-    const formValues = {};
+    const initFormValues = {};
+    const initInputValues = {};
 
     config.sections.forEach((section) => {
       section.inputs.forEach((input) => {
-        formValues[input.name] = "";
+        initFormValues[input.name] = "";
+        initInputValues[input.name] = { ...input, value: "" }; // Include the entire input object and set an initial empty string value
       });
     });
 
-    return formValues;
+    return { initFormValues, initInputValues };
   }, [config]);
 
   const [response, setResponse] = useState(null);
@@ -35,7 +37,6 @@ function CheckPurchase() {
 
   const handleSubmit = async (values) => {
     const {
-      CustomerNumber,
       account,
       bank,
       branch,
@@ -99,34 +100,6 @@ function CheckPurchase() {
     }
   };
 
-  const HandleTable = useCallback(() => {
-    const { purchaseSum, paymentNumber, dueDate, checkNumber } = inputValues;
-    let paymentData;
-
-    if (
-      purchaseSum !== "" &&
-      paymentNumber !== "" &&
-      checkNumber !== "" &&
-      dueDate !== "" &&
-      Number(paymentNumber) <= Number(purchaseSum)
-    ) {
-      paymentData = initTable(
-        "FROM hANDLE:",
-        purchaseSum,
-        paymentNumber,
-        checkNumber,
-        dueDate
-      );
-    } else {
-      paymentData = [];
-    }
-
-    setPaymentsData((prevPaymentsData) => ({
-      titles: [...prevPaymentsData.titles],
-      rows: paymentData,
-    }));
-  }, [inputValues, setPaymentsData]);
-
   const handleTableChange = useCallback(
     (event) => {
       setPaymentsData((prevPaymentsData) => ({
@@ -143,22 +116,31 @@ function CheckPurchase() {
   );
 
   useEffect(() => {
-    HandleTable();
-  }, [
-    inputValues.purchaseSum,
-    inputValues.paymentNumber,
-    inputValues.dueDate,
-    inputValues.checkNumber,
-  ]);
+    // checking if payment more then 1 and changing firstCheckSum readonly according to it
+    setInputValues((prevInputValues) => {
+      const paymentNumberValue =
+        prevInputValues.initInputValues.paymentNumber?.value;
 
-  useEffect(() => {
-    handleTableChange();
-  }, [handleTableChange, inputValues.firstCheckSum]);
+      const updatedFirstCheckSum = {
+        ...prevInputValues.initInputValues.firstCheckSum,
+        readOnly: paymentNumberValue > 1 ? false : true,
+        value:
+          paymentNumberValue > 1
+            ? prevInputValues.initInputValues.firstCheckSum.value
+            : "",
+      };
 
-  useEffect(() => {
-    //CALL CHANGE firstCheckSum TO READONLY=FALSE/TRUE
-    //callChangeReadonly()
-  }, [inputValues.paymentNumber]);
+      const updatedInitInputValues = {
+        ...prevInputValues.initInputValues,
+        firstCheckSum: updatedFirstCheckSum,
+      };
+
+      return {
+        ...prevInputValues,
+        initInputValues: updatedInitInputValues,
+      };
+    });
+  }, [inputValues.initInputValues.paymentNumber?.value]);
 
   return (
     <FormHandler
@@ -167,7 +149,6 @@ function CheckPurchase() {
       config={config}
       inputValues={inputValues}
       setInputValues={setInputValues}
-      initialFormValues={initialFormValues}
       response={response}
     >
       <FormTable tableDetails={paymentsData} onChange={handleTableChange} />

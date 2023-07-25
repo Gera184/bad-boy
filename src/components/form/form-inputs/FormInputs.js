@@ -17,7 +17,7 @@ export const FormInputs = ({
   action,
   inputValues,
   handleChange,
-  handleDynamicReadOnly,
+  handleFocus,
 }) => {
   const { errors, touched } = useFormikContext();
   let filterKey = null;
@@ -28,8 +28,8 @@ export const FormInputs = ({
         const error = errors[input.name];
         const touch = touched[input.name];
         const hasError = error && touch;
-        const showLabel = inputValues[input.name].trim() !== "";
-        const showPlaceHolder = inputValues[input.name].trim() === "";
+        const showLabel = inputValues[input.name].value.trim() !== "";
+        const showPlaceHolder = inputValues[input.name].value.trim() === "";
 
         if (
           input.type === "select" &&
@@ -55,7 +55,7 @@ export const FormInputs = ({
                   <PaymentStyledSelect
                     as="select"
                     name={input.name}
-                    value={inputValues[input.name]} // Pass the corresponding value from state
+                    value={inputValues[input.name].value} // Pass the corresponding value from state
                     onChange={handleChange} // Add onChange using handleChange
                   >
                     {[...Array(10)].map((_, index) => (
@@ -70,7 +70,7 @@ export const FormInputs = ({
                   <Label visible={showLabel}>{input.label} </Label>
                   <Select
                     options={input.optionsList}
-                    value={inputValues[input.name]} // Pass the corresponding value from state
+                    value={inputValues[input.name].value} // Pass the corresponding value from state
                     action={action}
                     filterKey={filterKey}
                     name={input.name}
@@ -85,11 +85,10 @@ export const FormInputs = ({
                 {input.type === "checkbox" ? (
                   <CheckboxWrapper>
                     <StyledInput
-                      checked={inputValues[input.name]} // Use checked prop for checkbox inputs
+                      checked={inputValues[input.name].value} // Use checked prop for checkbox inputs
                       type={input.type}
                       name={input.name}
                       onChange={handleChange}
-                      required
                     />
                     <Label visible={true}>{input.label} </Label>
                   </CheckboxWrapper>
@@ -100,14 +99,13 @@ export const FormInputs = ({
                       <StyledInput
                         type={input.type}
                         name={input.name}
-                        value={inputValues[input.name]} // Pass the corresponding value from state
+                        value={inputValues[input.name].value} // Pass the corresponding value from state
                         onChange={handleChange} // Add onChange using handleChange
                         label={input.label}
                         placeholder={showPlaceHolder ? input.placeHolder : ""}
                         error={hasError ? "error" : ""}
-                        onFocus={handleDynamicReadOnly}
-                        readOnly={input.readOnly} // Use the initialized readOnly value
-                        required
+                        readOnly={inputValues[input.name].readOnly}
+                        onFocus={() => handleFocus(input.name)} // Call handleFocus when input is focused
                       />
 
                       <IconContainer>

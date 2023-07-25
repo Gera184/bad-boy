@@ -27,6 +27,7 @@ export function getConfigHandler(language) {
             placeHolder: purchasesum,
             type: "number",
             label: purchasesum,
+            required: false,
             readOnly: false,
           },
           {
@@ -34,6 +35,7 @@ export function getConfigHandler(language) {
             placeHolder: paymentsnumber,
             type: "select",
             label: paymentsnumber,
+            required: false,
             readOnly: false,
           },
           {
@@ -41,6 +43,7 @@ export function getConfigHandler(language) {
             placeHolder: checknumber,
             type: "number",
             label: checknumber,
+            required: false,
             readOnly: false,
           },
           {
@@ -48,6 +51,7 @@ export function getConfigHandler(language) {
             placeHolder: "firstCheckSum",
             type: "number",
             label: "firstCheckSum",
+            required: true,
             readOnly: true,
           },
           {
@@ -55,6 +59,7 @@ export function getConfigHandler(language) {
             placeHolder: duedate,
             type: "date",
             label: duedate,
+            required: false,
             readOnly: false,
           },
         ],
@@ -67,6 +72,7 @@ export function getConfigHandler(language) {
             placeHolder: bank,
             type: "number",
             label: bank,
+            required: false,
             readOnly: false,
           },
           {
@@ -74,6 +80,7 @@ export function getConfigHandler(language) {
             placeHolder: branch,
             type: "number",
             label: branch,
+            required: false,
             readOnly: false,
           },
           {
@@ -81,6 +88,7 @@ export function getConfigHandler(language) {
             placeHolder: account,
             type: "number",
             label: account,
+            required: true,
             readOnly: false,
           },
           {
@@ -88,6 +96,7 @@ export function getConfigHandler(language) {
             placeHolder: CellPhoneNumber,
             type: "tel",
             label: CellPhoneNumber,
+            required: false,
             readOnly: false,
           },
           {
@@ -95,6 +104,7 @@ export function getConfigHandler(language) {
             placeHolder: CustomerNumber,
             type: "number",
             label: CustomerNumber,
+            required: false,
             readOnly: false,
           },
         ],
