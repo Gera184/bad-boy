@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getRetailerParameters,
@@ -18,9 +18,10 @@ import {
   Label,
   Input,
   LoginOption,
-  Field,
+  FieldWrapper,
   ButtonsContainer,
   LinkBtn,
+  Footer,
   Title,
 } from "./Login.styles";
 
@@ -29,17 +30,34 @@ import Button from "../button/Button";
 import { getConfigHandler } from "./getConfigHandler";
 import { useNavigate } from "react-router-dom";
 import { axiosRequest } from "../../utils/axiosRequest";
+import { Formik } from "formik";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { language, user } = useSelector((state) => state);
+  const { language } = useSelector((state) => state);
   const { config } = getConfigHandler(language);
   const { title, tabs, inputs, buttons, fotter } = config;
 
+  const [showOtpSendCode, setShowOtpSendCode] = useState(true);
   const [tabIndex, setTabIndex] = useState(0);
   const [inputValues, setInputValues] = useState({}); // Initialize an empty object for input values
+
+  const formikRef = useRef(null);
+
+  const selectedTabInputs =
+    tabIndex === 0 ? config.inputs.otp : config.inputs.usernameAndPass;
+
+  const initialFormValues = useMemo(() => {
+    const initFormValues = {};
+
+    selectedTabInputs.forEach((input) => {
+      initFormValues[input.id] = "";
+    });
+
+    return initFormValues;
+  }, [selectedTabInputs]);
 
   const loginHandler = async () => {
     try {
@@ -87,15 +105,21 @@ const Login = () => {
         });
 
         dispatch(getRetailerParameters(secondResponse));
+      } else {
+        //Show errors
       }
     } catch (error) {
       console.error(error);
     }
   };
 
+  const sendOtpHandler = () => {
+    setShowOtpSendCode(false);
+    console.log("Dummy!!! otp send in SMS");
+  };
+
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-
     // Update the input values based on the input's name
     setInputValues((prevInputValues) => ({
       ...prevInputValues,
@@ -103,66 +127,44 @@ const Login = () => {
     }));
   };
 
-  useEffect(() => {
-    navigate("/login");
-  }, []);
-
   return (
     <Wrapper>
-      <ContainerRight>
-        <Header>
-          <LogoImage>
-            <img src={ErnLogo} alt="logo" />
-          </LogoImage>
-        </Header>
-        <LoginsWrapper
-          selectedIndex={tabIndex}
-          onSelect={(index) => setTabIndex(index)}
-        >
-          <Title>{title}</Title>
-          <LoginOptions>
-            {tabs.map((tab, index) => (
-              <React.Fragment key={index}>
-                <LoginOption>{tab}</LoginOption>
-                {index !== tabs.length - 1 && <span>|</span>}
-              </React.Fragment>
-            ))}
-          </LoginOptions>
-          <LoginInputs>
-            {inputs.otp.map((input, index) => (
-              <Field key={input.id}>
-                <Label>{input.name}</Label>
-                <Input
-                  name={input.id} // Set the name attribute for the input
-                  type={input.type}
-                  onChange={onChangeHandler}
-                  value={inputValues[input.id] || ""} // Set the value from the inputValues object
-                />
-              </Field>
-            ))}
-            <ButtonsContainer>
-              <Button>{buttons.otp}</Button>
-            </ButtonsContainer>
-          </LoginInputs>
-          <LoginInputs>
-            {inputs.usernameAndPass.map((input, index) => (
-              <Field key={input.id}>
-                <Label>{input.name}</Label>
-                <Input
-                  name={input.id} // Set the name attribute for the input
-                  type={input.type}
-                  onChange={onChangeHandler}
-                  value={inputValues[input.id] || ""} // Set the value from the inputValues object
-                />
-              </Field>
-            ))}
-            <ButtonsContainer>
-              <Button onClick={loginHandler}>{buttons.usernameAndPass}</Button>
-              <LinkBtn>{buttons.forgotPasswordBtn}</LinkBtn>
-            </ButtonsContainer>
-          </LoginInputs>
-        </LoginsWrapper>
-      </ContainerRight>
+      <Formik initialValues={initialFormValues} innerRef={formikRef}>
+        <ContainerRight>
+          <Header>
+            <LogoImage>
+              <img src={ErnLogo} alt="logo" />
+            </LogoImage>
+          </Header>
+          <LoginsWrapper
+            selectedIndex={tabIndex}
+            onSelect={(index) => setTabIndex(index)}
+          >
+            <Title>{title}</Title>
+            <LoginOptions>
+              {tabs.map((tab, index) => (
+                <React.Fragment key={index}>
+                  <LoginOption isActive={tabIndex === index}>{tab}</LoginOption>
+                  {index !== tabs.length - 1 && <span>|</span>}
+                </React.Fragment>
+              ))}
+            </LoginOptions>
+
+            <LoginInputs>
+              <ButtonsContainer>
+                <Button onClick={loginHandler}>
+                  {buttons.usernameAndPass}
+                </Button>
+                <LinkBtn>{buttons.forgotPasswordBtn}</LinkBtn>
+              </ButtonsContainer>
+            </LoginInputs>
+          </LoginsWrapper>
+          <Footer>
+            <h3>{fotter.title}</h3>
+            <p>{fotter.description}</p>
+          </Footer>
+        </ContainerRight>
+      </Formik>
       <ContainerLeft></ContainerLeft>
     </Wrapper>
   );

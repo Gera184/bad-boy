@@ -70,7 +70,7 @@ export function getConfigHandler(language) {
           {
             name: "bank",
             placeHolder: bank,
-            type: "number",
+            type: "select",
             label: bank,
             required: false,
             readOnly: false,
@@ -78,7 +78,7 @@ export function getConfigHandler(language) {
           {
             name: "branch",
             placeHolder: branch,
-            type: "number",
+            type: "select",
             label: branch,
             required: false,
             readOnly: false,

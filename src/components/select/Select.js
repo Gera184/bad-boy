@@ -33,7 +33,7 @@ const Select = ({
       },
     };
 
-    action(option, name);
+    action(selectedOption, name, option);
     handleChange(event);
 
     setIsOpen(false);

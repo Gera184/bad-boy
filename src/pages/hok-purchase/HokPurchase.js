@@ -13,15 +13,17 @@ const HokPurchase = () => {
   const { config } = getConfigHandler(language, citiesData, banksData);
 
   const initialFormValues = useMemo(() => {
-    const formValues = {};
+    const initFormValues = {};
+    const initInputValues = {};
 
     config.sections.forEach((section) => {
       section.inputs.forEach((input) => {
-        formValues[input.name] = "";
+        initFormValues[input.name] = "";
+        initInputValues[input.name] = { ...input, value: "", selected: {} }; // Include the entire input object and set an initial empty string value
       });
     });
 
-    return formValues;
+    return { initFormValues, initInputValues };
   }, [config]);
 
   const [inputValues, setInputValues] = useState(initialFormValues);
@@ -35,7 +37,17 @@ const HokPurchase = () => {
     console.log(values);
   };
 
-  const handleSelectChange = (value, sender) => {
+  const handleSelectChange = (value, sender, option) => {
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      initInputValues: {
+        ...prevInputValues.initInputValues,
+        [sender]: {
+          ...prevInputValues.initInputValues[sender],
+          selected: option,
+        },
+      },
+    }));
     switch (sender) {
       case "CityName":
         setInputValues((prevInputValues) => ({
@@ -60,7 +72,6 @@ const HokPurchase = () => {
       action={handleSelectChange}
       inputValues={inputValues}
       setInputValues={setInputValues}
-      initialFormValues={initialFormValues}
     ></FormHandler>
   );
 };

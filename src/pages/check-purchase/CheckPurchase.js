@@ -21,7 +21,7 @@ function CheckPurchase() {
     config.sections.forEach((section) => {
       section.inputs.forEach((input) => {
         initFormValues[input.name] = "";
-        initInputValues[input.name] = { ...input, value: "" }; // Include the entire input object and set an initial empty string value
+        initInputValues[input.name] = { ...input, value: "", selected: {} }; // Include the entire input object and set an initial empty string value
       });
     });
 
