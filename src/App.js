@@ -53,7 +53,7 @@ export const App = () => {
   return (
     <Router>
       <Routes>
-        {user ? (
+        {!user ? (
           <>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Login />} />

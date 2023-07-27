@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Link } from "react-router-dom";
+import { Field, Form } from "formik";
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -17,7 +19,7 @@ export const ContainerLeft = styled.div`
   direction: rtl;
 `;
 
-export const ContainerRight = styled.div`
+export const ContainerRight = styled(Form)`
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -38,8 +40,8 @@ export const LogoImage = styled.div`
 `;
 
 export const LoginsWrapper = styled(Tabs)`
-  height: 350px;
-  width: 350px;
+  height: 398px;
+  width: 364px;
   button {
     display: flex;
   }
@@ -53,7 +55,7 @@ export const LoginOptions = styled(TabList)`
   gap: 18px;
   padding: 0;
   list-style-type: none;
-
+  margin: 0;
   p {
     color: var(--text-blue-0-b-1937, #0b1937);
     font-family: Heebo;
@@ -77,7 +79,7 @@ export const LoginInputs = styled(TabPanel)`
   flex-direction: column;
 `;
 
-export const Field = styled.div`
+export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 37px;
@@ -93,7 +95,7 @@ export const Label = styled.label`
   line-height: normal;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   border-top: none;
   border-right: none;
   border-left: none;
@@ -120,6 +122,7 @@ export const LinkBtn = styled(Link)`
   font-weight: 400;
   line-height: normal;
   text-decoration-line: underline;
+  cursor: pointer;
 `;
 
 export const Title = styled.h1`

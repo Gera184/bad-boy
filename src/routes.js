@@ -18,41 +18,33 @@ export const AppRoutes = () => {
   //   allowUpdateTransaction = user.data.allowUpdateTransaction;
   // }
 
-  const routes = useMemo(
-    () => [
-      {
-        route: "/",
-        element: <CheckPurchase />,
-        permission: allowPurchaseTypeCheck,
-      },
-      {
-        route: "/CheckPurchase",
-        element: <CheckPurchase />,
-        permission: allowPurchaseTypeCheck,
-      },
-      {
-        route: "/HokPurchase",
-        element: <HokPurchase />,
-        permission: allowPurchaseTypeHok,
-      },
-      {
-        route: "/PhoneHokPurchase",
-        element: <PhoneHokPurchase />,
-        permission: allowPurchaseTypePhoneHok,
-      },
-      {
-        route: "/UpdatePurchase",
-        element: <UpdatePurchase />,
-        permission: allowUpdateTransaction,
-      },
-    ],
-    [
-      allowPurchaseTypeCheck,
-      allowPurchaseTypeHok,
-      allowPurchaseTypePhoneHok,
-      allowUpdateTransaction,
-    ]
-  );
+  const routes = [
+    {
+      route: "/",
+      element: <CheckPurchase />,
+      permission: allowPurchaseTypeCheck,
+    },
+    {
+      route: "/CheckPurchase",
+      element: <CheckPurchase />,
+      permission: allowPurchaseTypeCheck,
+    },
+    {
+      route: "/HokPurchase",
+      element: <HokPurchase />,
+      permission: allowPurchaseTypeHok,
+    },
+    {
+      route: "/PhoneHokPurchase",
+      element: <PhoneHokPurchase />,
+      permission: allowPurchaseTypePhoneHok,
+    },
+    {
+      route: "/UpdatePurchase",
+      element: <UpdatePurchase />,
+      permission: allowUpdateTransaction,
+    },
+  ];
 
   return routes;
 };
