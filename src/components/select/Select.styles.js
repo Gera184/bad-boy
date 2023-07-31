@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const SelectWrapper = styled.div`
   position: relative;
@@ -25,11 +25,17 @@ export const SelectDropdown = styled.div`
   z-index: 9999;
 `;
 
-export const OptionItem = styled.option`
+export const OptionItem = styled.div`
   padding: 8px;
   cursor: pointer;
 
   &:hover {
     background-color: #f5f5f5;
   }
+
+  ${(props) =>
+    props.highlighted &&
+    css`
+      background-color: #f0f0f0;
+    `}
 `;

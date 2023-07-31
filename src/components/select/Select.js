@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FixedSizeList as List } from "react-window";
 import {
-  OptionItem,
-  SelectDropdown,
-  SelectInput,
   SelectWrapper,
+  SelectInput,
+  SelectDropdown,
+  OptionItem,
 } from "./Select.styles";
 import arrowDown from "../../assets/icons/arrowDown.svg";
 
@@ -18,6 +18,8 @@ const Select = ({
   value,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const dropdownRef = useRef(null);
 
   const handleInputChange = (event) => {
     handleChange(event);
@@ -39,10 +41,59 @@ const Select = ({
     setIsOpen(false);
   };
 
-  //react-window library is used to render a virtualized list of options.
-  //The List component from react-window replaces the filteredOptions?.map function, and the Row component is defined to render each option.
-  //By implementing virtualization, the Select component will render efficiently,
-  //even with a large number of options, as only the visible options will be rendered at any given time
+  const handleKeyDown = (event) => {
+    const { key } = event;
+    const itemCount = filteredOptions?.length;
+
+    // Check if the list is open
+    if (isOpen) {
+      switch (key) {
+        case "ArrowUp":
+          // Handle moving up in the list
+          event.preventDefault();
+          moveHighlight(-1, itemCount);
+          break;
+        case "ArrowDown":
+          // Handle moving down in the list
+          event.preventDefault();
+          moveHighlight(1, itemCount);
+          break;
+        case "Enter":
+          // Handle selecting the highlighted option
+          event.preventDefault();
+          if (highlightedIndex !== -1) {
+            handleOptionClick(filteredOptions[highlightedIndex]);
+          }
+          break;
+        case "Escape":
+          // Close the dropdown on pressing Escape key
+          setIsOpen(false);
+          break;
+        default:
+          break;
+      }
+    } else {
+      // Open the dropdown on pressing ArrowDown key
+      if (key === "ArrowDown") {
+        setIsOpen(true);
+      }
+    }
+  };
+
+  const moveHighlight = (offset, itemCount) => {
+    setHighlightedIndex((prevIndex) => {
+      let newIndex = prevIndex + offset;
+
+      if (newIndex < 0) {
+        newIndex = 0;
+      } else if (newIndex >= itemCount) {
+        newIndex = itemCount - 1;
+      }
+
+      return newIndex;
+    });
+  };
+
   const filteredOptions = options?.filter((option) =>
     option[filterKey]?.toLowerCase().includes(value.toLowerCase())
   );
@@ -55,6 +106,7 @@ const Select = ({
         style={style}
         name={name}
         onClick={() => handleOptionClick(option)}
+        highlighted={index === highlightedIndex}
       >
         {option[filterKey]}
       </OptionItem>
@@ -76,11 +128,13 @@ const Select = ({
           }, 200);
         }}
         required
+        onKeyDown={handleKeyDown} // Add the onKeyDown event handler to SelectInput
+        tabIndex={0} // This ensures the SelectInput can receive focus and capture key events
       />
 
       <img onClick={() => setIsOpen(true)} src={arrowDown} alt="arrowDown" />
       {isOpen && (
-        <SelectDropdown>
+        <SelectDropdown ref={dropdownRef}>
           <List
             height={200} // Adjust the height as needed
             itemCount={filteredOptions?.length}
