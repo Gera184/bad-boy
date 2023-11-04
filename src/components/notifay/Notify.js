@@ -15,6 +15,16 @@ export const notification = (color) => {
         draggable: true,
         progress: undefined,
       });
+    case "exist":
+      return toast.success("המספר כבר קיים במערכת", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     case "error":
       return toast.error("משהו השתבש", {
         position: "top-left",
