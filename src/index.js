@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+<<<<<<< HEAD
 import "./index.css";
 import { App } from "./App";
 import store from './redux/store/store'
@@ -8,11 +9,25 @@ import { Provider } from "react-redux";
 
 import reportWebVitals from "./reportWebVitals";
 
+=======
+import { App } from "./App";
+import "./index.css";
+
+import reportWebVitals from "./reportWebVitals";
+
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
+>>>>>>> 9a369c5 (remove conffeti)
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+<<<<<<< HEAD
     <App />
+=======
+      <App />
+>>>>>>> 9a369c5 (remove conffeti)
     </Provider>
   </React.StrictMode>
 );

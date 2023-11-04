@@ -1,7 +1,21 @@
 body {
   margin: 0;
+<<<<<<< HEAD
   direction:rtl;
+=======
+>>>>>>> 9a369c5 (remove conffeti)
 }
 .active span {
   color: white;
 }
+<<<<<<< HEAD
+=======
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+>>>>>>> 9a369c5 (remove conffeti)
