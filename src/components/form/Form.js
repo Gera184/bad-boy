@@ -41,8 +41,10 @@ export const Form = ({ isAdmin = false }) => {
   const documentId = uuidv4();
   const collectionName = "customers";
   const [caseNumber, setCaseNumber] = useState("");
+  const [users, setUsers] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
   const { customers } = useSelector((store) => store.customer);
+
 
   const formik = useFormik({
     initialValues: {
@@ -80,13 +82,16 @@ export const Form = ({ isAdmin = false }) => {
       query(usersCollectionRef, orderBy("createdAt", "desc"))
     );
 
-    const users = [];
+
+    const tempUsers = [];
     querySnapshot.forEach((doc) => {
       // Access individual document data
       const user = doc.data();
 
-      users.push(user);
+      tempUsers.push(user);
     });
+
+
 
     const updatedCaseNumber = incrementWithLeadingZeros(
       users[0]?.caseNumber ? users[0].caseNumber : "2081235"
@@ -95,11 +100,21 @@ export const Form = ({ isAdmin = false }) => {
     if (users.caseNumber) {
       users[0].caseNumber = updatedCaseNumber;
     }
-    return users;
-  }, []);
+
+    setUsers(tempUsers);
+  }, [users]);
 
   const postData = async (data) => {
+
+
     try {
+      const enteredPhoneNumber = data.phone;
+      const isExist = users.some((user) => user.phone === enteredPhoneNumber);
+
+      if (isExist) {
+        return notification("exist");
+      }
+
       const response = await axios.post("http://gytb.co.il/api/contact/", data);
       if (response?.statusText === "OK") {
         notification("added");
@@ -140,6 +155,7 @@ export const Form = ({ isAdmin = false }) => {
       .catch((error) => {
         console.error("Error writing data to Firestore: ", error);
       });
+
 
     postData(data);
 
