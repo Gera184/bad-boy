@@ -1,0 +1,15 @@
+{
+  "profileCompletion": {
+    "score": 80,
+    "description": "backend, Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis,"
+  },
+  "payment": {
+    "ammount": 1999.12,
+    "description": "backend,Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis,"
+  },
+  "news": {
+    "thumbnail": "",
+    "description": "Backend,Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis,",
+    "link": ""
+  }
+}

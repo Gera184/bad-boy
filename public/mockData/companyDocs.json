@@ -1,0 +1,34 @@
+{
+  "data": {
+    "documents": [
+      {
+        "file": "Doc1",
+        "status": "Validated",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati corporis aspernatur temporibus velit minu",
+        "id": 1,
+        "thumbnail": "../../../assets/icons/c.png"
+      },
+      {
+        "file": "Doc2",
+        "status": "Failed",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati corporis aspernatur temporibus velit minu",
+        "id": 2,
+        "thumbnail": "../../../assets/icons/c.png"
+      },
+      {
+        "file": "",
+        "status": "",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati corporis aspernatur temporibus velit minu",
+        "id": 3,
+        "thumbnail": "../../../assets/icons/c.png"
+      },
+      {
+        "file": "",
+        "status": "",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati corporis aspernatur temporibus velit minu",
+        "id": 1,
+        "thumbnail": "../../../assets/icons/c.png"
+      }
+    ]
+  }
+}
