@@ -192,7 +192,7 @@ export const Form = ({ isAdmin = false }) => {
 
   useEffect(() => {
     getCustomers();
-  }, [getCustomers]);
+  }, []);
 
   return (
     <ContactForm onSubmit={formik.handleSubmit}>
